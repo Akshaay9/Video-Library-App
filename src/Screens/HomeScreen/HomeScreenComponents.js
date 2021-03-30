@@ -8,11 +8,11 @@ function HomeScreenComponents() {
     "https://images.pexels.com/photos/4720236/pexels-photo-4720236.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=2020",
     "https://images.unsplash.com/photo-1518310383802-640c2de311b2?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTB8fGdyb3VwJTIwZGFuY2V8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=60",
   ];
-  useEffect(() => {
-    const next = (current + 1) % images_desktop.length;
-    const id = setTimeout(() => setCurrent(next), 3000);
-    return () => clearTimeout(id);
-  }, [current]);
+  // useEffect(() => {
+  //   const next = (current + 1) % images_desktop.length;
+  //   const id = setTimeout(() => setCurrent(next), 3000);
+  //   return () => clearTimeout(id);
+  // }, [current]);
 
   return (
     <div className="desktop-carousal">

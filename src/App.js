@@ -6,7 +6,7 @@ function App() {
   return (
     <>
       {/* Nav Bar */}
-      <NavBar />
+      {/* <NavBar /> */}
 
       {/* Home screen */}
       <HomeScreen />

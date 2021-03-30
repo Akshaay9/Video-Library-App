@@ -2,14 +2,15 @@ li.hr-underline-middle:before {
   background-color: rgb(3, 3, 3);
 }
 
+
 .nav {
   border: 1px solid var(--line-color);
   position: fixed;
   top: 0%;
   width: 100%;  
   margin-bottom: 4rem;
-  /* background-color: white;
-  z-index: 300 !important; */
+ background-color: white;
+ z-index: 300 !important; 
 }
 .nav_cart img {
   width: 50%;
@@ -28,13 +29,13 @@ li.hr-underline-middle:before {
   width: 100%;
   height: 91.9vh;
   object-fit: cover;
-  animation: desktopCarousal 800ms ease-in-out;
+  animation: desktopCarousal 700ms ease-in-out;
   filter: brightness(35%);
 }
 @keyframes desktopCarousal{
   from {
-
-transform: scale(0.9);
+opacity: 0;
+transform: scale(0.96);
   }
   to{
 
@@ -99,11 +100,126 @@ top: 20%;
  padding: .5rem 2rem;
  font-size: 1.1rem;
 } 
+/* cards on home screen */
+
+.HomeScreenCatalogue-grid{
+  cursor: pointer;
+  width: 96.5%;
+margin: auto;
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+grid-column-gap: 25px;
+grid-row-gap: 18px;
+}
+.homeScreenCard{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20rem;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.imgCircle-container{
+  width: 50%;
+  height: 100%;
+  border-radius: 50%;
+  margin-left: auto;
+  margin-right: 1rem;
+  margin-top: .3rem;
+  margin-bottom: .3rem;
+  background-color: aliceblue;
+  z-index: 200 !important
+}
+.imgCircle{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 360%;
+
+}
+
+
+.homeScreenCard .bgIM{
+height: 20rem;
+  width: 100%;
+  object-fit: cover;
+opacity: 0;
+position: absolute;
+z-index: 99 !important
+}
+
+.homeScreenCard h3,.homeScreenCard span{
+  position: absolute;
+  top: 0%;
+  left: 0%;
+}
+.homeScreenCard span{
+  top: 13%;
+  left: 2%;
+  font-family: sans-serif;
+
+}
+.homeScreenCard h3{
+  top: 50%;
+  width: 50%;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  color: white;
+  line-height: 2rem;
+  font-size: 1.5rem;
+  padding: 0rem 1rem;
+
+}
+.homeScreenCard:hover .bgIM{
+  transition: all 500ms ease-in-out;
+  opacity: 0.5 !important
+}
+.homeScreenCard:hover h3{
+  transition: all 500ms ease-in-out;
+  opacity: 1 !important;
+}
+
+
 @media screen and (max-width: 700px) {
 
   .fa-caret-square-right,.fa-caret-square-left{
   font-size: 1.3rem;
   }
+  .HomeScreenCatalogue-grid{
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+  .imgCircle-container{
+    width: 55%;
+    height: 65%;
+  /* padding: 1rem; */
+  padding: 0%;
+  margin: 0%;
+  margin: auto;
+  margin-bottom: 25%;
+  }
+  .homeScreenCard{
+    padding: .1rem;
+  }
+  .homeScreenCard h3{
+    top: 70%;
+    width: 50%;
+    font-family: sans-serif;
+    text-transform: uppercase;
+    color: white;
+    line-height: 1.2rem;
+    font-size: 1.2rem;
+    padding: 0rem .5rem;
+  
+  }
+  .homeScreenCard span{
+    top: 2%;
+    left: 1%;
+    font-family: sans-serif;
+  
+  }
+  
 
 }
 
