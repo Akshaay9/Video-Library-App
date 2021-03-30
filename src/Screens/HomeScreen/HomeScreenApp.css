@@ -1,9 +1,7 @@
 li.hr-underline-middle:before {
   background-color: rgb(3, 3, 3);
 }
-*{
-    /* border: 1px solid red; */
-}
+
 .nav {
   border: 1px solid var(--line-color);
   position: fixed;
@@ -20,13 +18,92 @@ li.hr-underline-middle:before {
 .nav_right{
     width: 14rem;
 }
-.test{
-    width: 100%;
-    height: 8vh;
+/* home page carousal */
+.desktop-carousal{
+  position: relative;
+  margin-top: 3.3rem;
+  width: 100%;
 }
- .test img{
-    width: 100%;
-    height: 89vh;
-    object-fit: cover;
-    
- }
+.desktop-carousal img{
+  width: 100%;
+  height: 91.9vh;
+  object-fit: cover;
+  animation: desktopCarousal 800ms ease-in-out;
+  filter: brightness(35%);
+}
+@keyframes desktopCarousal{
+  from {
+
+transform: scale(0.9);
+  }
+  to{
+
+    transform: scale(1);
+  }
+}
+.fa-caret-square-right{
+  position: absolute;
+  font-size: 2rem;
+  color: white;
+  top: 50%;
+  right: 2%;
+  color: #e0c08c;
+}
+.fa-caret-square-left{
+  position: absolute;
+  color: white;
+  font-size: 2rem;
+  top: 50%;
+  left: 2%;
+  color: #e0c08c;
+}
+.desktop-carousal-img1,.desktop-carousal-img2,.desktop-carousal-img3,.desktop-carousal-img4{
+  position: relative;
+}
+.desktop-carousal-img1-desc,.desktop-carousal-img2-desc,.desktop-carousal-img3-desc,.desktop-carousal-img4-desc{
+ animation: desktpCarousalDesc 800ms ease-in-out;
+  position: absolute;
+  z-index: 200;
+  top: 40%;
+  left: 10%;
+  pointer-events: none;
+}
+@keyframes desktpCarousalDesc{
+  from {
+opacity: 0;
+transform: scale(0.9);
+top: 20%;
+  }
+  to{
+    opacity: 1;
+    transform: scale(1);
+    top: 40%;
+  }
+}
+.carosual-desc h1{
+  font-family: sans-serif;
+  text-transform: uppercase;
+  color: white;
+  line-height: 4rem;
+  font-size: 2.5rem;
+} 
+.carosual-desc h3{
+  font-family: sans-serif;
+  text-transform: uppercase;
+  color: white;
+  color: #fcbd56;
+  font-size: 2.1rem;
+} 
+.carosual-desc button{
+ margin-top: .5rem;
+ padding: .5rem 2rem;
+ font-size: 1.1rem;
+} 
+@media screen and (max-width: 700px) {
+
+  .fa-caret-square-right,.fa-caret-square-left{
+  font-size: 1.3rem;
+  }
+
+}
+
