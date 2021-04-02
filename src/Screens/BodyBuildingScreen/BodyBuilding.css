@@ -163,12 +163,103 @@ height: 0rem;
 }
 
 /* BG video Player */
-.BG-video-player{
-  margin-top: 4rem;
+.test{
+  margin-top: 3.1rem;
   z-index: 301;
   width: 100%;
   height: 100vh;
   position: absolute;
-bottom: 0%;
-transform: translate(-50%,-50%);
+top: 50%;
+left: 50%;
+transform: translate(-50% ,-50%);
+/* background-color: antiquewhite; */
+position: fixed;
+}
+.fa-times-circle{
+  position: absolute;
+  right: 5%;
+  top: 5%;
+  font-size: 2rem;
+  color: rgb(255, 239, 8);
+  border-radius: 2rem;
+
+}
+.fa-times-circle:hover{
+  position: absolute;
+  right: 5%;
+  top: 5%;
+  font-size: 2rem;
+  color: rgb(204, 199, 124);
+  border-radius: 2rem;
+}
+/* modal */
+.modal-playList-container{
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 303;
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.modal-playList-cta{
+  width: 15%;
+color: black;
+background-color: white;
+}
+.modal-playlist-top{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid var(--line-color);
+}
+.modal-playlist-mid-li{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: .7rem 1.8rem;
+}
+.modal-playlist-mid ul{
+  border: 1px solid var(--line-color);
+}
+.btn-playlist-cta{
+  padding: 0.1rem 1rem;
+  display: block;
+  margin: .5rem auto; 
+}
+.input-playlist-cta{
+padding: 0%;
+margin: 0%;
+display: block;
+margin: 1rem auto;
+border: 1px solid black;
+width: 50%;
+padding: .2rem;
+}
+.input-playlist-cta:focus {
+  width: 70%;
+  border: 1px solid rgb(36, 85, 223);
+  transition: all 100ms ease-in-out;
+}
+textarea:focus, input:focus{
+    outline: none;
+}
+.btn-playlist-cta2{
+  padding: 0.1rem 1rem;
+  display: block;
+  margin: .1rem auto; 
+}
+
+.secondary-disabled:disabled{
+  background-color: rgb(184, 179, 179);
+
 }
