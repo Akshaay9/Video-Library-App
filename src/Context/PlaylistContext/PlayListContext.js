@@ -4,9 +4,7 @@ import { playListReducer } from "./PlayListReduser";
 const playListContext = createContext();
 
 const initialStateOfPlaylist = {
-    playLists: localStorage.getItem("play-list") ? JSON.parse(localStorage.getItem("play-list")) : [
-       
-    ],
+    playLists: localStorage.getItem("play-list") ? JSON.parse(localStorage.getItem("play-list")) : [],
     loading:false
 }
 

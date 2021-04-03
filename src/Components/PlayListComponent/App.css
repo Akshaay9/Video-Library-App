@@ -1,0 +1,116 @@
+* {
+  padding: 0%;
+  margin: 0%;
+  box-sizing: border-box;
+}
+
+.playList-container-heading{
+    width: 60.5%;
+    margin-top: 4rem;
+    margin-left: 2rem;
+    border: 1px solid var(--line-color);
+    font-size: 1.2rem;
+    font-family: var(--font-sans-serif);
+    color: #444;
+    padding: .4rem .5rem;
+    
+}
+.playlists{
+    cursor: pointer;
+    width: 60.5%;
+    margin-top: 1rem;
+    margin-left: 2rem;
+    display: grid;
+    grid-template-columns: .7fr .3fr .1fr;
+ 
+
+}
+.playlist-img img{
+    height: 12rem;
+    width: 100%;
+    object-fit: cover;
+    filter: brightness(65%);
+}
+.playlist-img{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.playlist-desc{
+    border: 1px solid var(--line-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.playlist-desc h2{
+    font-size: 1.3rem;
+    font-family: var(--font-sans-serif);
+    line-height: 2rem;
+    color: #444;
+    margin: 0 0 .3rem;
+    padding-right: 0;
+    text-transform: uppercase;
+
+}
+.playlist-desc h4{
+    font-size: 1rem;
+    font-weight: 400;
+    margin: 0;
+    line-height: 2.4rem;
+    color: #504f4f;
+    text-transform: capitalize;
+}
+.playlist-cta{
+    border: 1px solid var(--line-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.playlist-play{
+font-size: 2rem;
+}
+.playlist-count{
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    width: 30px;
+    height: 30px;
+    background-color: whitesmoke;
+    color: #4992d3;
+    border-radius: 50%;
+    border: 1px solid var(--line-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+}
+.playlist-btn-cta{
+    padding: 0rem 1.2rem;
+}   
+@media screen and (max-width: 700px) {
+    .playlists{
+        width: 95%;
+        margin: auto;
+        margin: auto;
+        display: grid;
+        grid-template-columns: 1fr ;
+        /* grid-column-gap: 0.1rem; */
+        grid-row-gap: .1rem;
+        margin-bottom: 1rem;
+    }
+    .playlist-cta{
+        padding: .3rem;
+        border: 1px solid var(--line-color);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .playlist-btn-cta{
+        padding: 0rem 1.2rem;
+        margin-bottom: .3rem;
+        
+    } 
+   
+}

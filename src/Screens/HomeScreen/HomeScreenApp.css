@@ -67,7 +67,6 @@ opacity: 1;
   z-index: 200;
   top: 40%;
   left: 10%;
-  pointer-events: none;
 }
 @keyframes desktpCarousalDesc{
   from {

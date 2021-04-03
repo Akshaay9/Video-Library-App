@@ -66,6 +66,7 @@ function BodyBuildingScreenProductList() {
       payload: newPlayList,
     });
     setCreatePlaylistBTN(false)
+    setInputPlayList("")
   }
 
   // function to add video to playlist/Cretae a playlist
@@ -79,7 +80,7 @@ function BodyBuildingScreenProductList() {
               class="fas fa-times"
               onClick={() => {
                 showModal(false);
-                setCreatePlaylistBTN(false);
+                // setCreatePlaylistBTN(false);
               }}
             ></i>
           </div>

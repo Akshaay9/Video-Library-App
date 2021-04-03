@@ -202,7 +202,7 @@ position: fixed;
   left: 50%;
   transform: translate(-50%,-50%);
   z-index: 303;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.8);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -226,7 +226,7 @@ background-color: white;
   width: 100%;
   align-items: center;
   justify-content: space-between;
-  padding: .7rem 1.8rem;
+  padding: .1rem 1.8rem;
 }
 .modal-playlist-mid ul{
   border: 1px solid var(--line-color);
@@ -258,8 +258,17 @@ textarea:focus, input:focus{
   display: block;
   margin: .1rem auto; 
 }
+.fa-times{
+  padding: .32rem;
+  transition: all 150ms ease-in-out;
+}
+.fa-times:hover{
+ padding: .32rem;
+ border-radius: 50%;
+ background-color: #444;
+ color: white;
+}
 
 .secondary-disabled:disabled{
   background-color: rgb(184, 179, 179);
-
 }
