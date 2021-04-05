@@ -50,14 +50,14 @@ function BodyBuildingScreenProductList() {
     }
   };
 
-  // fun to disable btn based on empty output or alredy contained playlist
-  // const disableCreatePlayListBTB = () => false;
 
   // function to dispatch acton which create a new playlists and adds a video to it
   const funToCreatePlaylistAddVideo = (video) => {
+    const date = new Date();
     const newPlayList = {
       id: Math.random(),
       name: inputPlayList,
+      dateCreated:`${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`,
       videos:[video]
     }
     
@@ -80,7 +80,7 @@ function BodyBuildingScreenProductList() {
               class="fas fa-times"
               onClick={() => {
                 showModal(false);
-                // setCreatePlaylistBTN(false);
+              
               }}
             ></i>
           </div>

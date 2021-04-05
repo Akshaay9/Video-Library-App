@@ -22,7 +22,12 @@ export const playListReducer = (state, { type, payload }) => {
         case "CREATE_NEW_PLAYLIST":
             return {
                 ...state,
-                playLists:[...state.playLists,payload]
+                playLists: [...state.playLists, payload]
+            }
+        case "DELETE_PLAYLIST":
+            return {
+                ...state,
+                playLists:state.playLists.filter((ele)=>ele.id!=payload)
 }
         default:
           return state

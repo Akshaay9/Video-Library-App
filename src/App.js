@@ -1,26 +1,22 @@
 import React from "react";
 import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomeScreen from "./Screens/HomeScreen/Index";
 import NavBar from "./Screens/HomeScreen/NavBar";
 import BodyBuildingScreen from "./Screens/BodyBuildingScreen/index";
-import { useRoutingContext } from "./Context/RouteContext/RotingContextProvider";
-import PlayListComponent from "./Components/PlayListComponent/Index"
+import PlayListComponent from "./Components/PlayListComponent/Index";
+import IndividualPlayListComponent from "./Components/IndividualPlaylistComponent/Index";
 function App() {
-  const { route, setRoute } = useRoutingContext();
   return (
-    <>
-      {/* Nav Bar */}
+    <BrowserRouter>
       <NavBar />
-
-      {/* Home screen */}
-      {route === "HomeScreenComponents" && <HomeScreen />}
-
-      {/* BodyBuilding Screen */}
-      {route === "bodyBuilding" && <BodyBuildingScreen />}
-
-      {/* PlayList Screen */}
-      {route === "playList" && <PlayListComponent />}
-    </>
+      <Routes>
+        <Route path="/" element={<HomeScreen/>} />
+        <Route path="/videos/bodybuilding" element={<BodyBuildingScreen />} />
+        <Route path="/playlists" element={<PlayListComponent />} />
+        <Route path="/playlists/:id" element={<IndividualPlayListComponent />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

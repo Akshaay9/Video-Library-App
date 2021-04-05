@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useRoutingContext } from "../../Context/RouteContext/RotingContextProvider";
 import bodyBuildingBanner from "./bodyBuildingBanner.jpg";
 function HomeScreenComponents() {
-  const { route, setRoute } = useRoutingContext();
   const [current, setCurrent] = useState(0);
   const images_desktop = [
     "https://jeffnippard.com/wp-content/uploads/2020/06/Jef-Nippard-Hero.jpg",
@@ -29,7 +27,6 @@ function HomeScreenComponents() {
             <h3>Body Building</h3>
             <h1>make Your Body Stronger</h1>
             <button className="btn btn-secondary"
-            onClick={()=>setRoute("bodyBuilding")}
             >Start Now</button>
           </div>
         </>

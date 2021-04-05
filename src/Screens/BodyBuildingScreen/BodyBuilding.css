@@ -272,3 +272,27 @@ textarea:focus, input:focus{
 .secondary-disabled:disabled{
   background-color: rgb(184, 179, 179);
 }
+@media screen and (max-width: 800px) {
+  .modal-playList-container{
+    width: 110%;
+    height: 150vh;
+    position: absolute;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 303;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  .modal-playList-cta{
+    width: 55%;
+  color: black;
+  background-color: white;
+  }
+}
+
+

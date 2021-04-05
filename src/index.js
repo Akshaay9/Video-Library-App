@@ -1,23 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom";
-
+import { debugContextDevtool } from "react-context-devtool";
 import App from "./App";
 import PlayListContextFun from "./Context/PlaylistContext/PlayListContext";
-import RoutingContextFunction from "./Context/RouteContext/RotingContextProvider";
 
+const container = document.getElementById("root");
 ReactDOM.render(
   <React.StrictMode>
-    
-    <RoutingContextFunction>
-      {/* {Routing Context} */}
+    <PlayListContextFun>
+      {/* {PlayListc context} */}
 
-      <PlayListContextFun>
-        {/* {PlayListc context} */}
-        
+  
 
         <App />
-      </PlayListContextFun>
-    </RoutingContextFunction>
+    </PlayListContextFun>
   </React.StrictMode>,
-  document.getElementById("root")
+  container
 );
+debugContextDevtool(container);
