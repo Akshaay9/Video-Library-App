@@ -1,23 +1,22 @@
 import React from "react";
 import { UsePlayListContext } from "../../Context/PlaylistContext/PlayListContext";
+import { NavLink } from "react-router-dom";
 function PlayLists() {
   const {
     state: { playLists, loading },
     playListDispatch,
   } = UsePlayListContext();
+
   return (
     <>
       <div className="playList-container-heading">PlayList</div>
       {playLists.map((ele, index) => (
         <div className="playlists">
           <div className="playlist-img">
-            {
-              <img
-                src={ele.videos[0].img}
-                alt=""
-              
-              />
-            }
+            <NavLink to={`/playlists/${ele.id}`}>
+              <img src={ele.videos[0].img} alt="" />
+            </NavLink>
+
             <span className="playlist-count">{index + 1}</span>
           </div>
           <div className="playlist-desc">
@@ -34,9 +33,9 @@ function PlayLists() {
             </button>
           </div>
           <div className="playlist-cta">
-            <i
-              class="fab fa-google-play playlist-play"
-            ></i>
+            <NavLink to={`/playlists/${ele.id}`}>
+              <i class="fab fa-google-play playlist-play"></i>
+            </NavLink>
           </div>
         </div>
       ))}

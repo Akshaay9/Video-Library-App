@@ -5,7 +5,7 @@
 }
 
 .playList-container-heading{
-    width: 60.5%;
+    width: 70.5%;
     margin-top: 4rem;
     margin-left: 2rem;
     border: 1px solid var(--line-color);
@@ -17,7 +17,7 @@
 }
 .playlists{
     cursor: pointer;
-    width: 60.5%;
+    width: 70.5%;
     margin-top: 1rem;
     margin-left: 2rem;
     display: grid;

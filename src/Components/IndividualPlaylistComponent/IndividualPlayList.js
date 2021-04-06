@@ -1,12 +1,165 @@
-import React from 'react'
-
+import React, { useState } from "react";
+import { useParams } from "react-router-dom";
+import { UsePlayListContext } from "../../Context/PlaylistContext/PlayListContext";
 function IndividualPlayList() {
-    return (
-        <div>
-            individual
-             Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque nisi vero perferendis voluptatum qui rerum consectetur. Consequatur voluptatum a nam dolorem neque odit temporibus minus sapiente voluptatibus dignissimos in repellendus porro eveniet facilis aspernatur laboriosam facere, quos provident vero possimus? Sint sed similique est voluptatibus accusantium numquam, dolore labore, architecto culpa pariatur laborum repellendus enim, unde tempore ipsa vitae eius? Quae maiores, perferendis magnam corrupti eum quasi enim aut ipsam aperiam repellendus tenetur nulla ratione voluptates voluptatum ut voluptate quidem optio vitae incidunt possimus. Excepturi repellendus saepe sit laboriosam, nulla assumenda facere exercitationem atque, quam culpa fuga beatae necessitatibus, non tempora iste eligendi aut et praesentium adipisci ad? Exercitationem corrupti, expedita at minus quo asperiores! Veniam molestiae reprehenderit assumenda perferendis voluptatum unde ab ipsum culpa a quod provident omnis cum deserunt totam, animi libero? Facere velit consequatur necessitatibus aliquid placeat sit, rerum veniam quia harum voluptates blanditiis nihil nesciunt amet accusantium modi cum consequuntur, molestiae nobis nulla et asperiores doloremque voluptatum culpa omnis? Culpa delectus pariatur similique, laudantium nulla explicabo soluta? Assumenda dolor ipsa iusto neque, harum ad esse quae dolorum eaque maiores, earum laborum! Fugit adipisci facere mollitia, veniam nemo amet esse dolor molestiae odio eos quo expedita ipsam.
+  // useState to update playlist name
+  const [updatePlayListName, setUpdatePlayListName] = useState(true);
+  // useState to update playlist description
+  const [updatePlayListDesc, setUpdatePlayListDesc] = useState(true);
+
+  // UseParams
+  const { id } = useParams();
+
+  const {
+    state: { playLists, loading },
+    playListDispatch,
+  } = UsePlayListContext();
+  const individualPlaylist = playLists.filter((ele) => ele.id == id);
+  console.log(individualPlaylist);
+
+  // useState for playList Name on input
+  const [playListNameForInput, setPlayListNameForInput] = useState(
+    individualPlaylist[0].name
+  );
+  // useState for playList Dec on input
+  const [playListDescForInput, setPlayListDescForInput] = useState(
+    individualPlaylist[0].desc
+  );
+
+  const updateThePlayListName = () => {
+    if (updatePlayListName)
+      return (
+        <div className="individual-playlist-left-row1-df">
+          <h2>{individualPlaylist[0].name}</h2>
+          <i
+            class="fas fa-pen"
+            onClick={() => setUpdatePlayListName(false)}
+          ></i>
         </div>
-    )
+      );
+    else
+      return (
+        <div className="individual-playlist-left-row1">
+          <div className="individual-playlist-left-row1-input">
+            <input
+              type="text"
+              value={playListNameForInput}
+              style={{ fontSize: "1rem" }}
+              onChange={(e) => setPlayListNameForInput(e.target.value)}
+            />
+          </div>
+          <div className="individual-playlist-left-row2-actions">
+            <button
+              className="btn btn-primary btn-primary-hr-outline-out indi-playList-btn-cta"
+              onClick={() => setUpdatePlayListName(true)}
+            >
+              Cancel
+            </button>
+            <button
+              className="btn btn-primary btn-primary-hr-outline-out indi-playList-btn-cta"
+              onClick={() => {
+                playListDispatch({
+                  type: "UPDATE_PLAYLIST_NAME",
+                  payload: { id, name: playListNameForInput },
+                });
+                setUpdatePlayListName(true);
+              }}
+            >
+              Update
+            </button>
+          </div>
+        </div>
+      );
+  };
+
+  const updatePlayListDescription = () => {
+    if (updatePlayListDesc) {
+      return (
+        <div className="individual-playlist-left-macro-desc-1">
+          <h2> {individualPlaylist[0].desc || "Enter Description"}</h2>
+          <i
+            class="fas fa-pen"
+            onClick={() => setUpdatePlayListDesc(false)}
+          ></i>
+        </div>
+      );
+    } else {
+      return (
+        <div className="individual-playlist-left-macro-desc-2">
+          <div className="individual-playlist-left-row1">
+            <div className="individual-playlist-left-row1-input">
+              <input
+                type="text"
+                value={playListDescForInput}
+                style={{ fontSize: "1rem" }}
+                onChange={(e) => setPlayListDescForInput(e.target.value)}
+              />
+            </div>
+            <div className="individual-playlist-left-row2-actions">
+              <button
+                className="btn btn-primary btn-primary-hr-outline-out indi-playList-btn-cta"
+                onClick={() => setUpdatePlayListDesc(true)}
+              >
+                Cancel
+              </button>
+              <button
+                className="btn btn-primary btn-primary-hr-outline-out indi-playList-btn-cta"
+                onClick={() => {
+                  playListDispatch({
+                    type: "UPDATE_PLAYLIST_DESC",
+                    payload: { id, desc: playListDescForInput },
+                  });
+                  setUpdatePlayListDesc(true);
+                }}
+              >
+                Update
+              </button>
+            </div>
+          </div>
+        </div>
+      );
+    }
+  };
+
+  return (
+    <div className="inidivdual-playlist-container">
+      <div className="individual-playlist-left">
+        <div className="individual-playlist-left-img">
+          <img src={individualPlaylist[0].videos[0].img} alt="" />
+        </div>
+        <div className="individual-playlist-left-desc">
+          {updateThePlayListName()}
+        </div>
+        <ul className="individual-playlist-left-micro-desc">
+          <li>{individualPlaylist[0].videos.length} videos</li>
+          <li>Created on {individualPlaylist[0].dateCreated}</li>
+        </ul>
+        <div className="individual-playlist-left-macro-desc">
+          {updatePlayListDescription()}
+        </div>
+      </div>
+      {/*  */}
+
+      <div className="individual-playlist-right">
+        {playLists[0].videos.map((ele) => (
+          <div className="individual-right-videos">
+            <div className="individual-right-videos-desc">
+              <div className="individual-right-img">
+                <img src={ele.img} alt="" />
+              </div>
+              <div className="individual-right-desc-title">
+                <h2>{ele.title}</h2>
+                <h3>{ele.ChannelName}</h3>
+              </div>
+            </div>
+            <div className="individual-right-actions">
+              <i class="fas fa-ellipsis-v"></i>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
 
-export default IndividualPlayList
+export default IndividualPlayList;

@@ -11,10 +11,13 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Routes>
-        <Route path="/" element={<HomeScreen/>} />
+        <Route path="/" element={<HomeScreen />} />
         <Route path="/videos/bodybuilding" element={<BodyBuildingScreen />} />
         <Route path="/playlists" element={<PlayListComponent />} />
-        <Route path="/playlists/:id" element={<IndividualPlayListComponent />} />
+        <Route
+          path="/playlists/:id"
+          element={<IndividualPlayListComponent />}
+        />
       </Routes>
     </BrowserRouter>
   );

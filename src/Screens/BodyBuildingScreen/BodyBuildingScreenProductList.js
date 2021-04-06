@@ -18,6 +18,7 @@ function BodyBuildingScreenProductList() {
 
   // video description
   const [videoURl, setVideoURL] = useState("");
+  // video description
   const opts = {
     height: "580vh",
     width: "100%",
@@ -50,24 +51,23 @@ function BodyBuildingScreenProductList() {
     }
   };
 
-
   // function to dispatch acton which create a new playlists and adds a video to it
   const funToCreatePlaylistAddVideo = (video) => {
     const date = new Date();
     const newPlayList = {
       id: Math.random(),
       name: inputPlayList,
-      dateCreated:`${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`,
-      videos:[video]
-    }
-    
+      dateCreated: `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`,
+      videos: [video],
+    };
+
     playListDispatch({
       type: "CREATE_NEW_PLAYLIST",
       payload: newPlayList,
     });
-    setCreatePlaylistBTN(false)
-    setInputPlayList("")
-  }
+    setCreatePlaylistBTN(false);
+    setInputPlayList("");
+  };
 
   // function to add video to playlist/Cretae a playlist
   const showModalForVideoPlayListActions = (video) => {
@@ -80,7 +80,6 @@ function BodyBuildingScreenProductList() {
               class="fas fa-times"
               onClick={() => {
                 showModal(false);
-              
               }}
             ></i>
           </div>
@@ -118,7 +117,7 @@ function BodyBuildingScreenProductList() {
                 <button
                   className="btn btn-secondary btn-secondary-hr-outline-in btn-playlist-cta2 secondary-disabled"
                   disabled={inputPlayList == ""}
-                  onClick={()=>funToCreatePlaylistAddVideo(videoid)}
+                  onClick={() => funToCreatePlaylistAddVideo(videoid)}
                 >
                   Create a PlayList
                 </button>
@@ -171,7 +170,7 @@ function BodyBuildingScreenProductList() {
                           setVideoid(ele);
                         }}
                       >
-                        Save to watch list
+                        Save to Play list
                       </span>
                     </li>
                     <li>
