@@ -1,6 +1,4 @@
 export const playListReducer = (state, { type, payload }) => {
-  console.log(type);
-  console.log(payload);
   switch (type) {
     case "ADD_VIDEO_TO_PLAYLIST":
       return {
