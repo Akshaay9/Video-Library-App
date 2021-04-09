@@ -33,7 +33,7 @@ function IndividualPlayList() {
         <div className="individual-playlist-left-row1-df">
           <h2>{individualPlaylist[0].name}</h2>
           <i
-            class="fas fa-pen"
+            className="fas fa-pen"
             onClick={() => setUpdatePlayListName(false)}
           ></i>
         </div>
@@ -157,7 +157,7 @@ function IndividualPlayList() {
             </NavLink>
 
             <div className="individual-right-actions">
-              <i class="fas fa-ellipsis-v"></i>
+              <i className="fas fa-ellipsis-v"></i>
             </div>
           </div>
         ))}

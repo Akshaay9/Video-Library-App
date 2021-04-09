@@ -4,17 +4,18 @@ import { playListReducer } from "./PlayListReduser";
 const playListContext = createContext();
 
 const initialStateOfPlaylist = {
-    playLists: localStorage.getItem("play-list") ? JSON.parse(localStorage.getItem("play-list")) : [
-        
-    ],
-    loading:false
-}
+  playLists: localStorage.getItem("play-list")
+    ? JSON.parse(localStorage.getItem("play-list"))
+    : [],
+};
 
 function PlayListContextFun({ children }) {
-    const [state, dispatch] = useReducer(playListReducer, initialStateOfPlaylist)
-    return <playListContext.Provider value={{state,playListDispatch:dispatch}}>
-        {children}
-    </playListContext.Provider>;
+  const [state, dispatch] = useReducer(playListReducer, initialStateOfPlaylist);
+  return (
+    <playListContext.Provider value={{ state, playListDispatch: dispatch }}>
+      {children}
+    </playListContext.Provider>
+  );
 }
 
 export default PlayListContextFun;

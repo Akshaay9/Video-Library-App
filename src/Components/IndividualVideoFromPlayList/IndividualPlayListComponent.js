@@ -14,8 +14,6 @@ function IndividualPlayListComponent() {
   const individualVideo = individualPlaylist[0].videos.filter(
     (ele) => ele.id == videoid
   );
-
-  console.log(playLists);
   const opts = {
     height: "450vh",
     width: "100%",
@@ -26,7 +24,6 @@ function IndividualPlayListComponent() {
   // useState for new Note input
   const [NewNoteForInput, setNewNoteForInput] = useState("");
   const [NewNoteForDesc, setNewNoteForDesc] = useState("");
-
   // fun to save the notes of a video
   const saveNoteOfAVIdeo = () => {
     const date = new Date();
@@ -42,10 +39,118 @@ function IndividualPlayListComponent() {
       payload: { playListid: playListid * 1, videoid: videoid * 1, newNote },
     });
     setShowModal(false);
+    setNewNoteForInput("");
+    setNewNoteForDesc("");
   };
 
+  // Fun to edit and iterate over notes
+  const iterateOverNotesAndEdit = () => {
+    return individualVideo[0].notes.map((ele) => {
+      if (!ele.editable)
+        return (
+          <div className="individual-video-note">
+            <div className="individual-video-note-header">
+              <div className="individual-video-note-header-left">
+                <h3>Title:{ele.title}</h3>
+              </div>
+              <div className="individual-video-note-header-right">
+                <i
+                  className="fas fa-pencil-alt"
+                  onClick={() =>
+                    playListDispatch({
+                      type: "UPDATE_PLAYLIST_NOTES",
+                      payload: {
+                        playListid: playListid * 1,
+                        videoid: videoid * 1,
+                        noteid: ele.id * 1,
+                      },
+                    })
+                  }
+                ></i>
+                <i className="fas fa-trash"></i>
+              </div>
+            </div>
+            <div className="individual-video-note-header-desc">
+              <p>Desc:{ele.desc}</p>
+            </div>
+          </div>
+        );
+      else
+        return (
+          <div className="individual-video-note">
+            <div className="individual-video-note-header">
+              <div className="individual-video-note-header-left">
+                <input
+                  type="text"
+                  value={ele.title}
+                  onChange={(e) =>
+                    playListDispatch({
+                      type: "UPDATE_PLAYLIST_NOTE_TITLE",
+                      payload: {
+                        playListid: playListid * 1,
+                        videoid: videoid * 1,
+                        noteid: ele.id * 1,
+                        title: e.target.value,
+                      },
+                    })
+                  }
+                />
+              </div>
+              <div className="individual-video-note-header-right">
+                <i
+                  onClick={() =>
+                    playListDispatch({
+                      type: "UPDATE_PLAYLIST_NOTES",
+                      payload: {
+                        playListid: playListid * 1,
+                        videoid: videoid * 1,
+                        noteid: ele.id * 1,
+                      },
+                    })
+                  }
+                >
+                  &#10004;
+                </i>
+                <i
+                  onClick={() =>
+                    playListDispatch({
+                      type: "UPDATE_PLAYLIST_NOTES",
+                      payload: {
+                        playListid: playListid * 1,
+                        videoid: videoid * 1,
+                        noteid: ele.id * 1,
+                      },
+                    })
+                  }
+                >
+                  {" "}
+                  &#x2716;
+                </i>
+              </div>
+            </div>
+            <div className="individual-video-note-header-desc">
+              <p>Desc</p>
+              <input
+                type="text"
+                value={ele.desc}
+                onChange={(e) =>
+                  playListDispatch({
+                    type: "UPDATE_PLAYLIST_NOTE_DESC",
+                    payload: {
+                      playListid: playListid * 1,
+                      videoid: videoid * 1,
+                      noteid: ele.id * 1,
+                      desc: e.target.value,
+                    },
+                  })
+                }
+              />
+            </div>
+          </div>
+        );
+    });
+  };
   const addaNewNote = () => {
-    console.log("hey");
     return (
       <div className="modal-indi-playList-container">
         <div className="modal-indi-playlist-inputs">
@@ -102,8 +207,8 @@ function IndividualPlayListComponent() {
             <div className="individual-videos-of-playList-container-left-mid2">
               <h3>Added on : {individualVideo[0].addedOn}</h3>
               <div className="individual-videos-of-playList-container-left-mid2-icons">
-                <i class="fas fa-thumbs-up"></i>
-                <i class="fas fa-clock"></i>
+                <i className="fas fa-thumbs-up"></i>
+                <i className="fas fa-clock"></i>
               </div>
             </div>
           </div>
@@ -116,7 +221,7 @@ function IndividualPlayListComponent() {
             <div className="individual-videos-of-playList-container-left-bottom-desc">
               <h3>
                 {individualVideo[0].ChannelName}
-                <i style={{ marginLeft: "5px" }} class="fas fa-check"></i>
+                <i style={{ marginLeft: "5px" }} className="fas fa-check"></i>
               </h3>
               <p>{individualVideo[0].desc}</p>
             </div>
@@ -129,6 +234,9 @@ function IndividualPlayListComponent() {
           <div className="individual-videos-of-playList-container-right-notes">
             <div className="individual-videos-of-playList-container-right-notes-header">
               <h2>Notes</h2>
+            </div>
+            <div className="individual-videos-of-playlists-container-right-notes-body">
+              {iterateOverNotesAndEdit()}
             </div>
           </div>
           <div className="individual-videos-of-playList-container-right-cta">

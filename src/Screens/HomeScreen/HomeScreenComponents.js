@@ -74,11 +74,11 @@ function HomeScreenComponents() {
         </>
       )}
       <i
-        class="far fa-caret-square-right"
+        className="far fa-caret-square-right"
         onClick={() => (current == 3 ? setCurrent(0) : setCurrent(current + 1))}
       ></i>
       <i
-        class="far fa-caret-square-left"
+        className="far fa-caret-square-left"
         onClick={() => (current == 0 ? setCurrent(3) : setCurrent(current - 1))}
       ></i>
     </div>

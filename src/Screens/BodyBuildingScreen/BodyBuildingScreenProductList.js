@@ -62,9 +62,9 @@ function BodyBuildingScreenProductList() {
         {
           ...video,
           addedOn: `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`,
+          notes:[]
         },
       ],
-      notes: [],
     };
 
     playListDispatch({
@@ -139,7 +139,7 @@ function BodyBuildingScreenProductList() {
     <>
       {videoURl !== "" && (
         <div className="test">
-          <i class="far fa-times-circle" onClick={() => setVideoURL("")}></i>
+          <i className="far fa-times-circle" onClick={() => setVideoURL("")}></i>
           <YouTube videoId={videoURl} opts={opts} className="BG-video-player" />
         </div>
       )}
@@ -165,11 +165,11 @@ function BodyBuildingScreenProductList() {
                   <img src={ele.channelIMG} alt="" />
                 </a>
                 <h2>{ele.title}</h2>
-                <i class="fas fa-ellipsis-v"></i>
+                <i className="fas fa-ellipsis-v"></i>
                 <div className="bodyBuilding-desc-CTA-list">
                   <ul>
                     <li>
-                      <i class="fab fa-google-play"></i>{" "}
+                      <i className="fab fa-google-play"></i>{" "}
                       <span
                         onClick={() => {
                           showModal(true);
@@ -180,10 +180,10 @@ function BodyBuildingScreenProductList() {
                       </span>
                     </li>
                     <li>
-                      <i class="far fa-clock"></i> <span>watch Later</span>
+                      <i className="far fa-clock"></i> <span>watch Later</span>
                     </li>
                     <li>
-                      <i class="far fa-thumbs-up"></i>{" "}
+                      <i className="far fa-thumbs-up"></i>{" "}
                       <span>Like the video</span>
                     </li>
                   </ul>

@@ -3,12 +3,12 @@ import { NavLink } from "react-router-dom";
 // import {NavLink} from "react-router-dom"
 function NavBar() {
   return (
-    <div class="nav">
-      <div class="nav_left">
-        <div class="nav_logo">
+    <div className="nav">
+      <div className="nav_left">
+        <div className="nav_logo">
           <img src="" alt="" />
         </div>
-        <div class="nav_name">
+        <div className="nav_name">
           <NavLink to="/">
             {" "}
             <NavLink to="/">
@@ -18,7 +18,7 @@ function NavBar() {
           </NavLink>
         </div>
       </div>
-      <div class="nav_center">
+      <div className="nav_center">
         <ul>
           <NavLink to="/videos/bodybuilding">
             <li className="hr-underline-middle">Body Building</li>
@@ -31,16 +31,16 @@ function NavBar() {
           <li className="hr-underline-middle">Zoomba</li>
         </ul>
       </div>
-      <div class="nav_right">
-        <div class="nav_login">
-          <i class="fas fa-user"></i>
+      <div className="nav_right">
+        <div className="nav_login">
+          <i className="fas fa-user"></i>
         </div>
 
-        <div class="nav_cart">
-          <i class="fas fa-shopping-cart"></i>
+        <div className="nav_cart">
+          <i className="fas fa-shopping-cart"></i>
         </div>
         <NavLink to="/playlists">
-          <div class="nav_cart">
+          <div className="nav_cart">
             <img src="https://img.icons8.com/ios/50/000000/video-playlist.png" />
           </div>
         </NavLink>

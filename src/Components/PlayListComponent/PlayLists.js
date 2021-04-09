@@ -35,7 +35,7 @@ console.log(playLists);
           </div>
           <div className="playlist-cta">
             <NavLink to={`/playlists/${ele.id}`}>
-              <i class="fab fa-google-play playlist-play"></i>
+              <i className="fab fa-google-play playlist-play"></i>
             </NavLink>
           </div>
         </div>

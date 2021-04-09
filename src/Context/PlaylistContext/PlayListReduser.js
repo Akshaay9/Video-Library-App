@@ -15,6 +15,7 @@ export const playListReducer = (state, { type, payload }) => {
                   {
                     ...payload.video,
                     addedOn: `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`,
+                    notes: [],
                   },
                 ],
               }
@@ -64,32 +65,92 @@ export const playListReducer = (state, { type, payload }) => {
     case "ADD_NOTES_TO_PLAYLIST":
       return {
         ...state,
-        playLists: state.playLists.map((playList) =>
-          playList.id == payload.playListid * 1
+        playLists: state.playLists.map((play) =>
+          play.id == payload.playListid * 1
             ? {
-                ...playList,
-                videos: [
-                  ...playList.videos,
-                  playList.videos.map((video) =>
-                    video.id == payload.videoid * 1
-                      ? {
-                          ...video,
-                          notes: [payload.newNote],
-                        }
-                      : video
-                  ),
-                ],
+                ...play,
+                videos: play.videos.map((vid) =>
+                  vid.id == payload.videoid * 1
+                    ? {
+                        ...vid,
+                        notes: [...vid.notes, payload.newNote],
+                      }
+                    : vid
+                ),
               }
-            : playList
+            : play
         ),
       };
-    // case "UPDATE_NOTES_OF_PLAYLIST":
-    //   return {
-    //     ...state,
-    //     playLists: state.playLists.map((ele) =>
-    //       ele.id == payload.id * 1 ? { ...ele, desc: payload.desc } : ele
-    //     ),
-    //   };
+
+    case "UPDATE_PLAYLIST_NOTE_TITLE":
+      return {
+        ...state,
+        playLists: state.playLists.map((play) =>
+          play.id == payload.playListid * 1
+            ? {
+                ...play,
+                videos: play.videos.map((vid) =>
+                  vid.id == payload.videoid * 1
+                    ? {
+                        ...vid,
+                        notes: vid.notes.map((not) =>
+                          not.id == payload.noteid * 1
+                            ? { ...not, title: payload.title }
+                            : not
+                        ),
+                      }
+                    : vid
+                ),
+              }
+            : play
+        ),
+      };
+    case "UPDATE_PLAYLIST_NOTE_DESC":
+      return {
+        ...state,
+        playLists: state.playLists.map((play) =>
+          play.id == payload.playListid * 1
+            ? {
+                ...play,
+                videos: play.videos.map((vid) =>
+                  vid.id == payload.videoid * 1
+                    ? {
+                        ...vid,
+                        notes: vid.notes.map((not) =>
+                          not.id == payload.noteid * 1
+                            ? { ...not, desc: payload.desc }
+                            : not
+                        ),
+                      }
+                    : vid
+                ),
+              }
+            : play
+        ),
+      };
+    case "UPDATE_PLAYLIST_NOTES":
+      return {
+        ...state,
+        playLists: state.playLists.map((play) =>
+          play.id == payload.playListid * 1
+            ? {
+                ...play,
+                videos: play.videos.map((vid) =>
+                  vid.id == payload.videoid * 1
+                    ? {
+                        ...vid,
+                        notes: vid.notes.map((not) =>
+                          not.id == payload.noteid * 1
+                            ? { ...not, editable: !not.editable }
+                            : not
+                        ),
+                      }
+                    : vid
+                ),
+              }
+            : play
+        ),
+      };
     default:
       return state;
   }
