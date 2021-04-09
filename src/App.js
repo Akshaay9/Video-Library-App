@@ -8,6 +8,7 @@ import PlayListComponent from "./Components/PlayListComponent/Index";
 import IndividualPlayListComponent from "./Components/IndividualPlaylistComponent/Index";
 import LikedVideos from "./Components/LikedVideoComponent/Index";
 import WatchLaterVideos from "./Components/WatchLaterComponent/Index";
+import IndividualVideosOfPlayList from "./Components/IndividualVideoFromPlayList/Index";
 function App() {
   return (
     <BrowserRouter>
@@ -19,7 +20,15 @@ function App() {
 
         <Route path="/videos/bodybuilding" element={<BodyBuildingScreen />} />
         <Route path="/playlists" element={<PlayListComponent />} />
-        <Route path="/playlists/:id" element={<IndividualPlayListComponent />}/>
+
+        <Route
+          path="/playlists/:playListid"
+          element={<IndividualPlayListComponent />}
+        />
+        <Route
+          path="/playlists/:playListid/:videoid"
+          element={<IndividualVideosOfPlayList />}
+        />
       </Routes>
     </BrowserRouter>
   );

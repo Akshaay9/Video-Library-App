@@ -1,21 +1,22 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { UsePlayListContext } from "../../Context/PlaylistContext/PlayListContext";
+import { NavLink } from "react-router-dom";
 function IndividualPlayList() {
-  // useState to update playlist name
+  // useState open playsit update name modal
   const [updatePlayListName, setUpdatePlayListName] = useState(true);
-  // useState to update playlist description
+  // useState to open update playlist description modal
   const [updatePlayListDesc, setUpdatePlayListDesc] = useState(true);
 
   // UseParams
-  const { id } = useParams();
+  const { playListid } = useParams();
 
   const {
     state: { playLists, loading },
     playListDispatch,
   } = UsePlayListContext();
-  const individualPlaylist = playLists.filter((ele) => ele.id == id);
-  console.log(individualPlaylist);
+  const individualPlaylist = playLists.filter((ele) => ele.id == playListid);
+  console.log(playLists);
 
   // useState for playList Name on input
   const [playListNameForInput, setPlayListNameForInput] = useState(
@@ -60,7 +61,7 @@ function IndividualPlayList() {
               onClick={() => {
                 playListDispatch({
                   type: "UPDATE_PLAYLIST_NAME",
-                  payload: { id, name: playListNameForInput },
+                  payload: { playListid, name: playListNameForInput },
                 });
                 setUpdatePlayListName(true);
               }}
@@ -107,7 +108,7 @@ function IndividualPlayList() {
                 onClick={() => {
                   playListDispatch({
                     type: "UPDATE_PLAYLIST_DESC",
-                    payload: { id, desc: playListDescForInput },
+                    payload: { id: playListid * 1, desc: playListDescForInput },
                   });
                   setUpdatePlayListDesc(true);
                 }}
@@ -143,15 +144,18 @@ function IndividualPlayList() {
       <div className="individual-playlist-right">
         {playLists[0].videos.map((ele) => (
           <div className="individual-right-videos">
-            <div className="individual-right-videos-desc">
-              <div className="individual-right-img">
-                <img src={ele.img} alt="" />
+            <NavLink to={`/playLists/${playListid}/${ele.id}`}>
+              <div className="individual-right-videos-desc">
+                <div className="individual-right-img">
+                  <img src={ele.img} alt="" />
+                </div>
+                <div className="individual-right-desc-title">
+                  <h2>{ele.title}</h2>
+                  <h3>{ele.ChannelName}</h3>
+                </div>
               </div>
-              <div className="individual-right-desc-title">
-                <h2>{ele.title}</h2>
-                <h3>{ele.ChannelName}</h3>
-              </div>
-            </div>
+            </NavLink>
+
             <div className="individual-right-actions">
               <i class="fas fa-ellipsis-v"></i>
             </div>

@@ -58,7 +58,13 @@ function BodyBuildingScreenProductList() {
       id: Math.random(),
       name: inputPlayList,
       dateCreated: `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`,
-      videos: [video],
+      videos: [
+        {
+          ...video,
+          addedOn: `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`,
+        },
+      ],
+      notes: [],
     };
 
     playListDispatch({

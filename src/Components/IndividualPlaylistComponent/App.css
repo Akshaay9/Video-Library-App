@@ -128,6 +128,9 @@
   display: flex;
   padding: 1rem;
 }
+.individual-right-videos-desc:hover{
+  background-color: rgb(236, 232, 232);
+}
 .individual-right-desc-title {
   margin-left: 1rem;
 }

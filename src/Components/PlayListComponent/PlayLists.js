@@ -6,6 +6,7 @@ function PlayLists() {
     state: { playLists, loading },
     playListDispatch,
   } = UsePlayListContext();
+console.log(playLists);
 
   return (
     <>
