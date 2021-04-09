@@ -151,6 +151,27 @@ export const playListReducer = (state, { type, payload }) => {
             : play
         ),
       };
+    case "DELETE_PLAYLIST_NOTES":
+      return {
+        ...state,
+        playLists: state.playLists.map((play) =>
+          play.id == payload.playListid * 1
+            ? {
+                ...play,
+                videos: play.videos.map((vid) =>
+                  vid.id == payload.videoid * 1
+                    ? {
+                        ...vid,
+                        notes: vid.notes.filter(
+                          (not) => not.id != payload.noteid * 1
+                        ),
+                      }
+                    : vid
+                ),
+              }
+            : play
+        ),
+      };
     default:
       return state;
   }

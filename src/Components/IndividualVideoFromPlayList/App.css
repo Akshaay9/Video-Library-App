@@ -190,13 +190,38 @@
   margin: 0 0 0.3rem;
   padding-right: 0;
   text-transform: capitalize;
+  width: 20rem;
   height: auto;
-  word-wrap: break-word
+  word-wrap: break-word;
 }
 .individual-video-note-header-desc p {
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-family: var(--font-sans-serif);
+  line-height: 2rem;
   color: rgb(66, 65, 65);
   margin: 0 0 0.3rem;
   padding-right: 0;
+  text-transform: capitalize;
+  height: auto;
+  word-wrap: break-word;
+  width: 20rem;
+}
+.individual-video-note-header-left input,
+.individual-video-note-header-desc textarea {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid blue;
+}
+.individual-video-note-header-left p {
+  font-family: sans-serif;
+  color: rgb(66, 65, 65);
+}
+@media screen and (max-width: 800px) {
+  .individual-videos-of-playList-container {
+    grid-template-columns: 1fr;
+  }
+  .modal-indi-playlist-inputs {
+    width: 70%;
+  }
 }

@@ -67,7 +67,19 @@ function IndividualPlayListComponent() {
                     })
                   }
                 ></i>
-                <i className="fas fa-trash"></i>
+                <i
+                  className="fas fa-trash"
+                  onClick={() =>
+                    playListDispatch({
+                      type: "DELETE_PLAYLIST_NOTES",
+                      payload: {
+                        playListid: playListid * 1,
+                        videoid: videoid * 1,
+                        noteid: ele.id * 1,
+                      },
+                    })
+                  }
+                ></i>
               </div>
             </div>
             <div className="individual-video-note-header-desc">
@@ -80,6 +92,7 @@ function IndividualPlayListComponent() {
           <div className="individual-video-note">
             <div className="individual-video-note-header">
               <div className="individual-video-note-header-left">
+                <p>Title</p>
                 <input
                   type="text"
                   value={ele.title}
@@ -130,8 +143,10 @@ function IndividualPlayListComponent() {
             </div>
             <div className="individual-video-note-header-desc">
               <p>Desc</p>
-              <input
-                type="text"
+              <textarea
+                id="w3review"
+                rows="4"
+                cols="50"
                 value={ele.desc}
                 onChange={(e) =>
                   playListDispatch({
@@ -181,8 +196,11 @@ function IndividualPlayListComponent() {
               Cancel
             </button>
             <button
-              className="btn btn-primary btn-primary-hr-outline-out"
+              className="btn btn-primary btn-primary-hr-outline-out
+              primary-disabled
+              "
               onClick={() => saveNoteOfAVIdeo()}
+              disabled={NewNoteForInput == "" || NewNoteForDesc == ""}
             >
               Save
             </button>

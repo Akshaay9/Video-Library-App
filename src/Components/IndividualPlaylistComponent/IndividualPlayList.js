@@ -15,8 +15,10 @@ function IndividualPlayList() {
     state: { playLists, loading },
     playListDispatch,
   } = UsePlayListContext();
+
   const individualPlaylist = playLists.filter((ele) => ele.id == playListid);
-  console.log(playLists);
+
+  console.log(individualPlaylist[0].videos);
 
   // useState for playList Name on input
   const [playListNameForInput, setPlayListNameForInput] = useState(
@@ -142,7 +144,7 @@ function IndividualPlayList() {
       {/*  */}
 
       <div className="individual-playlist-right">
-        {playLists[0].videos.map((ele) => (
+        {individualPlaylist[0].videos.map((ele) => (
           <div className="individual-right-videos">
             <NavLink to={`/playLists/${playListid}/${ele.id}`}>
               <div className="individual-right-videos-desc">

@@ -62,7 +62,7 @@ function BodyBuildingScreenProductList() {
         {
           ...video,
           addedOn: `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`,
-          notes:[]
+          notes: [],
         },
       ],
     };
@@ -139,7 +139,10 @@ function BodyBuildingScreenProductList() {
     <>
       {videoURl !== "" && (
         <div className="test">
-          <i className="far fa-times-circle" onClick={() => setVideoURL("")}></i>
+          <i
+            className="far fa-times-circle"
+            onClick={() => setVideoURL("")}
+          ></i>
           <YouTube videoId={videoURl} opts={opts} className="BG-video-player" />
         </div>
       )}
@@ -168,16 +171,14 @@ function BodyBuildingScreenProductList() {
                 <i className="fas fa-ellipsis-v"></i>
                 <div className="bodyBuilding-desc-CTA-list">
                   <ul>
-                    <li>
+                    <li
+                      onClick={() => {
+                        showModal(true);
+                        setVideoid(ele);
+                      }}
+                    >
                       <i className="fab fa-google-play"></i>{" "}
-                      <span
-                        onClick={() => {
-                          showModal(true);
-                          setVideoid(ele);
-                        }}
-                      >
-                        Save to Play list
-                      </span>
+                      <span>Save to Play list</span>
                     </li>
                     <li>
                       <i className="far fa-clock"></i> <span>watch Later</span>
