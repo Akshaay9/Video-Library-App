@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import YouTube from "react-youtube";
+import { useLikedVideoContext } from "../../Context/LikedVideoContext/LikedVideoContext";
 import { UsePlayListContext } from "../../Context/PlaylistContext/PlayListContext";
+import { useWatchLaterContext } from "../../Context/WatchLaterVideoContext/WatchLaterVideoContext";
 function IndividualPlayListComponent() {
   const { playListid, videoid } = useParams();
 
@@ -9,6 +11,14 @@ function IndividualPlayListComponent() {
     state: { playLists, loading },
     playListDispatch,
   } = UsePlayListContext();
+  const {
+    state: { watchLaterVideo },
+    watchLaterDispatch,
+  } = useWatchLaterContext();
+  const {
+    state: { likedVideo },
+    likedVideoDispatch,
+  } = useLikedVideoContext();
 
   const individualPlaylist = playLists.filter((ele) => ele.id == playListid);
   const individualVideo = individualPlaylist[0].videos.filter(
@@ -209,6 +219,62 @@ function IndividualPlayListComponent() {
       </div>
     );
   };
+  // fun to add or remove video from watch lster
+  const addOrRemoveVideoFromWatchLater = (video) => {
+    const isVideoAddedToWatchLater = watchLaterVideo.filter(
+      (ele) => ele.id == video.id
+    );
+    if (isVideoAddedToWatchLater.length > 0) {
+      return (
+        <li
+          onClick={() =>
+            watchLaterDispatch({
+              type: "REMOVE_FROM_WATCH_VIDEOS",
+              payload: video.id,
+            })
+          }
+        >
+          <h3>Remove from Watch Later</h3>
+        </li>
+      );
+    } else
+      return (
+        <li
+          onClick={() =>
+            watchLaterDispatch({ type: "ADD_TO_WATCH_VIDEOS", payload: video })
+          }
+        >
+          <h3>Watch Later</h3>
+        </li>
+      );
+  };
+
+  const addOrRemoveVideoFromLikedVideo = (video) => {
+    const isVideoLiked = likedVideo.filter((ele) => ele.id == video.id);
+    if (isVideoLiked.length > 0) {
+      return (
+        <li
+          onClick={() =>
+            likedVideoDispatch({
+              type: "REMOVE_FROM_LIKED_VIDEOS",
+              payload: video * 1,
+            })
+          }
+        >
+          <h3>Unlike The video</h3>
+        </li>
+      );
+    } else
+      return (
+        <li
+          onClick={() =>
+            likedVideoDispatch({ type: "ADD_TO_LIKED_VIDEOS", payload: video })
+          }
+        >
+          <h3>Like The video</h3>
+        </li>
+      );
+  };
 
   return (
     <>
@@ -224,9 +290,9 @@ function IndividualPlayListComponent() {
             </div>
             <div className="individual-videos-of-playList-container-left-mid2">
               <h3>Added on : {individualVideo[0].addedOn}</h3>
-              <div className="individual-videos-of-playList-container-left-mid2-icons">
-                <i className="fas fa-thumbs-up"></i>
-                <i className="fas fa-clock"></i>
+              <div className="individual-videos-of-playList-container-left-mid2-icons indi-cta">
+                {addOrRemoveVideoFromLikedVideo(individualVideo[0])}
+                {addOrRemoveVideoFromWatchLater(individualVideo[0])}
               </div>
             </div>
           </div>

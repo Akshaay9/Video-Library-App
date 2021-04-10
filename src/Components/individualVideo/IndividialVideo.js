@@ -173,6 +173,32 @@ function IndividialVideo() {
       </div>
     );
   };
+  const addOrRemoveVideoFromLikedVideo = (video) => {
+    const isVideoLiked = likedVideo.filter((ele) => ele.id == video.id);
+    if (isVideoLiked.length > 0) {
+      return (
+        <li
+          onClick={() =>
+            likedVideoDispatch({
+              type: "REMOVE_FROM_LIKED_VIDEOS",
+              payload: video * 1,
+            })
+          }
+        >
+          <i className="far fa-thumbs-up"></i> <span>UnLike the video</span>
+        </li>
+      );
+    } else
+      return (
+        <li
+          onClick={() =>
+            likedVideoDispatch({ type: "ADD_TO_LIKED_VIDEOS", payload: video })
+          }
+        >
+          <i className="far fa-thumbs-up"></i> <span>Like the video</span>
+        </li>
+      );
+  };
   return (
     <div className="individualVideo">
       <div className="individual-videos-of-playList-container-left indi-video">
