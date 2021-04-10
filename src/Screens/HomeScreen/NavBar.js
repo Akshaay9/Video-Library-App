@@ -35,10 +35,12 @@ function NavBar() {
         <div className="nav_login">
           <i className="fas fa-user"></i>
         </div>
+        <NavLink to="/likedvideo">
+          <div className="nav_cart">
+            <i className="fas fa-shopping-cart"></i>
+          </div>
+        </NavLink>
 
-        <div className="nav_cart">
-          <i className="fas fa-shopping-cart"></i>
-        </div>
         <NavLink to="/playlists">
           <div className="nav_cart">
             <img src="https://img.icons8.com/ios/50/000000/video-playlist.png" />

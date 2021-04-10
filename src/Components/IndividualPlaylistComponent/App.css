@@ -123,13 +123,14 @@
   justify-content: center;
   border-bottom: 1px solid var(--line-color);
   margin-bottom: 0.5rem;
+  cursor: pointer;
 }
 .individual-right-videos-desc {
   display: flex;
   padding: 1rem;
 }
-.individual-right-videos-desc:hover{
-  background-color: rgb(236, 232, 232);
+.individual-right-videos-desc:hover {
+  background-color: rgb(252, 245, 245);
 }
 .individual-right-desc-title {
   margin-left: 1rem;

@@ -176,7 +176,6 @@ function BodyBuildingScreenProductList() {
         </li>
       );
   };
-  console.log(likedVideo);
   const addOrRemoveVideoFromLikedVideo = (video) => {
     const isVideoLiked = likedVideo.filter((ele) => ele.id == video.id);
     if (isVideoLiked.length > 0) {

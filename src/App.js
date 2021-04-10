@@ -9,18 +9,19 @@ import IndividualPlayListComponent from "./Components/IndividualPlaylistComponen
 import LikedVideos from "./Components/LikedVideoComponent/Index";
 import WatchLaterVideos from "./Components/WatchLaterComponent/Index";
 import IndividualVideosOfPlayList from "./Components/IndividualVideoFromPlayList/Index";
+import IndividualVideo from "./Components/individualVideo/Index";
 function App() {
   return (
     <BrowserRouter>
       <NavBar />
       <Routes>
         <Route path="/" element={<HomeScreen />} />
+        <Route path="/video/:id" element={<IndividualVideo />} />
         <Route path="/likedvideo" element={<LikedVideos />} />
-        <Route path="/WatchLaterVideos" element={<WatchLaterVideos />} />
 
+        <Route path="/WatchLaterVideos" element={<WatchLaterVideos />} />
         <Route path="/videos/bodybuilding" element={<BodyBuildingScreen />} />
         <Route path="/playlists" element={<PlayListComponent />} />
-
         <Route
           path="/playlists/:playListid"
           element={<IndividualPlayListComponent />}

@@ -13,9 +13,17 @@ const likedVideoReducer = (state, { type, payload }) => {
   console.log(payload);
   switch (type) {
     case "ADD_TO_LIKED_VIDEOS":
+      const date = new Date();
       return {
         ...state,
-        likedVideo: [...state.likedVideo, payload],
+        likedVideo: [
+          ...state.likedVideo,
+          {
+            ...payload,
+            nameasa: "heyuiwdj,",
+            addedOn: `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`,
+          },
+        ],
       };
     case "REMOVE_FROM_LIKED_VIDEOS":
       return {
