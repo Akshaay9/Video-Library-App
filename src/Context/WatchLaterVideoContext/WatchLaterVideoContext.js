@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useContext, useReducer } from "react";
 
 const WatchLaterVideoContext = createContext();
 
@@ -14,12 +14,12 @@ const WatchLaterVideoReducer = (state, { type, payload }) => {
     case "ADD_TO_WATCH_VIDEOS":
       return {
         ...state,
-        watchLaterVideo: [...state.likedVideo, payload],
+        watchLaterVideo: [...state.watchLaterVideo, payload],
       };
     case "REMOVE_FROM_WATCH_VIDEOS":
       return {
         ...state,
-        watchLaterVideo: state.likedVideo.filter((ele) => ele.id == payload.id),
+        watchLaterVideo: state.watchLaterVideo.filter((ele) => ele.id == payload.id),
       };
 
     default:
@@ -31,11 +31,11 @@ export const WatchLaterVideoContextFun = ({ children }) => {
   const [state, dispatch] = useReducer(WatchLaterVideoReducer, initialState);
 
   return (
-    <WatchLaterVideoContext.Provider value={{ state, likedVideoDispatch: dispatch }}>
+    <WatchLaterVideoContext.Provider
+      value={{ state, watchLaterDispatch: dispatch }}
+    >
       {children}
     </WatchLaterVideoContext.Provider>
   );
 };
-export const useLikedVideoContext = () => {
-  return createContext(WatchLaterVideoContext);
-};
+export const useWatchLaterContext = () => useContext(WatchLaterVideoContext);

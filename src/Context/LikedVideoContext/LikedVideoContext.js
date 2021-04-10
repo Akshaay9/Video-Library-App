@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useContext, useReducer } from "react";
 
 const LikedVideoContext = createContext();
 
@@ -10,6 +10,7 @@ const initialState = {
 };
 
 const likedVideoReducer = (state, { type, payload }) => {
+  console.log(payload);
   switch (type) {
     case "ADD_TO_LIKED_VIDEOS":
       return {
@@ -19,7 +20,7 @@ const likedVideoReducer = (state, { type, payload }) => {
     case "REMOVE_FROM_LIKED_VIDEOS":
       return {
         ...state,
-        likedVideo: state.likedVideo.filter((ele) => ele.id == payload.id),
+        likedVideo: state.likedVideo.filter((ele) => ele.id == payload * 1),
       };
 
     default:
@@ -36,6 +37,4 @@ export const LikedVideoContextFun = ({ children }) => {
     </LikedVideoContext.Provider>
   );
 };
-export const useLikedVideoContext = () => {
-  return createContext(LikedVideoContext);
-};
+export const useLikedVideoContext = () => useContext(LikedVideoContext);

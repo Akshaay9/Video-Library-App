@@ -2,11 +2,23 @@ import React, { useState } from "react";
 import YouTube from "react-youtube";
 import { UsePlayListContext } from "../../Context/PlaylistContext/PlayListContext";
 import { beginnerBodyBuilding } from "../../Data/BodyBuildingData/BeginnerBodyBuildingData";
+import { useWatchLaterContext } from "../../Context/WatchLaterVideoContext/WatchLaterVideoContext";
+import { useLikedVideoContext } from "../../Context/LikedVideoContext/LikedVideoContext";
 function BodyBuildingScreenProductList() {
   const {
     state: { playLists, loading },
     playListDispatch,
   } = UsePlayListContext();
+
+  const {
+    state: { watchLaterVideo },
+    watchLaterDispatch,
+  } = useWatchLaterContext();
+  const {
+    state: { likedVideo },
+    likedVideoDispatch,
+  } = useLikedVideoContext();
+
   // modal useState
   const [modal, showModal] = useState(false);
   // cretae playlist modal useState
@@ -135,6 +147,62 @@ function BodyBuildingScreenProductList() {
     );
   };
 
+  // fun to add or remove video from watch lster
+  const addOrRemoveVideoFromWatchLater = (video) => {
+    const isVideoAddedToWatchLater = watchLaterVideo.filter(
+      (ele) => ele.id == video.id
+    );
+    if (isVideoAddedToWatchLater.length > 0) {
+      return (
+        <li
+          onClick={() =>
+            watchLaterDispatch({
+              type: "REMOVE_FROM_WATCH_VIDEOS",
+              payload: video.id,
+            })
+          }
+        >
+          <i className="far fa-clock"></i> <span>remove from watchLater</span>
+        </li>
+      );
+    } else
+      return (
+        <li
+          onClick={() =>
+            watchLaterDispatch({ type: "ADD_TO_WATCH_VIDEOS", payload: video })
+          }
+        >
+          <i className="far fa-clock"></i> <span>watch Later</span>
+        </li>
+      );
+  };
+  console.log(likedVideo);
+  const addOrRemoveVideoFromLikedVideo = (video) => {
+    const isVideoLiked = likedVideo.filter((ele) => ele.id == video.id);
+    if (isVideoLiked.length > 0) {
+      return (
+        <li
+          onClick={() =>
+            likedVideoDispatch({
+              type: "REMOVE_FROM_LIKED_VIDEOS",
+              payload: video * 1,
+            })
+          }
+        >
+          <i className="far fa-thumbs-up"></i> <span>UnLike the video</span>
+        </li>
+      );
+    } else
+      return (
+        <li
+          onClick={() =>
+            likedVideoDispatch({ type: "ADD_TO_LIKED_VIDEOS", payload: video })
+          }
+        >
+          <i className="far fa-thumbs-up"></i> <span>Like the video</span>
+        </li>
+      );
+  };
   return (
     <>
       {videoURl !== "" && (
@@ -180,13 +248,8 @@ function BodyBuildingScreenProductList() {
                       <i className="fab fa-google-play"></i>{" "}
                       <span>Save to Play list</span>
                     </li>
-                    <li>
-                      <i className="far fa-clock"></i> <span>watch Later</span>
-                    </li>
-                    <li>
-                      <i className="far fa-thumbs-up"></i>{" "}
-                      <span>Like the video</span>
-                    </li>
+                    {addOrRemoveVideoFromWatchLater(ele)}
+                    <li>{addOrRemoveVideoFromLikedVideo(ele)}</li>
                   </ul>
                 </div>
               </div>
