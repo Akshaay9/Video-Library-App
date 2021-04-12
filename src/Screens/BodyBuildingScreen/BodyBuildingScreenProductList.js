@@ -184,7 +184,7 @@ function BodyBuildingScreenProductList() {
           onClick={() =>
             likedVideoDispatch({
               type: "REMOVE_FROM_LIKED_VIDEOS",
-              payload: video * 1,
+              payload: video.id * 1,
             })
           }
         >

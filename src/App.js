@@ -18,7 +18,6 @@ function App() {
         <Route path="/" element={<HomeScreen />} />
         <Route path="/video/:id" element={<IndividualVideo />} />
         <Route path="/likedvideo" element={<LikedVideos />} />
-
         <Route path="/WatchLaterVideos" element={<WatchLaterVideos />} />
         <Route path="/videos/bodybuilding" element={<BodyBuildingScreen />} />
         <Route path="/playlists" element={<PlayListComponent />} />

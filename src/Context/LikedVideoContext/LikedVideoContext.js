@@ -28,7 +28,7 @@ const likedVideoReducer = (state, { type, payload }) => {
     case "REMOVE_FROM_LIKED_VIDEOS":
       return {
         ...state,
-        likedVideo: state.likedVideo.filter((ele) => ele.id == payload * 1),
+        likedVideo: state.likedVideo.filter((ele) => ele.id !== payload * 1),
       };
 
     default:

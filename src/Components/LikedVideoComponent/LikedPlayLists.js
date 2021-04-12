@@ -7,6 +7,7 @@ function LikedPlayLists() {
     likedVideoDispatch,
   } = useLikedVideoContext();
   let location = useLocation();
+  console.log("like", likedVideo);
 
   return (
     <div className="liked-video">
@@ -38,7 +39,15 @@ function LikedPlayLists() {
             <i className="fab fa-google-play playlist-play"></i>
           </div>
           <div className="liked-video-right">
-            <i className="fas fa-trash"></i>
+            <i
+              className="fas fa-trash"
+              onClick={() =>
+                likedVideoDispatch({
+                  type: "REMOVE_FROM_LIKED_VIDEOS",
+                  payload: ele.id * 1,
+                })
+              }
+            ></i>
           </div>
         </div>
       ))}
