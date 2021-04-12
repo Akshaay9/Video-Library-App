@@ -43,7 +43,7 @@ function LikedPlayLists() {
               onClick={() =>
                 likedVideoDispatch({
                   type: "REMOVE_FROM_LIKED_VIDEOS",
-                  payload: ele.id * 1,
+                  payload: ele,
                 })
               }
             ></i>

@@ -20,3 +20,15 @@
 .indi-cta h3:hover {
   background-color: rgb(233, 227, 221);
 }
+@media screen and (max-width: 800px) {
+  .indi-video {
+    width: 90%;
+    margin: auto;
+  }
+  .individual-videos-of-playList-container-left-mid2 {
+    display: block;
+  }
+  .individual-videos-of-playList-container-left-mid2-icons{
+    width: 90%;
+  }
+}

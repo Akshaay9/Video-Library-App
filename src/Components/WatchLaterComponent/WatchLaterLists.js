@@ -39,7 +39,7 @@ function WatchLaterLists() {
               className="fas fa-trash"
               onClick={() =>
                 watchLaterDispatch({
-                  type: "REMOVE_FROM_LIKED_VIDEOS",
+                  type: "REMOVE_FROM_WATCH_VIDEOS",
                   payload: ele,
                 })
               }

@@ -9,6 +9,7 @@ const initialState = {
 };
 
 const WatchLaterVideoReducer = (state, { type, payload }) => {
+  console.log(payload.id);
   switch (type) {
     case "ADD_TO_WATCH_VIDEOS":
       const date = new Date();
@@ -26,7 +27,7 @@ const WatchLaterVideoReducer = (state, { type, payload }) => {
       return {
         ...state,
         watchLaterVideo: state.watchLaterVideo.filter(
-          (ele) => ele.id * 1 == payload.id * 1
+          (ele) => ele.id * 1 !== payload.id * 1
         ),
       };
 

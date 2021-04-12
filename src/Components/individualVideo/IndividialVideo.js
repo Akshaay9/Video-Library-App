@@ -262,10 +262,6 @@ function IndividialVideo() {
                   </h3>{" "}
                 </>
               )}
-
-              {/* <h3>Like the video</h3>
-              <h3>Watch Later</h3>
-              <h3>Add To Playlist</h3> */}
             </div>
           </div>
         </div>

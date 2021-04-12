@@ -42,3 +42,24 @@
   font-size: 20px;
   font-family: sans-serif;
 }
+
+
+
+
+  @media screen and (max-width: 800px) {
+    .like-heading {
+      width: 90% !important;
+    }
+
+.liked-video-container {
+  display: grid;
+  width: 90%;
+  grid-template-columns: 1fr;
+
+
+  }
+  .liked-video-right,
+.liked-video-mid {
+  height: 3rem;
+}
+}
