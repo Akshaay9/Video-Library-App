@@ -1,5 +1,4 @@
-import { createContext, useContext, useReducer } from "react";
-
+import { createContext, useContext, useEffect, useReducer } from "react";
 const WatchLaterVideoContext = createContext();
 
 const initialState = {
@@ -11,20 +10,24 @@ const initialState = {
 
 const WatchLaterVideoReducer = (state, { type, payload }) => {
   switch (type) {
-    
     case "ADD_TO_WATCH_VIDEOS":
       const date = new Date();
       return {
         ...state,
-        watchLaterVideo: [...state.watchLaterVideo, {
-          ...payload,
-          addedOn: `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`,
-        }],
+        watchLaterVideo: [
+          ...state.watchLaterVideo,
+          {
+            ...payload,
+            addedOn: `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`,
+          },
+        ],
       };
     case "REMOVE_FROM_WATCH_VIDEOS":
       return {
         ...state,
-        watchLaterVideo: state.watchLaterVideo.filter((ele) => ele.id*1 == payload.id*1),
+        watchLaterVideo: state.watchLaterVideo.filter(
+          (ele) => ele.id * 1 == payload.id * 1
+        ),
       };
 
     default:
@@ -34,6 +37,13 @@ const WatchLaterVideoReducer = (state, { type, payload }) => {
 
 export const WatchLaterVideoContextFun = ({ children }) => {
   const [state, dispatch] = useReducer(WatchLaterVideoReducer, initialState);
+
+  useEffect(() => {
+    localStorage.setItem(
+      "watch-later-video",
+      JSON.stringify(state.watchLaterVideo)
+    );
+  }, [state.watchLaterVideo]);
 
   return (
     <WatchLaterVideoContext.Provider

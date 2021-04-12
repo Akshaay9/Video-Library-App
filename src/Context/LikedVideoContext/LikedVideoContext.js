@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
 
 const LikedVideoContext = createContext();
 
@@ -38,6 +38,12 @@ const likedVideoReducer = (state, { type, payload }) => {
 export const LikedVideoContextFun = ({ children }) => {
   const [state, dispatch] = useReducer(likedVideoReducer, initialState);
 
+  useEffect(() => {
+    localStorage.setItem(
+      "liked-video",
+      JSON.stringify(state.likedVideo)
+    );
+  }, [state.likedVideo]);
   return (
     <LikedVideoContext.Provider value={{ state, likedVideoDispatch: dispatch }}>
       {children}

@@ -19,6 +19,13 @@ li.hr-underline-middle:before {
 .nav_right{
     width: 14rem;
 }
+.badge-skyBlue span {
+  left: 1.3rem;
+  top: 0.7em;
+}
+.fa-heart{
+  font-size: 1.3rem;
+}
 /* home page carousal */
 .desktop-carousal{
   position: relative;
@@ -178,7 +185,7 @@ z-index: 99 !important
   opacity: 0.5 !important
 }
 .watch-later-icon{
-  font-size: 1.3rem;
+  font-size: 1.4rem;
 }
 
 
