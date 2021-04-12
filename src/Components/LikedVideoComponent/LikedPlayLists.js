@@ -7,7 +7,6 @@ function LikedPlayLists() {
     likedVideoDispatch,
   } = useLikedVideoContext();
   let location = useLocation();
-  console.log("like", likedVideo);
 
   return (
     <div className="liked-video">

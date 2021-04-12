@@ -20,7 +20,6 @@ const likedVideoReducer = (state, { type, payload }) => {
           ...state.likedVideo,
           {
             ...payload,
-            nameasa: "heyuiwdj,",
             addedOn: `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`,
           },
         ],
@@ -28,7 +27,7 @@ const likedVideoReducer = (state, { type, payload }) => {
     case "REMOVE_FROM_LIKED_VIDEOS":
       return {
         ...state,
-        likedVideo: state.likedVideo.filter((ele) => ele.id !== payload * 1),
+        likedVideo: state.likedVideo.filter((ele) => ele.id !== payload.id * 1),
       };
 
     default:

@@ -4,6 +4,7 @@ import YouTube from "react-youtube";
 import { useLikedVideoContext } from "../../Context/LikedVideoContext/LikedVideoContext";
 import { UsePlayListContext } from "../../Context/PlaylistContext/PlayListContext";
 import { useWatchLaterContext } from "../../Context/WatchLaterVideoContext/WatchLaterVideoContext";
+import { beginnerBodyBuilding } from "../../Data/BodyBuildingData/BeginnerBodyBuildingData";
 const opts = {
   height: "450vh",
   width: "100%",
@@ -36,7 +37,25 @@ function IndividialVideo() {
 
   const location = useLocation();
   const prevPath = location.state.from;
-  const individualVideo = likedVideo.filter((ele) => ele.id == id);
+
+  console.log(prevPath);
+
+  // get the individual video based on the pre path in hisotry
+  const getIndividualVideoBasedOnPReviousPathOfHistory = () => {
+    if (prevPath === "/WatchLaterVideos") {
+      return watchLaterVideo.filter((ele)=>ele.id==id)
+    }
+    else if (prevPath === "/likedvideo") {
+      return likedVideo.filter((ele)=>ele.id==id)
+    }
+    else {
+      beginnerBodyBuilding.filter((ele) => ele.id == id);
+    }
+  }
+
+
+  const individualVideo = getIndividualVideoBasedOnPReviousPathOfHistory()
+
 
   // fun to add or remove video from watch lster
   const addOrRemoveVideoFromWatchLater = (video) => {
@@ -67,6 +86,32 @@ function IndividialVideo() {
         </li>
       );
   };
+  const addOrRemoveVideoFromLikedVideo = (video) => {
+    const isVideoLiked = likedVideo.filter((ele) => ele.id == video.id);
+    if (isVideoLiked.length > 0) {
+      return (
+        <li
+          onClick={() =>
+            likedVideoDispatch({
+              type: "REMOVE_FROM_LIKED_VIDEOS",
+              payload: video ,
+            })
+          }
+        >
+         <h3>UnLike the video</h3>
+        </li>
+      );
+    } else
+      return (
+        <li
+          onClick={() =>
+            likedVideoDispatch({ type: "ADD_TO_LIKED_VIDEOS", payload: video })
+          }
+        >
+         <h3>Like the video</h3>
+        </li>
+      );
+  };
   // function to check if video is(added/playlist )
   const isVideoAlredyInPlaylist = (playlistID, video) => {
     const getPlayList = playLists.filter((ele) => ele.id == playlistID);
@@ -93,6 +138,7 @@ function IndividialVideo() {
       });
     }
   };
+
   const funToCreatePlaylistAddVideo = (video) => {
     const date = new Date();
     const newPlayList = {
@@ -173,32 +219,7 @@ function IndividialVideo() {
       </div>
     );
   };
-  const addOrRemoveVideoFromLikedVideo = (video) => {
-    const isVideoLiked = likedVideo.filter((ele) => ele.id == video.id);
-    if (isVideoLiked.length > 0) {
-      return (
-        <li
-          onClick={() =>
-            likedVideoDispatch({
-              type: "REMOVE_FROM_LIKED_VIDEOS",
-              payload: video * 1,
-            })
-          }
-        >
-          <i className="far fa-thumbs-up"></i> <span>UnLike the video</span>
-        </li>
-      );
-    } else
-      return (
-        <li
-          onClick={() =>
-            likedVideoDispatch({ type: "ADD_TO_LIKED_VIDEOS", payload: video })
-          }
-        >
-          <i className="far fa-thumbs-up"></i> <span>Like the video</span>
-        </li>
-      );
-  };
+
   return (
     <div className="individualVideo">
       <div className="individual-videos-of-playList-container-left indi-video">
@@ -213,6 +234,20 @@ function IndividialVideo() {
           <div className="individual-videos-of-playList-container-left-mid2">
             <h3>Added on : {individualVideo[0].addedOn}</h3>
             <div className="individual-videos-of-playList-container-left-mid2-icons indi-cta">
+              {prevPath == "/WatchLaterVideos" && (
+                <>
+                  {" "}
+                  {addOrRemoveVideoFromLikedVideo(individualVideo[0])}
+                  <h3
+                    onClick={() => {
+                      showModal(true);
+                      setVideoid(individualVideo[0]);
+                    }}
+                  >
+                    Add To Playlist
+                  </h3>{" "}
+                </>
+              )}
               {prevPath == "/likedvideo" && (
                 <>
                   {" "}

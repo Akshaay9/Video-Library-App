@@ -177,6 +177,9 @@ z-index: 99 !important
   transition: all 500ms ease-in-out;
   opacity: 0.5 !important
 }
+.watch-later-icon{
+  font-size: 1.3rem;
+}
 
 
 

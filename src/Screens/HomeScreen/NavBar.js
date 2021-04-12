@@ -32,12 +32,14 @@ function NavBar() {
         </ul>
       </div>
       <div className="nav_right">
+      <NavLink to="/WatchLaterVideos">
         <div className="nav_login">
-          <i className="fas fa-user"></i>
-        </div>
+        <i class="far fa-clock watch-later-icon"></i>
+          </div>
+          </NavLink>
         <NavLink to="/likedvideo">
           <div className="nav_cart">
-            <i className="fas fa-shopping-cart"></i>
+          <i class="fas fa-heart"></i>
           </div>
         </NavLink>
 
