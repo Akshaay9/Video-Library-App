@@ -7,7 +7,7 @@
 /* left conatiner */
 .individual-playlist-left {
   border: 1px solid var(--line-color);
-  height: 75vh;
+  /* height: 75vh; */
 }
 
 .individual-playlist-left-img {

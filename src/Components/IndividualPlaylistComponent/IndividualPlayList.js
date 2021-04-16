@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { UsePlayListContext } from "../../Context/PlaylistContext/PlayListContext";
 import { NavLink } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 function IndividualPlayList() {
+  let navigate = useNavigate();
   // useState open playsit update name modal
   const [updatePlayListName, setUpdatePlayListName] = useState(true);
   // useState to open update playlist description modal
@@ -18,7 +20,6 @@ function IndividualPlayList() {
 
   const individualPlaylist = playLists.filter((ele) => ele.id == playListid);
 
-  console.log(individualPlaylist[0].videos);
 
   // useState for playList Name on input
   const [playListNameForInput, setPlayListNameForInput] = useState(
@@ -123,12 +124,25 @@ function IndividualPlayList() {
       );
     }
   };
+  const altImg = "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Z3ltfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=60";
 
+  const getAnImgForPoster = (videos) => {
+    console.log(videos[0]);
+    if (videos.length > 0) {
+      return videos[0].img
+    }
+    else {
+      return altImg
+    }
+  }
+  // individualPlaylist[0].videos[0].img
   return (
+    <>
+ 
     <div className="inidivdual-playlist-container">
       <div className="individual-playlist-left">
         <div className="individual-playlist-left-img">
-          <img src={individualPlaylist[0].videos[0].img} alt="" />
+          <img src={getAnImgForPoster(individualPlaylist[0].videos)} alt="" />
         </div>
         <div className="individual-playlist-left-desc">
           {updateThePlayListName()}
@@ -159,12 +173,15 @@ function IndividualPlayList() {
             </NavLink>
 
             <div className="individual-right-actions">
-              <i className="fas fa-ellipsis-v"></i>
+            <i class="fas fa-trash-alt" style={{paddingRight:".7rem"}}
+            onClick={()=>playListDispatch({type:"REMOVE_FROM_PLAYLIST",payload:{playlistID:playListid,video:ele}})}
+              ></i>
             </div>
           </div>
         ))}
       </div>
-    </div>
+      </div>
+      </>
   );
 }
 

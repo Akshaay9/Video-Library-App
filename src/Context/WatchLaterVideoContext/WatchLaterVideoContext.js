@@ -27,7 +27,7 @@ const WatchLaterVideoReducer = (state, { type, payload }) => {
       return {
         ...state,
         watchLaterVideo: state.watchLaterVideo.filter(
-          (ele) => ele.id * 1 !== payload.id * 1
+          (ele) => ele.id * 1 !== payload* 1
         ),
       };
 

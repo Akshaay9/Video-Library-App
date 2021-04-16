@@ -33,9 +33,11 @@
 }
 .playlist-img{
     position: relative;
-    display: flex;
+ display: block;
     justify-content: center;
     align-items: center;
+ margin:auto 0rem;
+    
 }
 .playlist-desc{
     border: 1px solid var(--line-color);

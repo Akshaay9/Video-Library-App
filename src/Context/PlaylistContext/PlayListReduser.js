@@ -1,6 +1,5 @@
 export const playListReducer = (state, { type, payload }) => {
-  console.log(type);
-  console.log(payload);
+
   switch (type) {
     case "ADD_VIDEO_TO_PLAYLIST":
       const date = new Date();
@@ -23,10 +22,11 @@ export const playListReducer = (state, { type, payload }) => {
         ),
       };
     case "REMOVE_FROM_PLAYLIST":
+      console.log(payload.playlistID);
       return {
         ...state,
         playLists: state.playLists.map((ele) =>
-          ele.id == payload.playlistID
+          ele.id == payload.playlistID*1
             ? {
                 ...ele,
                 videos: ele.videos.filter(
