@@ -40,7 +40,7 @@ function WatchLaterLists() {
               onClick={() =>
                 watchLaterDispatch({
                   type: "REMOVE_FROM_WATCH_VIDEOS",
-                  payload: ele,
+                  payload: ele.id*1,
                 })
               }
             ></i>

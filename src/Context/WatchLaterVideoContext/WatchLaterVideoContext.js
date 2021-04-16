@@ -9,7 +9,7 @@ const initialState = {
 };
 
 const WatchLaterVideoReducer = (state, { type, payload }) => {
-  console.log(payload.id);
+  console.log(payload);
   switch (type) {
     case "ADD_TO_WATCH_VIDEOS":
       const date = new Date();

@@ -38,7 +38,7 @@ function IndividialVideo() {
   const location = useLocation();
   const prevPath = location.state.from;
 
-  console.log(prevPath.includes("videos"));
+
 
   // get the individual video based on the pre path in hisotry
   const getIndividualVideoBasedOnPReviousPathOfHistory = () => {
@@ -68,7 +68,7 @@ function IndividialVideo() {
           onClick={() =>
             watchLaterDispatch({
               type: "REMOVE_FROM_WATCH_VIDEOS",
-              payload: video,
+              payload: video.id*1,
             })
           }
         >
