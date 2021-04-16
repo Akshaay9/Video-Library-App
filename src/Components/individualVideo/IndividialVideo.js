@@ -38,7 +38,7 @@ function IndividialVideo() {
   const location = useLocation();
   const prevPath = location.state.from;
 
-  console.log(prevPath);
+  console.log(prevPath.includes("videos"));
 
   // get the individual video based on the pre path in hisotry
   const getIndividualVideoBasedOnPReviousPathOfHistory = () => {
@@ -49,12 +49,12 @@ function IndividialVideo() {
       return likedVideo.filter((ele)=>ele.id==id)
     }
     else {
-      beginnerBodyBuilding.filter((ele) => ele.id == id);
+     return  beginnerBodyBuilding.filter((ele) => ele.id == id*1);
     }
   }
 
-
   const individualVideo = getIndividualVideoBasedOnPReviousPathOfHistory()
+
 
 
   // fun to add or remove video from watch lster
@@ -68,7 +68,7 @@ function IndividialVideo() {
           onClick={() =>
             watchLaterDispatch({
               type: "REMOVE_FROM_WATCH_VIDEOS",
-              payload: video.id,
+              payload: video,
             })
           }
         >
@@ -232,7 +232,7 @@ function IndividialVideo() {
             <h2>{individualVideo[0].title}</h2>
           </div>
           <div className="individual-videos-of-playList-container-left-mid2">
-            <h3>Added on : {individualVideo[0].addedOn}</h3>
+           {individualVideo[0].addedOn &&<h3>Added on : {individualVideo[0].addedOn}</h3> } 
             <div className="individual-videos-of-playList-container-left-mid2-icons indi-cta">
               {prevPath == "/WatchLaterVideos" && (
                 <>
@@ -250,7 +250,7 @@ function IndividialVideo() {
               )}
               {prevPath == "/likedvideo" && (
                 <>
-                  {" "}
+               
                   {addOrRemoveVideoFromWatchLater(individualVideo[0])}
                   <h3
                     onClick={() => {
@@ -259,8 +259,22 @@ function IndividialVideo() {
                     }}
                   >
                     Add To Playlist
-                  </h3>{" "}
+                  </h3>
                 </>
+              )}
+              {prevPath.includes("videos") && (
+                <>
+                {addOrRemoveVideoFromLikedVideo(individualVideo[0])}
+                {addOrRemoveVideoFromWatchLater(individualVideo[0])}
+                  <h3
+                    onClick={() => {
+                      showModal(true);
+                      setVideoid(individualVideo[0]);
+                    }}
+                  >
+                    Add To Playlist
+                  </h3>
+                  </>
               )}
             </div>
           </div>

@@ -4,7 +4,9 @@ import { UsePlayListContext } from "../../Context/PlaylistContext/PlayListContex
 import { beginnerBodyBuilding } from "../../Data/BodyBuildingData/BeginnerBodyBuildingData";
 import { useWatchLaterContext } from "../../Context/WatchLaterVideoContext/WatchLaterVideoContext";
 import { useLikedVideoContext } from "../../Context/LikedVideoContext/LikedVideoContext";
+import { NavLink, useLocation } from "react-router-dom";
 function BodyBuildingScreenProductList() {
+  let location = useLocation();
   const {
     state: { playLists, loading },
     playListDispatch,
@@ -228,6 +230,16 @@ function BodyBuildingScreenProductList() {
                   >
                     Play Now
                   </button>
+                  <NavLink
+                    to={{
+                      pathname: `/video/${ele.id}`,
+                    }}
+                    state={{ from: location.pathname }}
+                  >
+                    <button className="btn btn-primary btn-primary-hr-outline-out bodyBuilding-cta-btn">
+                      Watch Now
+                    </button>
+                  </NavLink>
                 </div>
               </div>
               <div className="bodyBuildingCard-desc">
