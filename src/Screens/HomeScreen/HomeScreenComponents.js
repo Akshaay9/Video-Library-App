@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import bodyBuildingBanner from "./bodyBuildingBanner.jpg";
+import { NavLink } from "react-router-dom";
 function HomeScreenComponents() {
   const [current, setCurrent] = useState(0);
   const images_desktop = [
-    "https://jeffnippard.com/wp-content/uploads/2020/06/Jef-Nippard-Hero.jpg",
+    "https://i.postimg.cc/g0kFDHxJ/161984363688145221.jpg",
     "https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHw%3D&auto=format&fit=crop&w=2020&q=60",
     "https://images.pexels.com/photos/4720236/pexels-photo-4720236.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=2020",
     "https://images.unsplash.com/photo-1518310383802-640c2de311b2?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTB8fGdyb3VwJTIwZGFuY2V8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=60",
@@ -26,8 +26,10 @@ function HomeScreenComponents() {
           <div className="desktop-carousal-img1-desc carosual-desc">
             <h3>Body Building</h3>
             <h1>make Your Body Stronger</h1>
-            <button className="btn btn-secondary"
-            >Start Now</button>
+            <button className="btn btn-secondary">
+              {" "}
+              <NavLink to="/videos/bodybuilding">Start Now</NavLink>{" "}
+            </button>
           </div>
         </>
       )}
