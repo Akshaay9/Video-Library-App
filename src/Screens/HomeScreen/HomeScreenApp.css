@@ -16,6 +16,9 @@ li.hr-underline-middle:before {
   width: 50%;
   object-fit: contain;
 }
+.nav_center ul{
+  width: 90%;
+}
 .nav_right{
     width: 14rem;
 }

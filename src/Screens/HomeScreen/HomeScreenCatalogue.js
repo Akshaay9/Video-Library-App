@@ -51,7 +51,7 @@ const homeScreenCards = [
 function HomeScreenCatalogue() {
   return (
     <div className="HomeScreenCatalogue-container">
-      <h1>Our classes</h1>
+      <h1 className="intro">Our classes</h1>
       <div className="HomeScreenCatalogue-grid">
         {homeScreenCards.map((ele) => (
           <NavLink to={`videos/${ele.link}`}>

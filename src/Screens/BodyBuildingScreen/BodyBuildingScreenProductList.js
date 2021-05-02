@@ -217,7 +217,7 @@ function BodyBuildingScreenProductList() {
       )}
 
       <div>
-        <h1>Beginner Workout</h1>
+        <h2 className="intro">Beginner Workout</h2>
         <div className="bodyBuilding-Beginner-container">
           {beginnerBodyBuilding.map((ele) => (
             <div className="bodyBuildingCard">
