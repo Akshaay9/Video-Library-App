@@ -6,6 +6,8 @@ import NavBar from "./Screens/HomeScreen/NavBar";
 import BodyBuildingScreen from "./Screens/BodyBuildingScreen/index";
 import FatLoss from "./Screens/Fatloss/Index"
 import Calisthetic from "./Screens/Calisthetics/Index"
+import Yoga from "./Screens/Yoga/Index"
+import Zoomba from "./Screens/Zoomba/Index"
 import PlayListComponent from "./Components/PlayListComponent/Index";
 import IndividualPlayListComponent from "./Components/IndividualPlaylistComponent/Index";
 import LikedVideos from "./Components/LikedVideoComponent/Index";
@@ -29,6 +31,8 @@ function App() {
         <Route path="/videos/bodybuilding" element={<BodyBuildingScreen />} />
         <Route path="/videos/fatloss" element={<FatLoss />} />
         <Route path="/videos/calisthetic" element={<Calisthetic />} />
+        <Route path="/videos/yoga" element={<Yoga />} />
+        <Route path="/videos/zoomba" element={<Zoomba />} />
 
 
       </Routes>

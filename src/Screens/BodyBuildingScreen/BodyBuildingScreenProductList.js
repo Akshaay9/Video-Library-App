@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import YouTube from "react-youtube";
 import { UsePlayListContext } from "../../Context/PlaylistContext/PlayListContext";
-import { beginnerBodyBuilding } from "../../Data/BodyBuildingData/BeginnerBodyBuildingData";
+import { beginnerBodyBuilding } from "../../Data/BeginnerBodyBuildingData";
 import { useWatchLaterContext } from "../../Context/WatchLaterVideoContext/WatchLaterVideoContext";
 import { useLikedVideoContext } from "../../Context/LikedVideoContext/LikedVideoContext";
 import { NavLink, useLocation } from "react-router-dom";
@@ -217,7 +217,7 @@ function BodyBuildingScreenProductList() {
       )}
 
       <div>
-        <h2 className="intro">Beginner Workout</h2>
+        <h2 className="intro">Resistance Training</h2>
         <div className="bodyBuilding-Beginner-container">
           {beginnerBodyBuilding.map((ele) => (
             <div className="bodyBuildingCard">

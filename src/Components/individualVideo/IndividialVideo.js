@@ -4,7 +4,7 @@ import YouTube from "react-youtube";
 import { useLikedVideoContext } from "../../Context/LikedVideoContext/LikedVideoContext";
 import { UsePlayListContext } from "../../Context/PlaylistContext/PlayListContext";
 import { useWatchLaterContext } from "../../Context/WatchLaterVideoContext/WatchLaterVideoContext";
-import { beginnerBodyBuilding } from "../../Data/BodyBuildingData/BeginnerBodyBuildingData";
+import { allVideoData } from "../../Data/AllData";
 const opts = {
   height: "450vh",
   width: "100%",
@@ -38,24 +38,20 @@ function IndividialVideo() {
   const location = useLocation();
   const prevPath = location.state.from;
 
-
-
   // get the individual video based on the pre path in hisotry
   const getIndividualVideoBasedOnPReviousPathOfHistory = () => {
-    if (prevPath === "/WatchLaterVideos") {
-      return watchLaterVideo.filter((ele)=>ele.id==id)
-    }
-    else if (prevPath === "/likedvideo") {
-      return likedVideo.filter((ele)=>ele.id==id)
-    }
-    else {
-     return  beginnerBodyBuilding.filter((ele) => ele.id == id*1);
-    }
-  }
+    // if (prevPath === "/WatchLaterVideos") {
+    //   return watchLaterVideo.filter((ele)=>ele.id==id)
+    // }
+    // else if (prevPath === "/likedvideo") {
+    //   return likedVideo.filter((ele)=>ele.id==id)
+    // }
+    // else {
+    return allVideoData.filter((ele) => ele.id == id * 1);
+    // }
+  };
 
-  const individualVideo = getIndividualVideoBasedOnPReviousPathOfHistory()
-
-
+  const individualVideo = getIndividualVideoBasedOnPReviousPathOfHistory();
 
   // fun to add or remove video from watch lster
   const addOrRemoveVideoFromWatchLater = (video) => {
@@ -68,7 +64,7 @@ function IndividialVideo() {
           onClick={() =>
             watchLaterDispatch({
               type: "REMOVE_FROM_WATCH_VIDEOS",
-              payload: video.id*1,
+              payload: video.id * 1,
             })
           }
         >
@@ -94,11 +90,11 @@ function IndividialVideo() {
           onClick={() =>
             likedVideoDispatch({
               type: "REMOVE_FROM_LIKED_VIDEOS",
-              payload: video ,
+              payload: video,
             })
           }
         >
-         <h3>UnLike the video</h3>
+          <h3>UnLike the video</h3>
         </li>
       );
     } else
@@ -108,7 +104,7 @@ function IndividialVideo() {
             likedVideoDispatch({ type: "ADD_TO_LIKED_VIDEOS", payload: video })
           }
         >
-         <h3>Like the video</h3>
+          <h3>Like the video</h3>
         </li>
       );
   };
@@ -232,7 +228,9 @@ function IndividialVideo() {
             <h2>{individualVideo[0].title}</h2>
           </div>
           <div className="individual-videos-of-playList-container-left-mid2">
-           {individualVideo[0].addedOn &&<h3>Added on : {individualVideo[0].addedOn}</h3> } 
+            {individualVideo[0].addedOn && (
+              <h3>Added on : {individualVideo[0].addedOn}</h3>
+            )}
             <div className="individual-videos-of-playList-container-left-mid2-icons indi-cta">
               {prevPath == "/WatchLaterVideos" && (
                 <>
@@ -250,7 +248,6 @@ function IndividialVideo() {
               )}
               {prevPath == "/likedvideo" && (
                 <>
-               
                   {addOrRemoveVideoFromWatchLater(individualVideo[0])}
                   <h3
                     onClick={() => {
@@ -264,8 +261,8 @@ function IndividialVideo() {
               )}
               {prevPath.includes("videos") && (
                 <>
-                {addOrRemoveVideoFromLikedVideo(individualVideo[0])}
-                {addOrRemoveVideoFromWatchLater(individualVideo[0])}
+                  {addOrRemoveVideoFromLikedVideo(individualVideo[0])}
+                  {addOrRemoveVideoFromWatchLater(individualVideo[0])}
                   <h3
                     onClick={() => {
                       showModal(true);
@@ -274,7 +271,7 @@ function IndividialVideo() {
                   >
                     Add To Playlist
                   </h3>
-                  </>
+                </>
               )}
             </div>
           </div>

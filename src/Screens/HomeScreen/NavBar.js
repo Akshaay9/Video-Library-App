@@ -42,9 +42,12 @@ function NavBar() {
           <NavLink to="/videos/calisthetic">
             <li className="hr-underline-middle">Calisthetic</li>
           </NavLink>
-
-          <li className="hr-underline-middle">Yoga</li>
-          <li className="hr-underline-middle">Zoomba</li>
+          <NavLink to="/videos/yoga">
+            <li className="hr-underline-middle">Yoga</li>
+          </NavLink>
+          <NavLink to="/videos/zoomba">
+            <li className="hr-underline-middle">Zoomba</li>
+          </NavLink>
         </ul>
       </div>
       <div className="nav_right">
