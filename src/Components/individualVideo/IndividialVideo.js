@@ -5,6 +5,11 @@ import { useLikedVideoContext } from "../../Context/LikedVideoContext/LikedVideo
 import { UsePlayListContext } from "../../Context/PlaylistContext/PlayListContext";
 import { useWatchLaterContext } from "../../Context/WatchLaterVideoContext/WatchLaterVideoContext";
 import { allVideoData } from "../../Data/AllData";
+import {
+  addOrRemoveVideoFromLikedVideo,
+  addOrRemoveVideoFromWatchLater,
+} from "../../UtilityFunctions/playListsWatchLaterAndLikesCTAFunctions";
+import { showModalForVideoPlayListActions } from "../../UtilityFunctions/VideoListFunctions";
 const opts = {
   height: "450vh",
   width: "100%",
@@ -53,169 +58,6 @@ function IndividialVideo() {
 
   const individualVideo = getIndividualVideoBasedOnPReviousPathOfHistory();
 
-  // fun to add or remove video from watch lster
-  const addOrRemoveVideoFromWatchLater = (video) => {
-    const isVideoAddedToWatchLater = watchLaterVideo.filter(
-      (ele) => ele.id == video.id
-    );
-    if (isVideoAddedToWatchLater.length > 0) {
-      return (
-        <li
-          onClick={() =>
-            watchLaterDispatch({
-              type: "REMOVE_FROM_WATCH_VIDEOS",
-              payload: video.id * 1,
-            })
-          }
-        >
-          <h3>Remove from Watch Later</h3>
-        </li>
-      );
-    } else
-      return (
-        <li
-          onClick={() =>
-            watchLaterDispatch({ type: "ADD_TO_WATCH_VIDEOS", payload: video })
-          }
-        >
-          <h3>Watch Later</h3>
-        </li>
-      );
-  };
-  const addOrRemoveVideoFromLikedVideo = (video) => {
-    const isVideoLiked = likedVideo.filter((ele) => ele.id == video.id);
-    if (isVideoLiked.length > 0) {
-      return (
-        <li
-          onClick={() =>
-            likedVideoDispatch({
-              type: "REMOVE_FROM_LIKED_VIDEOS",
-              payload: video,
-            })
-          }
-        >
-          <h3>UnLike the video</h3>
-        </li>
-      );
-    } else
-      return (
-        <li
-          onClick={() =>
-            likedVideoDispatch({ type: "ADD_TO_LIKED_VIDEOS", payload: video })
-          }
-        >
-          <h3>Like the video</h3>
-        </li>
-      );
-  };
-  // function to check if video is(added/playlist )
-  const isVideoAlredyInPlaylist = (playlistID, video) => {
-    const getPlayList = playLists.filter((ele) => ele.id == playlistID);
-    const isVideoAlredyPlayListed = getPlayList[0].videos.filter(
-      (ele) => ele.id == video.id
-    );
-    return isVideoAlredyPlayListed.length > 0 ? true : false;
-  };
-  // add or remove videos from playlist
-  const addorRemoveVideoToPlayList = (playlistID, video) => {
-    const getPlayList = playLists.filter((ele) => ele.id == playlistID);
-    const isVideoAlredyPlayListed = getPlayList[0].videos.filter(
-      (ele) => ele.id == video.id
-    );
-    if (isVideoAlredyPlayListed.length > 0) {
-      playListDispatch({
-        type: "REMOVE_FROM_PLAYLIST",
-        payload: { playlistID, video },
-      });
-    } else {
-      playListDispatch({
-        type: "ADD_VIDEO_TO_PLAYLIST",
-        payload: { playlistID, video },
-      });
-    }
-  };
-
-  const funToCreatePlaylistAddVideo = (video) => {
-    const date = new Date();
-    const newPlayList = {
-      id: Math.random(),
-      name: inputPlayList,
-      dateCreated: `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`,
-      videos: [
-        {
-          ...video,
-          addedOn: `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`,
-          notes: [],
-        },
-      ],
-    };
-    playListDispatch({
-      type: "CREATE_NEW_PLAYLIST",
-      payload: newPlayList,
-    });
-    setCreatePlaylistBTN(false);
-    setInputPlayList("");
-  };
-  // function to add video to playlist/Cretae a playlist
-  const showModalForVideoPlayListActions = (video) => {
-    return (
-      <div className="modal-playList-container">
-        <div className="modal-playList-cta">
-          <div className="modal-playlist-top">
-            <h3>Save To...</h3>
-            <i
-              class="fas fa-times"
-              onClick={() => {
-                showModal(false);
-              }}
-            ></i>
-          </div>
-          <div className="modal-playlist-mid">
-            {playLists.length > 0 && (
-              <ul>
-                {playLists.map((ele) => (
-                  <div className="modal-playlist-mid-li">
-                    <input
-                      type="checkbox"
-                      checked={isVideoAlredyInPlaylist(ele.id, video)}
-                      onClick={() => addorRemoveVideoToPlayList(ele.id, video)}
-                    />
-                    <span>{ele.name}</span>
-                  </div>
-                ))}
-              </ul>
-            )}
-            <div className="modal-playlist-bottom">
-              <button
-                className="btn btn-secondary btn-secondary-hr-outline-in btn-playlist-cta "
-                onClick={() => setCreatePlaylistBTN(true)}
-              >
-                Add a PlayList
-              </button>
-            </div>
-            {createPlaylistBTN && (
-              <div className="modal-playlist-bottom">
-                <input
-                  type="text"
-                  className="input-playlist-cta"
-                  value={inputPlayList}
-                  onChange={(e) => setInputPlayList(e.target.value)}
-                />
-                <button
-                  className="btn btn-secondary btn-secondary-hr-outline-in btn-playlist-cta2 secondary-disabled"
-                  disabled={inputPlayList == ""}
-                  onClick={() => funToCreatePlaylistAddVideo(videoid)}
-                >
-                  Create a PlayList
-                </button>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-    );
-  };
-
   return (
     <div className="individualVideo">
       <div className="individual-videos-of-playList-container-left indi-video">
@@ -235,7 +77,13 @@ function IndividialVideo() {
               {prevPath == "/WatchLaterVideos" && (
                 <>
                   {" "}
-                  {addOrRemoveVideoFromLikedVideo(individualVideo[0])}
+                  {addOrRemoveVideoFromLikedVideo(
+                    likedVideo,
+                    individualVideo[0],
+                    likedVideoDispatch,
+                    false,
+                    "h3"
+                  )}
                   <h3
                     onClick={() => {
                       showModal(true);
@@ -248,7 +96,11 @@ function IndividialVideo() {
               )}
               {prevPath == "/likedvideo" && (
                 <>
-                  {addOrRemoveVideoFromWatchLater(individualVideo[0])}
+                  {addOrRemoveVideoFromWatchLater(
+                    watchLaterVideo,
+                    individualVideo[0],
+                    watchLaterDispatch
+                  )}
                   <h3
                     onClick={() => {
                       showModal(true);
@@ -261,8 +113,18 @@ function IndividialVideo() {
               )}
               {prevPath.includes("videos") && (
                 <>
-                  {addOrRemoveVideoFromLikedVideo(individualVideo[0])}
-                  {addOrRemoveVideoFromWatchLater(individualVideo[0])}
+                  {addOrRemoveVideoFromLikedVideo(
+                    likedVideo,
+                    individualVideo[0],
+                    likedVideoDispatch,
+                    false,
+                    "h3"
+                  )}
+                  {addOrRemoveVideoFromWatchLater(
+                    watchLaterVideo,
+                    individualVideo[0],
+                    watchLaterDispatch
+                  )}
                   <h3
                     onClick={() => {
                       showModal(true);
@@ -291,7 +153,18 @@ function IndividialVideo() {
           </div>
         </div>
       </div>
-      {modal && videoid != null && showModalForVideoPlayListActions(videoid)}
+      {modal &&
+        videoid != null &&
+        showModalForVideoPlayListActions(
+          playLists,
+          showModal,
+          videoid,
+          createPlaylistBTN,
+          setCreatePlaylistBTN,
+          inputPlayList,
+          setInputPlayList,
+          playListDispatch
+        )}
     </div>
   );
 }
