@@ -55,7 +55,7 @@ function HomeScreenComponents() {
             alt=""
           />
           <div className="desktop-carousal-img1-desc  carosual-desc">
-            <h3>Calisthetics</h3>
+            <h3>Calisthenics</h3>
             <h1>Commit to be fit</h1>
             <button className="btn btn-secondary">Start Now</button>
           </div>
@@ -69,7 +69,7 @@ function HomeScreenComponents() {
             alt=""
           />
           <div className="desktop-carousal-img1-desc  carosual-desc">
-            <h3>Zoomba</h3>
+            <h3>Zumba</h3>
             <h1>Train your body in fun way</h1>
             <button className="btn btn-secondary">Start Now</button>
           </div>

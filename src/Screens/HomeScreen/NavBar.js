@@ -40,13 +40,13 @@ function NavBar() {
             <li className="hr-underline-middle">Fat Loss</li>
           </NavLink>
           <NavLink to="/videos/calisthetic">
-            <li className="hr-underline-middle">Calisthetic</li>
+            <li className="hr-underline-middle">Calisthenics</li>
           </NavLink>
           <NavLink to="/videos/yoga">
             <li className="hr-underline-middle">Yoga</li>
           </NavLink>
           <NavLink to="/videos/zoomba">
-            <li className="hr-underline-middle">Zoomba</li>
+            <li className="hr-underline-middle">Zumba</li>
           </NavLink>
         </ul>
       </div>

@@ -10,8 +10,6 @@ export const addorRemoveVideoToPlayList = (
   playlistID,
   video,
   playListDispatch,
-  tag,
-  icon
 ) => {
   const getPlayList = playLists.filter((ele) => ele.id == playlistID);
   const isVideoAlredyPlayListed = getPlayList[0].videos.filter(

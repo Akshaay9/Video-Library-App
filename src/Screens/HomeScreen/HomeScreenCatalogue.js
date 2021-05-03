@@ -24,7 +24,7 @@ const homeScreenCards = [
     tag: "Calisthetic",
     name: "Your body weight is your ultimate weapon",
     color: "#ff5100",
-    link: "calisthetic",
+    link: "calisthenics",
     img:
       "https://images.unsplash.com/photo-1599058917765-a780eda07a3e?ixid=MXwxMjA3fDB8MHxzZWFyY2h8OXx8Y3Jvc3NmaXR8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
   },
@@ -39,7 +39,7 @@ const homeScreenCards = [
   },
   {
     id: 5,
-    tag: "Zoomba",
+    tag: "Zumba",
     name: "Loose Fat, Build confidence and strength in a fun way",
     color: "#fcbf49",
     link: "zoomba",

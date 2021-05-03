@@ -1,10 +1,11 @@
 import React from 'react'
-
+import {yogaVideos} from "../../Data/YogaData"
+import VideoListCOmponent from '../../UtilityFunctions/VideoListCOmponent'
 function YogaProductLists() {
     return (
-        <div>
-            YogaProductLists
-        </div>
+        <>
+        <VideoListCOmponent videoData={yogaVideos} title={"Yoga"} />
+      </>
     )
 }
 
