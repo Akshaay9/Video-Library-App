@@ -195,7 +195,7 @@ export const allVideoData = [
   },
   {
     id: 17,
-    title: "5 pranayama everyone should know",
+    title: "pranayamas everyone should know",
     ChannelName: "Swami Ramdev",
     img: "https://img.youtube.com/vi/-EH4D_DAvqc/maxresdefault.jpg",
     url: "EH4D_DAvqc",

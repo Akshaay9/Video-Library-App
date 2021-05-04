@@ -82,7 +82,11 @@ function VideoListCOmponent({ videoData, title }) {
                 <a href={ele.channelLink}>
                   <img src={ele.channelIMG} alt="" />
                 </a>
+                <div className="bodybuilding-desc-info">
                 <h2>{ele.title}</h2>
+                <span>{ ele.ChannelName}</span>
+                </div>
+                
                 <i className="fas fa-ellipsis-v"></i>
                 <div className="bodyBuilding-desc-CTA-list">
                   <ul>

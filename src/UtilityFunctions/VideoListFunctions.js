@@ -13,16 +13,8 @@ export const showModalForVideoPlayListActions = (
   setInputPlayList,
   playListDispatch
 ) => {
-  console.log({
-    playLists,
-    showModal,
-    createPlaylistBTN,
-    setCreatePlaylistBTN,
-    video,
-    inputPlayList,
-    setInputPlayList,
-    playListDispatch,
-  });
+ 
+  
 
   // function to dispatch acton which create a new playlists and adds a video to it
   const funToCreatePlaylistAddVideo = (video) => {

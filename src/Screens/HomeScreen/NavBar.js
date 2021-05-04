@@ -19,11 +19,12 @@ function NavBar({ navModal, setNavModal }) {
     <>
       <div className="nav">
         <div className="nav_left">
-          <div className="nav_logo">
-            <img src="" alt="" />
+          <div className="nav_logo mobile-hide">
+            <img src="https://i.ibb.co/XJG7hZG/letter-g-logo-vector-831342-1.jpg" alt="" />
           </div>
+          
 
-          <div className="nav_name mobile-hide">
+          <div className="nav_name ">
             <NavLink to="/">
               <h2>Gym.Fit</h2>
             </NavLink>
