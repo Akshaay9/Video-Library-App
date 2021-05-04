@@ -4,7 +4,7 @@
   width: 100%;
   height: 70vh;
 } */
-.bg-image{
+.bg-image {
   height: 70vh;
   background-repeat: no-repeat;
   background-position: center;
@@ -14,23 +14,22 @@
   background-size: cover;
 
   max-width: 100%;
-
 }
-.bodybuilding-banner{
+.bodybuilding-banner {
   background-image: url(https://preview.colorlib.com/theme/endurance/images/bg_2.jpg);
 }
-.fatloss-banner{
+.fatloss-banner {
   background-image: url(https://preview.colorlib.com/theme/gutim/img/hero-bg.jpg);
   background-position: center;
 }
-.calisthetic-banner{
+.calisthetic-banner {
   background-image: url(https://images.unsplash.com/photo-1598266663439-2056e6900339?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGNhbGlzdGhlbmljc3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=60);
 }
-.yoga-banner{
-background-image: url(https://images.unsplash.com/photo-1545205597-3d9d02c29597?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjV8fHlvZ2F8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=60);
-filter: brightness(70%);
+.yoga-banner {
+  background-image: url(https://images.unsplash.com/photo-1545205597-3d9d02c29597?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjV8fHlvZ2F8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=60);
+  filter: brightness(70%);
 }
-.zoomba-banner{
+.zoomba-banner {
   background-image: url(https://images.unsplash.com/photo-1524594152303-9fd13543fe6e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8ZGFuY2UlMjBjbGFzc3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=60);
   height: 70vh;
   background-repeat: no-repeat;
@@ -48,7 +47,7 @@ filter: brightness(70%);
   color: white;
   color: #d69327;
   font-size: 1.6rem;
-  padding: 1rem 0rem .5rem 1.5rem;
+  padding: 1rem 0rem 0.5rem 1.5rem;
 }
 .bodybuilding-beginner-list img {
   width: 30%;
@@ -60,16 +59,17 @@ filter: brightness(70%);
   width: 96.5%;
   margin: auto;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(410px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
   grid-column-gap: 25px;
   grid-row-gap: 25px;
   margin-top: 22px;
+  margin-bottom: 2rem;
 }
 .bodyBuildingCard {
   position: relative;
 }
 .bodyBuildingImage {
-  width: 100%;  
+  width: 100%;
   object-fit: cover;
 }
 
@@ -89,23 +89,22 @@ filter: brightness(70%);
   justify-content: space-between;
   display: none;
   animation: bodyBuildingCTA 300ms ease-in-out;
- 
 }
-.bodyBuildingCard-CTA  button{
+.bodyBuildingCard-CTA button {
   /* padding: 0rem 0rem; */
   margin-left: 1rem;
 }
-@keyframes bodyBuildingCTA{
-  from{
-opacity: 0;
-top: 80%;
+@keyframes bodyBuildingCTA {
+  from {
+    opacity: 0;
+    top: 80%;
   }
-  to{
+  to {
     top: 50%;
-opacity: 1;
+    opacity: 1;
   }
 }
-.bodyBuildingCard-img:hover .bodyBuildingCard-CTA{
+.bodyBuildingCard-img:hover .bodyBuildingCard-CTA {
   display: block !important;
 }
 .bodyBuilding-cta-btn {
@@ -147,7 +146,7 @@ opacity: 1;
   margin-left: auto;
   color: gray;
 }
-.bodyBuilding-desc-CTA-list{
+.bodyBuilding-desc-CTA-list {
   /* padding: .4rem; */
   position: absolute;
   background-color: white;
@@ -156,81 +155,80 @@ opacity: 1;
   border: 1px solid var(--line-color);
   top: 5%;
   right: 5%;
-  border-radius: .4rem;
+  border-radius: 0.4rem;
   display: none !important;
-
 }
 
-.bodyBuilding-desc-CTA-list ul li i{
-  margin-left: .5rem;
-} 
-.bodyBuilding-desc-CTA-list ul li span{
-  margin-left: .5rem;
-} 
+.bodyBuilding-desc-CTA-list ul li i {
+  margin-left: 0.5rem;
+}
+.bodyBuilding-desc-CTA-list ul li span {
+  margin-left: 0.5rem;
+}
 
-.bodyBuilding-desc-CTA-list ul{
+.bodyBuilding-desc-CTA-list ul {
   display: flex;
   flex-direction: column;
   width: 100%;
   justify-content: space-between;
 }
 
-.bodyBuilding-desc-CTA-list ul{
+.bodyBuilding-desc-CTA-list ul {
   height: 5rem;
   animation: bodyBuilding-desc-list-animate 500ms ease-in-out;
-} 
-@keyframes  bodyBuilding-desc-list-animate{
-  from{
-opacity: 0;
-height: 0rem;
+}
+@keyframes bodyBuilding-desc-list-animate {
+  from {
+    opacity: 0;
+    height: 0rem;
   }
-  to{
+  to {
     opacity: 1;
     height: 5rem;
   }
 }
-.bodyBuilding-desc-CTA-list ul li:hover{
+.bodyBuilding-desc-CTA-list ul li:hover {
   background-color: var(--blue);
   cursor: pointer;
   color: var(--light);
   z-index: 300;
-} 
-.bodyBuilding-desc-CTA-list ul li{
-  padding: 0.2rem .4rem;
-} 
-.fa-ellipsis-v:hover +.bodyBuilding-desc-CTA-list{
+}
+
+.bodyBuilding-desc-CTA-list ul li {
+  padding: 0.2rem 0.4rem;
+}
+.fa-ellipsis-v:hover + .bodyBuilding-desc-CTA-list {
   display: block !important;
 }
-.fa-ellipsis-v:hover +.bodyBuilding-desc-CTA-list:active{
+.fa-ellipsis-v:hover + .bodyBuilding-desc-CTA-list:active {
   display: block !important;
 }
-.bodyBuilding-desc-CTA-list:hover{
-  display: block !important
+.bodyBuilding-desc-CTA-list:hover {
+  display: block !important;
 }
 
 /* BG video Player */
-.test{
+.test {
   margin-top: 3.1rem;
   z-index: 301;
   width: 100%;
   height: 100vh;
   position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50% ,-50%);
-/* background-color: antiquewhite; */
-position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* background-color: antiquewhite; */
+  position: fixed;
 }
-.fa-times-circle{
+.fa-times-circle {
   position: absolute;
   right: 5%;
   top: 5%;
   font-size: 2rem;
   color: rgb(255, 239, 8);
   border-radius: 2rem;
-
 }
-.fa-times-circle:hover{
+.fa-times-circle:hover {
   position: absolute;
   right: 5%;
   top: 5%;
@@ -239,106 +237,122 @@ position: fixed;
   border-radius: 2rem;
 }
 /* modal */
-.modal-playList-container{
+.modal-playList-container {
   width: 100%;
   height: 100vh;
   position: absolute;
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   z-index: 303;
   background: rgba(0, 0, 0, 0.8);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.modal-playList-cta{
+.modal-playList-cta {
   width: 15%;
-color: black;
-background-color: white;
+  color: black;
+  background-color: white;
 }
-.modal-playlist-top{
+.modal-playlist-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
   border-bottom: 1px solid var(--line-color);
 }
-.modal-playlist-mid-li{
+.modal-playlist-mid-li {
   display: flex;
   width: 100%;
   align-items: center;
   justify-content: space-between;
-  padding: .1rem 1.8rem;
+  padding: 0.1rem 1.8rem;
 }
-.modal-playlist-mid ul{
+.modal-playlist-mid ul {
   border: 1px solid var(--line-color);
 }
-.btn-playlist-cta{
+.btn-playlist-cta {
   padding: 0.1rem 1rem;
   display: block;
-  margin: .5rem auto; 
+  margin: 0.5rem auto;
 }
-.input-playlist-cta{
-padding: 0%;
-margin: 0%;
-display: block;
-margin: 1rem auto;
-border: 1px solid black;
-width: 50%;
-padding: .2rem;
+.input-playlist-cta {
+  padding: 0%;
+  margin: 0%;
+  display: block;
+  margin: 1rem auto;
+  border: 1px solid black;
+  width: 50%;
+  padding: 0.2rem;
 }
 .input-playlist-cta:focus {
   width: 70%;
   border: 1px solid rgb(36, 85, 223);
   transition: all 100ms ease-in-out;
 }
-textarea:focus, input:focus{
-    outline: none;
+textarea:focus,
+input:focus {
+  outline: none;
 }
-.btn-playlist-cta2{
+.btn-playlist-cta2 {
   padding: 0.1rem 1rem;
   display: block;
-  margin: .1rem auto; 
+  margin: 0.1rem auto;
 }
-.fa-times{
-  padding: .32rem;
+.fa-times {
+  padding: 0.32rem;
   transition: all 150ms ease-in-out;
 }
-.fa-times:hover{
- padding: .32rem;
- border-radius: 50%;
- background-color: #444;
- color: white;
+.fa-times:hover {
+  padding: 0.32rem;
+  border-radius: 50%;
+  background-color: #444;
+  color: white;
 }
 
-.secondary-disabled:disabled{
+.secondary-disabled:disabled {
   background-color: rgb(184, 179, 179);
 }
 @media screen and (max-width: 800px) {
-  .modal-playList-container{
+  .zoomba-banner {
+    background-position: center;
+  }
+  .bodyBuilding-desc-CTA-list ul {
+    height: 5.5rem;
+    animation: bodyBuilding-desc-list-animate 500ms ease-in-out;
+  }
+
+  .bodyBuilding-desc-CTA-list {
+    right: 12%;
+  }
+  .bodyBuilding-Beginner-container {
+    margin-bottom: 4rem;
+  }
+  .bodyBuildingCard-CTA button {
+    display: none !important;
+  }
+  .modal-playList-container {
     width: 110%;
     height: 150vh;
     position: absolute;
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     z-index: 303;
     background: rgba(0, 0, 0, 0.8);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   }
-  .modal-playList-cta{
+  .modal-playList-cta {
     width: 55%;
-  color: black;
-  background-color: white;
+    color: black;
+    background-color: white;
   }
 }
-
-
