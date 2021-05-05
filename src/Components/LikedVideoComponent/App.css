@@ -6,6 +6,7 @@
   width: 80%;
   margin: 1rem 0rem 0rem 2rem;
   grid-template-columns: 2fr 0.3fr 0.3fr;
+
   /* border: 1px solid red; */
 }
 .liked-video-left,
@@ -41,6 +42,7 @@
   align-items: center;
   font-size: 20px;
   font-family: sans-serif;
+
 }
 
 
@@ -57,6 +59,14 @@
   grid-template-columns: 1fr;
 
 
+  }
+  .liked-video-container {
+    display: grid;
+   margin: 1rem auto ;
+   margin-bottom: 6rem;
+ 
+  
+    /* border: 1px solid red; */
   }
   .liked-video-right,
 .liked-video-mid {

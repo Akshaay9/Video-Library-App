@@ -1,6 +1,7 @@
 .inidivdual-playlist-container {
   width: 90%;
   margin: 4rem auto;
+  margin-bottom: 4rem;
   display: grid;
   grid-template-columns: 1fr 1.3fr;
 }
@@ -127,7 +128,7 @@
 }
 .individual-right-videos-desc {
   display: flex;
-  padding: 1rem;
+  padding: .5rem;
 }
 .individual-right-videos-desc:hover {
   background-color: rgb(252, 245, 245);
@@ -154,6 +155,9 @@
 }
 
 .individual-right-img {
+  width: 85%;
+}
+.updated-indi-img{
   width: 35%;
 }
 
@@ -164,6 +168,23 @@
   padding: 1rem;
 }
 @media screen and (max-width: 800px) {
+  .individual-right-videos{
+    display: block;
+  }
+  .individual-right-actions i{
+    display: block;
+   align-items: center;
+   text-align: center;
+   padding: .5rem 0rem;
+  }
+ 
+  .individual-right-videos-desc {
+    display: block;
+    padding: 0rem;
+  }
+  .individual-right-img {
+    width: 100%;
+  }
   .inidivdual-playlist-container {
     grid-template-columns: 1fr;
   }

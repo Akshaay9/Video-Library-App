@@ -162,7 +162,7 @@ function IndividualPlayList() {
           <div className="individual-right-videos">
             <NavLink to={`/playLists/${playListid}/${ele.id}`}>
               <div className="individual-right-videos-desc">
-                <div className="individual-right-img">
+                <div className="individual-right-img updated-indi-img">
                   <img src={ele.img} alt="" />
                 </div>
                 <div className="individual-right-desc-title">

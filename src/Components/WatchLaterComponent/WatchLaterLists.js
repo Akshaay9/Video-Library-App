@@ -5,7 +5,7 @@ import watchLaterSVG from "../../SVG/watchLaterSVG.svg";
 
 function WatchLaterLists() {
   const {
-    state: {watchLaterVideo},
+    state: { watchLaterVideo },
     watchLaterDispatch,
   } = useWatchLaterContext();
   let location = useLocation();
@@ -34,13 +34,23 @@ function WatchLaterLists() {
                 <div className="individual-right-desc-title">
                   <h2>{ele.title}</h2>
                   <h3>{ele.ChannelName}</h3>
+                  <p>{ ele.desc.slice(0,220)}...</p>
                 </div>
               </div>
             </div>
           </NavLink>
+
           <div className="liked-video-mid">
-            <i className="fab fa-google-play playlist-play"></i>
+            <NavLink
+              to={{
+                pathname: `/video/${ele.id}`,
+              }}
+              state={{ from: location.pathname }}
+            >
+              <i className="fab fa-google-play playlist-play"></i>
+            </NavLink>
           </div>
+
           <div className="liked-video-right">
             <i
               className="fas fa-trash"
