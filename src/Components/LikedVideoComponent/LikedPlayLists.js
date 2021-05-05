@@ -1,6 +1,7 @@
 import React from "react";
 import { useLikedVideoContext } from "../../Context/LikedVideoContext/LikedVideoContext";
 import { NavLink, useLocation } from "react-router-dom";
+import likedSVG from "../../SVG/likesSVG.svg"
 function LikedPlayLists() {
   const {
     state: { likedVideo },
@@ -12,6 +13,9 @@ function LikedPlayLists() {
     <div className="liked-video">
       <div className="playList-container-heading like-heading">
         Liked Videos
+      </div>
+      <div className="svg-empty">
+        {likedVideo.length == 0 && <img src={likedSVG} alt="" />}
       </div>
       {likedVideo.map((ele, index) => (
         <div className="liked-video-container">

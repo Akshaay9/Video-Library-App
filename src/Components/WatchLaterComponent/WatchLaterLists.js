@@ -1,14 +1,21 @@
-import React from 'react'
-import { useWatchLaterContext } from '../../Context/WatchLaterVideoContext/WatchLaterVideoContext'
+import React from "react";
+import { useWatchLaterContext } from "../../Context/WatchLaterVideoContext/WatchLaterVideoContext";
 import { NavLink, useLocation } from "react-router-dom";
+import watchLaterSVG from "../../SVG/watchLaterSVG.svg";
 
 function WatchLaterLists() {
-    const { state: { watchLaterVideo }, watchLaterDispatch } = useWatchLaterContext()
-    let location = useLocation();
-    return (
-        <div className="liked-video">
-             <div className="playList-container-heading like-heading">
-                Watch Later Videos
+  const {
+    state: {watchLaterVideo},
+    watchLaterDispatch,
+  } = useWatchLaterContext();
+  let location = useLocation();
+  return (
+    <div className="liked-video">
+      <div className="playList-container-heading like-heading">
+        Watch Later Videos
+      </div>
+      <div className="svg-empty watchlaterSVG">
+        {watchLaterVideo.length == 0 && <img src={watchLaterSVG} alt="" />}
       </div>
       {watchLaterVideo.map((ele, index) => (
         <div className="liked-video-container">
@@ -40,15 +47,15 @@ function WatchLaterLists() {
               onClick={() =>
                 watchLaterDispatch({
                   type: "REMOVE_FROM_WATCH_VIDEOS",
-                  payload: ele.id*1,
+                  payload: ele.id * 1,
                 })
               }
             ></i>
           </div>
         </div>
       ))}
-        </div>
-    )
+    </div>
+  );
 }
 
-export default WatchLaterLists
+export default WatchLaterLists;

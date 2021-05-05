@@ -90,8 +90,23 @@ font-size: 2rem;
 }
 .playlist-btn-cta{
     padding: 0rem 1.2rem;
-}   
+} 
+
+.svg-empty img{
+    margin-top: 2rem;
+width: 30%;
+margin-left: 20em;
+} 
+.watchlaterSVG img{
+    /* border: 1px solid red; */
+    width: 40%;
+} 
 @media screen and (max-width: 700px) {
+    .svg-empty img{
+        margin-top: 2rem;
+    width: 90%;
+    margin-left: 1em;
+    }
     .playlists{
         width: 95%;
         margin: auto;

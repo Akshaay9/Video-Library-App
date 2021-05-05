@@ -33,17 +33,19 @@ function NavBar({ navModal, setNavModal }) {
               <h2>Gym.Fit</h2>
             </NavLink>
           </div>
-          <div className="badge badge-skyBlue desktop-hide ">
-            {playLists.length > 0 && (
-              <span style={{ top: "1.1rem", left: "1.5rem" }}>
-                {playLists.length}
-              </span>
-            )}
-            <img
-              style={{ width: "52%", objectFit: "contain", height: "2rem" }}
-              src="https://img.icons8.com/ios/50/000000/video-playlist.png"
-            />
-          </div>
+          <NavLink to="/playlists">
+            <div className="badge badge-skyBlue desktop-hide ">
+              {playLists.length > 0 && (
+                <span style={{ top: "1.1rem", left: "1.5rem" }}>
+                  {playLists.length}
+                </span>
+              )}
+              <img
+                style={{ width: "52%", objectFit: "contain", height: "2rem" }}
+                src="https://img.icons8.com/ios/50/000000/video-playlist.png"
+              />
+            </div>
+          </NavLink>
           <div
             className={`hamberger desktop-hide ${navModal ? "rotateHam" : ""}`}
             onClick={() => setNavModal(!navModal)}
