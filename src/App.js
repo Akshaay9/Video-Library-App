@@ -14,6 +14,8 @@ import LikedVideos from "./Components/LikedVideoComponent/Index";
 import WatchLaterVideos from "./Components/WatchLaterComponent/Index";
 import IndividualVideosOfPlayList from "./Components/IndividualVideoFromPlayList/Index";
 import IndividualVideo from "./Components/individualVideo/Index";
+import Login from "./Components/UserAccount/Login";
+import SignUp from "./Components/UserAccount/SignUp";
 function App() {
   const [navModal, setNavModal] = useState(false);
   return (
@@ -41,6 +43,12 @@ function App() {
         <Route path="/videos/calisthetic" element={<Calisthetic />} />
         <Route path="/videos/yoga" element={<Yoga />} />
         <Route path="/videos/zoomba" element={<Zoomba />} />
+
+          {/* user account */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+
+          
       </Routes>
       </BrowserRouter>
       </div>

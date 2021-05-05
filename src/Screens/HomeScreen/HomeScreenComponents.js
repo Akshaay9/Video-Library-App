@@ -43,7 +43,7 @@ function HomeScreenComponents() {
           <div className="desktop-carousal-img2-desc  carosual-desc">
             <h3>Yoga</h3>
             <h1>Loose Yourself in ambience</h1>
-            <button className="btn btn-secondary">Start Now</button>
+          <NavLink  to="/videos/yoga"> <button className="btn btn-secondary">Start Now</button></NavLink> 
           </div>
         </>
       )}
@@ -57,7 +57,7 @@ function HomeScreenComponents() {
           <div className="desktop-carousal-img1-desc  carosual-desc">
             <h3>Calisthenics</h3>
             <h1>Commit to be fit</h1>
-            <button className="btn btn-secondary">Start Now</button>
+          <NavLink  to="/videos/calisthetic"> <button className="btn btn-secondary">Start Now</button></NavLink> 
           </div>
         </>
       )}
@@ -71,7 +71,7 @@ function HomeScreenComponents() {
           <div className="desktop-carousal-img1-desc  carosual-desc">
             <h3>Zumba</h3>
             <h1>Train your body in fun way</h1>
-            <button className="btn btn-secondary">Start Now</button>
+          <NavLink  to="/videos/zoomba"><button className="btn btn-secondary">Start Now</button></NavLink>  
           </div>
         </>
       )}

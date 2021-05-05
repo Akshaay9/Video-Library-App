@@ -19,10 +19,14 @@ function NavBar({ navModal, setNavModal }) {
     <>
       <div className="nav">
         <div className="nav_left">
-          <div className="nav_logo mobile-hide">
-            <img src="https://i.ibb.co/XJG7hZG/letter-g-logo-vector-831342-1.jpg" alt="" />
-          </div>
-          
+          <NavLink to="/">
+            <div className="nav_logo mobile-hide">
+              <img
+                src="https://i.ibb.co/XJG7hZG/letter-g-logo-vector-831342-1.jpg"
+                alt=""
+              />
+            </div>
+          </NavLink>
 
           <div className="nav_name ">
             <NavLink to="/">
@@ -93,7 +97,7 @@ function NavBar({ navModal, setNavModal }) {
           <div className="badge badge-skyBlue mobile-hide">
             <NavLink to="/playlists">
               {playLists.length > 0 && (
-                <span style={{ top: "1.1rem", left: "1.5rem" }}>
+                <span style={{ top: "1.1rem", left: "2rem" }}>
                   {playLists.length}
                 </span>
               )}
@@ -103,6 +107,11 @@ function NavBar({ navModal, setNavModal }) {
               />
             </NavLink>
           </div>
+          <div className="user-info mobile-hide">
+            <NavLink to="/login">
+              <i class="fas fa-user"></i>
+            </NavLink>
+          </div>
         </div>
       </div>
 
@@ -110,6 +119,11 @@ function NavBar({ navModal, setNavModal }) {
         className={`mobile_nav_bar ${navModal ? "show_nav" : ""} desktop-hide`}
       >
         <ul>
+          <li>
+            <NavLink to="/login">
+              <i class="fas fa-user" onClick={() => setNavModal(false)}></i>
+            </NavLink>
+          </li>
           <NavLink to="/videos/bodybuilding">
             <li
               className="hr-underline-middle"

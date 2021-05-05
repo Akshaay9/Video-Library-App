@@ -13,9 +13,6 @@ export const showModalForVideoPlayListActions = (
   setInputPlayList,
   playListDispatch
 ) => {
- 
-  
-
   // function to dispatch acton which create a new playlists and adds a video to it
   const funToCreatePlaylistAddVideo = (video) => {
     const date = new Date();
@@ -38,17 +35,27 @@ export const showModalForVideoPlayListActions = (
     setCreatePlaylistBTN(false);
     setInputPlayList("");
   };
+  const modalCLick = (e) => {
+    console.log(e == "modal-playList-container");
+    if (e == "modal-playList-container") {
+      showModal(false);
+      setCreatePlaylistBTN(false);
+      setInputPlayList("");
+    }
+  };
+
   return (
-    <div className="modal-playList-container">
-      <div className="modal-playList-cta">
+    <div className="modal-playList-container" onClick={(e) => modalCLick(e.target.classList.value)}>
+      <div className="modal-playList-cta" >
         <div className="modal-playlist-top">
           <h3>Save To...</h3>
-          <i
+          {/* <i
             class="fas fa-times"
             onClick={() => {
               showModal(false);
+              setCreatePlaylistBTN(false);
             }}
-          ></i>
+          ></i> */}
         </div>
         <div className="modal-playlist-mid">
           {playLists.length > 0 && (
@@ -84,6 +91,7 @@ export const showModalForVideoPlayListActions = (
             <div className="modal-playlist-bottom">
               <input
                 type="text"
+                placeholder="enter playlist"
                 className="input-playlist-cta"
                 value={inputPlayList}
                 onChange={(e) => setInputPlayList(e.target.value)}
