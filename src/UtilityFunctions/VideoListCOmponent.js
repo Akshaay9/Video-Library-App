@@ -58,7 +58,19 @@ function VideoListCOmponent({ videoData, title }) {
           {videoData.map((ele) => (
             <div className="bodyBuildingCard">
               <div className="bodyBuildingCard-img">
-                <img className="bodyBuildingImage" src={ele.img} alt="" />
+                <NavLink
+                  to={{
+                    pathname: `/video/${ele.id}`,
+                  }}
+                  state={{ from: location.pathname }}
+                >
+                  {" "}
+                  <img
+                    className="bodyBuildingImage"
+                    src={ele.img}
+                    alt=""
+                  />{" "}
+                </NavLink>
                 <div className="bodyBuildingCard-CTA">
                   <button
                     className="btn btn-primary btn-primary-hr-outline-out bodyBuilding-cta-btn"
@@ -73,7 +85,7 @@ function VideoListCOmponent({ videoData, title }) {
                     state={{ from: location.pathname }}
                   >
                     <button className="btn btn-primary btn-primary-hr-outline-out bodyBuilding-cta-btn">
-                      Watch Now
+                      view Details
                     </button>
                   </NavLink>
                 </div>
@@ -83,10 +95,10 @@ function VideoListCOmponent({ videoData, title }) {
                   <img src={ele.channelIMG} alt="" />
                 </a>
                 <div className="bodybuilding-desc-info">
-                <h2>{ele.title}</h2>
-                <span>{ ele.ChannelName}</span>
+                  <h2>{ele.title}</h2>
+                  <span>{ele.ChannelName}</span>
                 </div>
-                
+
                 <i className="fas fa-ellipsis-v"></i>
                 <div className="bodyBuilding-desc-CTA-list">
                   <ul>
@@ -104,14 +116,14 @@ function VideoListCOmponent({ videoData, title }) {
                       likedVideo,
                       ele,
                       likedVideoDispatch,
-                        true,
+                      true,
                       "span"
                     )}
                     {addOrRemoveVideoFromWatchLater(
                       watchLaterVideo,
                       ele,
                       watchLaterDispatch,
-                        true,
+                      true,
                       "span"
                     )}
                   </ul>
