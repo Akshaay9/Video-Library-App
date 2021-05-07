@@ -2,16 +2,16 @@ import { allVideoData } from "./Data/VideoLists.js"
 import { usersList } from "./Data/Users.js"
 import colors from "colors"
 import dbConnection from "./DB.js"
-import Users from "./Models/UserModel.js"
+import User from "./Models/UserModel.js"
 import Videos from "./Models/VideoModel.js"
 
 dbConnection()
 
 const importData = async() => {
     try {
-        await Users.deleteMany()
+        await User.deleteMany()
         await Videos.deleteMany()
-        await Users.insertMany(usersList)
+        await User.insertMany(usersList)
         await Videos.insertMany(allVideoData)
         console.log("videos and users has been successfully added".green.inverse);
         process.exit()
@@ -22,7 +22,7 @@ const importData = async() => {
 }
 const destroyData = async () => {
     try {
-      await Users.deleteMany();
+      await User.deleteMany();
       await Videos.deleteMany()
       console.log("products && user has been deleted".green.inverse);
       process.exit();
