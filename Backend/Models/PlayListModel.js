@@ -8,7 +8,7 @@ const playListSchema = mongoose.Schema(
     },
     name: {
       type: String,
-      requires:true,
+      required:true,
     },
     videos: [
       {
