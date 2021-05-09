@@ -2,6 +2,7 @@ export const allVideoData = [
     {
       id: 1,
       title: "The perfect Beginner workout",
+      category:"bodybuilding",
       ChannelName: "Athlene-X",
       img: "https://img.youtube.com/vi/ixkQaZXVQjs/maxresdefault.jpg",
       url: "ixkQaZXVQjs",
@@ -14,6 +15,7 @@ export const allVideoData = [
     {
       id: 2,
       title: " The Fundamentals Series",
+      category:"bodybuilding",
       ChannelName: "Jeff Nippard",
       img: "https://img.youtube.com/vi/TN9i9Ni0Xr4/maxresdefault.jpg",
       url: "TN9i9Ni0Xr4",
@@ -27,6 +29,7 @@ export const allVideoData = [
     {
       id: 3,
       title: " Beginners Series | Muscle Building ",
+      category:"bodybuilding",
       ChannelName: "Yash Anand",
       img: "https://img.youtube.com/vi/4AoH_GQYbrY/mqdefault.jpg",
       url: "4AoH_GQYbrY",
@@ -39,6 +42,7 @@ export const allVideoData = [
     {
       id: 4,
       title: "Workout at Home for Beginners",
+      category:"bodybuilding",
       ChannelName: "Chris HEria",
       img: "https://img.youtube.com/vi/H9vwqwN69rU/maxresdefault.jpg",
       url: "H9vwqwN69rU",
@@ -51,6 +55,7 @@ export const allVideoData = [
     {
       id: 5,
       title: "7 Beginner Workout Mistakes ",
+      category:"bodybuilding",
       ChannelName: "Athlene-X",
       img: "https://img.youtube.com/vi/H21MYZsw_2A/maxresdefault.jpg",
       url: "H21MYZsw_2A",
@@ -63,6 +68,7 @@ export const allVideoData = [
     {
       id: 6,
       title: "How to set Calories for Fat loss",
+      category:"fatloss",
       ChannelName: "Radu Antoniu",
       img: "https://img.youtube.com/vi/zMBO_5WX7A8/maxresdefault.jpg",
       channelLink: "https://www.youtube.com/user/raduantoniu",
@@ -75,6 +81,7 @@ export const allVideoData = [
     {
       id: 7,
       title: "How to finally get lean",
+      category:"fatloss",
       ChannelName: "Radu Antoniu",
       img: "https://img.youtube.com/vi/6zKkDqKaZ_c/maxresdefault.jpg",
       url: "6zKkDqKaZ_c",
@@ -87,6 +94,7 @@ export const allVideoData = [
     {
       id: 8,
       title: "Smartest way to get lean",
+      category:"fatloss",
       ChannelName: "Jeff Nippard",
       img: "https://img.youtube.com/vi/d8V9ZaSq9Oc/maxresdefault.jpg",
       url: "d8V9ZaSq9Oc",
@@ -100,6 +108,7 @@ export const allVideoData = [
     {
       id: 9,
       title: "Science behind fat loss",
+      category:"fatloss",
       ChannelName: "Hypertroph",
       img: "https://img.youtube.com/vi/ylPB2yfaYfs/maxresdefault.jpg",
       url: "ylPB2yfaYfs",
@@ -112,6 +121,7 @@ export const allVideoData = [
     {
       id: 10,
       title: "Aggressive fat loss is bad",
+      category:"fatloss",
       ChannelName: "Mario tomic",
       img: "https://img.youtube.com/vi/PJ22phgQbUg/maxresdefault.jpg",
       url: "PJ22phgQbUg",
@@ -125,6 +135,7 @@ export const allVideoData = [
       id: 11,
       title: "How to start calisthenics",
       ChannelName: "Adam Franter",
+      category:"calisthenics",
       img: "https://img.youtube.com/vi/hEXjX6nwDoY/maxresdefault.jpg",
       channelLink: "https://www.youtube.com/channel/UCd8sdpZhDOqoBiwvsSrwrkg",
       url: "hEXjX6nwDoY",
@@ -137,6 +148,7 @@ export const allVideoData = [
       id: 12,
       title: "Calisthenics for beginners",
       ChannelName: "muscleBlaze",
+      category:"calisthenics",
       img: "https://img.youtube.com/vi/V8unWa4X3zo/maxresdefault.jpg",
       url: "V8unWa4X3zo",
       channelLink: "https://www.youtube.com/channel/UCKlSCO8Tnr1_QUSDNjWCwjA",
@@ -148,6 +160,7 @@ export const allVideoData = [
     {
       id: 13,
       title: "is calisthenics worth it?",
+      category:"calisthenics",
       ChannelName: "Picture Fit",
       img: "https://img.youtube.com/vi/VLOKMjHEyhY/maxresdefault.jpg",
       url: "VLOKMjHEyhY",
@@ -160,6 +173,7 @@ export const allVideoData = [
     {
       id: 14,
       title: "Benifits of calisthenics",
+      category:"calisthenics",
       ChannelName: "Thenex",
       img: "https://img.youtube.com/vi/92w3RCjl2S4/maxresdefault.jpg",
       url: "92w3RCjl2S4",
@@ -172,6 +186,7 @@ export const allVideoData = [
     {
       id: 15,
       title: "Calisthenics body transformation",
+      category:"calisthenics",
       ChannelName: "ElvisLifts",
       img: "https://img.youtube.com/vi/upcA9iJ0NDI/maxresdefault.jpg",
       url: "upcA9iJ0NDI",
@@ -184,6 +199,7 @@ export const allVideoData = [
     {
       id: 16,
       title: "Yoga workout for beginners",
+      category:"yoga",
       ChannelName: "Fit Tuber",
       img: "https://img.youtube.com/vi/s2NQhpFGIOg/maxresdefault.jpg",
       channelLink: "https://www.youtube.com/channel/UCYC6Vcczj8v-Y5OgpEJTFBw",
@@ -196,6 +212,7 @@ export const allVideoData = [
     {
       id: 17,
       title: "pranayamas everyone should know",
+      category:"yoga",
       ChannelName: "Swami Ramdev",
       img: "https://img.youtube.com/vi/-EH4D_DAvqc/maxresdefault.jpg",
       url: "EH4D_DAvqc",
@@ -208,6 +225,7 @@ export const allVideoData = [
     {
       id: 18,
       title: "Isha kriya by sadhguru",
+      category:"yoga",
       ChannelName: "Sadhguru",
       img: "https://img.youtube.com/vi/EwQkfoKxRvo/maxresdefault.jpg",
       url: "EwQkfoKxRvo",
@@ -220,6 +238,7 @@ export const allVideoData = [
     {
       id: 19,
       title: "morning yoga for 10mins",
+      category:"yoga",
       ChannelName: "SaraBeth Yoga",
       img: "https://img.youtube.com/vi/VaoV1PrYft4/maxresdefault.jpg",
       url: "VaoV1PrYft4",
@@ -232,6 +251,7 @@ export const allVideoData = [
     {
       id: 20,
       title: "YOga to boost muscle recovery",
+      category:"yoga",
       ChannelName: "Brethe and flow",
       img: "https://img.youtube.com/vi/rsuO6K2RUtI/maxresdefault.jpg",
       url: "rsuO6K2RUtI",
@@ -244,6 +264,7 @@ export const allVideoData = [
     {
       id: 21,
       title: "Zumba for Beginners",
+      category:"zumba",
       ChannelName: "DanceWithDeepti",
       img: "https://img.youtube.com/vi/-UqOkg4NBd4/maxresdefault.jpg",
       channelLink: "https://www.youtube.com/channel/UCaeQiOlLDAl76NmWWFUlHbg",
@@ -256,6 +277,7 @@ export const allVideoData = [
     {
       id: 22,
       title: "Zumba for weight loss",
+      category:"zumba",
       ChannelName: "oneHowto",
       img: "https://img.youtube.com/vi/HRkNfdlm5Qs/maxresdefault.jpg",
       url: "HRkNfdlm5Qs",
@@ -268,6 +290,7 @@ export const allVideoData = [
     {
       id: 23,
       title: "30min Zumba workout",
+      category:"zumba",
       ChannelName: "Arya Studio",
       img: "https://img.youtube.com/vi/pZ9NXglpIws/maxresdefault.jpg",
       url: "pZ9NXglpIws",
@@ -280,6 +303,7 @@ export const allVideoData = [
     {
       id: 24,
       title: "7 day zumba challenge",
+      category:"zumba",
       ChannelName: "zumba class",
       img: "https://img.youtube.com/vi/gCROJglfRxo/maxresdefault.jpg",
       url: "gCROJglfRxo",
@@ -292,6 +316,7 @@ export const allVideoData = [
     {
       id: 25,
       title: "zumba with latina",
+      category:"zumba",
       ChannelName: "popSugar Fitness",
       img: "https://img.youtube.com/vi/8DZktowZo_k/maxresdefault.jpg",
       url: "8DZktowZo_k",

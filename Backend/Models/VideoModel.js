@@ -6,6 +6,10 @@ const videoSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    category: {
+      type: String,
+      requires: true,
+    },
     ChannelName: {
       type: String,
       required: true,
@@ -35,5 +39,5 @@ const videoSchema = mongoose.Schema(
     timestamps: true,
   }
 );
-const Videos = mongoose.model("Videos", videoSchema)
-export default Videos
+const Videos = mongoose.model("Videos", videoSchema);
+export default Videos;

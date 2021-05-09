@@ -4,7 +4,8 @@ export const getIndividualVideo = async (req, res, next, id) => {
     if (!id.match(/^[0-9a-fA-F]{24}$/)) {
       res.status(400).json({ error: "invalid video id" });
       }
-      const individualVideo = await Videos.findById(id);
+    const individualVideo = await Videos.findById(id);
+    console.log(individualVideo);
       if (!individualVideo) {
         res.status(400).json({ error: "playlist not found" });
       }

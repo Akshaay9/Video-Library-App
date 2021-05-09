@@ -8,6 +8,7 @@ import PlaylistRoute from "./Routes/PlayListRoute.js";
 import NotesRoute from "./Routes/Notes.js";
 import LikedVideos from "./Routes/LikedVideoRoute.js";
 import WatchLaterVideRoute from "./Routes/WatchLaterRoute.js";
+import VideoRoute from "./Routes/VIdeoLists.js"
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -26,6 +27,7 @@ app.use(`/api/playlist`, PlaylistRoute);
 app.use(`/api/notes`, NotesRoute);
 app.use(`/api/likedvideos`, LikedVideos);
 app.use(`/api/watchlater`, WatchLaterVideRoute);
+app.use(`/api/videos`, VideoRoute);
 
 // custome err handeling
 app.use((err, req, res, next) => {
