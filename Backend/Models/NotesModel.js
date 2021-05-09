@@ -10,7 +10,7 @@ const notesModel = mongoose.Schema({
     ref: "Playlist",
   },
   videoID: {
-    type: "mongoose.Schema.Types.ObjectId",
+    type: mongoose.Schema.Types.ObjectId,
     ref: "Videos",
   },
 

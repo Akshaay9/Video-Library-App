@@ -1,4 +1,4 @@
-import  Notes from "../Models/.js";
+import  Notes from "../Models/NotesModel.js";
 export const getIndividualNotes = async (req, res, next, id) => {
   try {
     if (!id.match(/^[0-9a-fA-F]{24}$/)) {

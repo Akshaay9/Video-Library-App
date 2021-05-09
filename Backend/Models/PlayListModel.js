@@ -8,7 +8,7 @@ const playListSchema = mongoose.Schema(
     },
     name: {
       type: String,
-      required:true,
+      required: true,
     },
     videos: [
       {
@@ -18,8 +18,10 @@ const playListSchema = mongoose.Schema(
         },
         notes: [
           {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Notes",
+            notesID: {
+              type: mongoose.Schema.Types.ObjectId,
+              ref: "Notes",
+            },
           },
         ],
       },
@@ -30,5 +32,5 @@ const playListSchema = mongoose.Schema(
   }
 );
 
-const Playlist = mongoose.model("playlist", playListSchema)
-export default Playlist
+const Playlist = mongoose.model("playlist", playListSchema);
+export default Playlist;

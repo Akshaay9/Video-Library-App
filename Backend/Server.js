@@ -5,6 +5,7 @@ import colors from "colors";
 import dotenv from "dotenv";
 import UserLoginAndSignUpRoute from "./Routes/UserLoginSignUpRoute.js";
 import PlaylistRoute from "./Routes/PlayListRoute.js"
+import NotesRoute from "./Routes/Notes.js"
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -20,6 +21,7 @@ app.listen(PORT, () =>
 // routes
 app.use(`/api/users`, UserLoginAndSignUpRoute);
 app.use(`/api/playlist`, PlaylistRoute);
+app.use(`/api/notes`, NotesRoute);
 
 
 
