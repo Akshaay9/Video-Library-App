@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 import UserLoginAndSignUpRoute from "./Routes/UserLoginSignUpRoute.js";
 import PlaylistRoute from "./Routes/PlayListRoute.js"
 import NotesRoute from "./Routes/Notes.js"
+import LikedVideos from "./Routes/LikedVideoRoute.js"
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -22,6 +23,7 @@ app.listen(PORT, () =>
 app.use(`/api/users`, UserLoginAndSignUpRoute);
 app.use(`/api/playlist`, PlaylistRoute);
 app.use(`/api/notes`, NotesRoute);
+app.use(`/api/likedvideos`, LikedVideos);
 
 
 
