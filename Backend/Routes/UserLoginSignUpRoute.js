@@ -2,7 +2,7 @@ import express from "express";
 import Users from "../Models/UserModel.js";
 import bcrypt from "bcryptjs";
 import { check, validationResult } from "express-validator";
-import assignJWT from "../Middlewears/AssignJWT.js";
+import assignJWT from "../MiddleWears/AssignJWT.js";
 const router = express.Router();
 
 // user registartion
