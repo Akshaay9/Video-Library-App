@@ -21,14 +21,32 @@
   align-items: center;
   justify-content: center;
 }
+.signup-wallper{
+  background-image: url(https://i.ibb.co/YyzPpGm/162061729748188260.jpg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
 .login-card {
   filter: blur(0) !important;
-  width: 70%;
+  width: 80%;
   background-color: white;
   display: flex;
   flex-wrap: wrap;
-  border-top-right-radius: 2rem;
+  border-top-right-radius:2rem;
 }
+.signup-card{
+  
+  filter: blur(0) !important;
+  width: 35%;
+  background-color: white;
+  display: flex;
+  flex-wrap: wrap;
+  border-top-right-radius: 4rem;
+  padding:.5rem .2rem
+}
+
 .login-card-left {
   /* border: 1px solid red; */
   position: relative;
@@ -41,7 +59,7 @@
 }
 .login-card-left-heading h1 {
   font-size: 2rem;
-  width: 80%;
+  width: 75%;
   font-family: var(--font-sans-serif);
   line-height: 2.5rem;
   margin: 0 0 0.3rem;
@@ -51,7 +69,7 @@
 .login-card-left-desc {
   position: absolute;
   left: 8%;
-  top: 50%;
+  top: 43%;
   color: white;
 }
 .login-card-left-desc ul li {
@@ -67,7 +85,8 @@
   filter: brightness(60%);
   max-width: 100%;
   object-fit: cover;
-  max-width: 100%;
+  max-width: 98%;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -120,6 +139,9 @@
   border: none;
   border: 1px solid var(--line-color);
 }
+.sign-up-form-top input{
+  width: 90%;
+}
 .login-card-right form .form-mid input {
   margin-left: 1rem;
   margin-top: 1rem;
@@ -148,12 +170,64 @@
   padding: 1rem 0rem;
   border-radius: 7px;
   cursor: pointer;
+  border: 1px solid black;
 }
 .login-card-right button:hover {
   color: black;
   background-color: white;
   border: 1px solid black;
 }
+/* login validation */
+input:optional {
+  border-color: gray;
+}
+
+input:required:valid {
+  border: 1px solid green !important;
+}
+
+input:required:focus:valid {
+  background: url("https://www.flaticon.com/svg/vstatic/svg/845/845646.svg?token=exp=1618463396~hmac=aa4060e40e24a633ace3236a6f966a0e")
+    no-repeat 95% 50%;
+  border-color: green !important;
+  background-size: 25px;
+}
+
+input:focus:invalid {
+  background: url("https://www.flaticon.com/svg/vstatic/svg/1828/1828843.svg?token=exp=1618463445~hmac=13132351f29c82dd61cd177844221aac")
+    no-repeat 95% 50%;
+  border:1px solid red !important;
+  border:1px solid red !important;
+  background-size: 25px;
+}
+/* custom error handler */
+/* error handlers */
+.error-div-input{
+  /* border: 1px solid var(--line-color); */
+  width:90%;
+  /* margin:auto; */
+  display: flex;
+  justify-content: space-around;
+ padding-top: .3rem;
+  }
+  .error-handler-input{
+    font-size: 13px;
+  }
+  .error{
+    color: red !important;
+  }
+  .sucess{
+    color: green !important;
+  }
+  .fa-exclamation-circle,.fa-check-circle{
+    margin-left: .5rem;
+  }
+  .password-error{
+    width:50%;
+    margin: auto;
+    /* border:1px solid var(--line-color); */
+    text-align: center;
+  }
 
 /* mobile responsiveness */
 @media screen and (max-width: 800px) {
@@ -161,7 +235,9 @@
     height: 125vh;
   }
   .login-card {
+    margin-top:6rem;
     width: 90%;
+    margin-bottom: 12rem;
   }
   .login-card-left-heading h1 {
     font-size: 1.5rem;
@@ -189,5 +265,16 @@
     font-family: sans-serif;
     line-height: 1.5rem;
   }
+  .login-card-left img {
+    filter: brightness(60%);
+    max-width: 100%;
+    object-fit: cover;
+    max-width: 100%;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+ 
 
 }
