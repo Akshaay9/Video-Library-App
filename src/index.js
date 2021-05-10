@@ -5,6 +5,8 @@ import App from "./App";
 import PlayListContextFun from "./Context/PlaylistContext/PlayListContext";
 import { LikedVideoContextFun } from "./Context/LikedVideoContext/LikedVideoContext";
 import { WatchLaterVideoContextFun } from "./Context/WatchLaterVideoContext/WatchLaterVideoContext";
+import { LoginContextFun } from "./Context/loginRegistrationContext/loginRegistrationContext";
+import { ToastConTextFun } from "./Context/ToastContext/ToastContext";
 
 const container = document.getElementById("root");
 ReactDOM.render(
@@ -19,7 +21,15 @@ ReactDOM.render(
         <WatchLaterVideoContextFun>
           {/* Watch Later context */}
 
-          <App />
+          <LoginContextFun>
+           {/* login conect */}
+
+            <ToastConTextFun>
+              {/* toast context */}
+
+              <App />
+              </ToastConTextFun>
+            </LoginContextFun>
         </WatchLaterVideoContextFun>
       </LikedVideoContextFun>
     </PlayListContextFun>
