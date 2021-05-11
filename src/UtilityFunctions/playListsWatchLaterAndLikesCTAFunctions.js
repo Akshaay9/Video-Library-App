@@ -1,20 +1,22 @@
 export const isVideoAlredyInPlaylist = (playLists, playlistID, video) => {
-  const getPlayList = playLists.filter((ele) => ele.id == playlistID);
+  const getPlayList = playLists.filter((ele) => ele._id == playlistID);
   const isVideoAlredyPlayListed = getPlayList[0].videos.filter(
-    (ele) => ele.id == video.id
+    (ele) => ele.videoID._id == video._id
   );
   return isVideoAlredyPlayListed.length > 0 ? true : false;
 };
+
 export const addorRemoveVideoToPlayList = (
   playLists,
   playlistID,
   video,
-  playListDispatch,
+  playListDispatch
 ) => {
-  const getPlayList = playLists.filter((ele) => ele.id == playlistID);
+  const getPlayList = playLists.filter((ele) => ele._id == playlistID);
   const isVideoAlredyPlayListed = getPlayList[0].videos.filter(
-    (ele) => ele.id == video.id
+    (ele) => ele.videoID._id == video._id
   );
+
   if (isVideoAlredyPlayListed.length > 0) {
     playListDispatch({
       type: "REMOVE_FROM_PLAYLIST",
@@ -35,8 +37,9 @@ export const addOrRemoveVideoFromWatchLater = (
   tag
 ) => {
   const isVideoAddedToWatchLater = watchLaterVideo.filter(
-    (ele) => ele.id == video.id
+    (ele) => ele.videoID._id == video._id
   );
+
   if (isVideoAddedToWatchLater.length > 0) {
     return (
       <li
@@ -63,11 +66,7 @@ export const addOrRemoveVideoFromWatchLater = (
         }
       >
         {icon && <i className="far fa-clock" />}
-        {tag == "span" ? (
-          <span> Watch later</span>
-        ) : (
-          <h3>Watch later</h3>
-        )}
+        {tag == "span" ? <span> Watch later</span> : <h3>Watch later</h3>}
       </li>
     );
 };
@@ -78,7 +77,7 @@ export const addOrRemoveVideoFromLikedVideo = (
   icon,
   tag
 ) => {
-  const isVideoLiked = likedVideo.filter((ele) => ele.id == video.id);
+  const isVideoLiked = likedVideo.filter((ele) => ele.videoID._id == video._id);
   if (isVideoLiked.length > 0) {
     return (
       <li
@@ -105,11 +104,7 @@ export const addOrRemoveVideoFromLikedVideo = (
         }
       >
         {icon && <i className="far fa-thumbs-up" />}
-        {tag == "span" ? (
-          <span> Like the video</span>
-        ) : (
-          <h3>Like the video</h3>
-        )}
+        {tag == "span" ? <span> Like the video</span> : <h3>Like the video</h3>}
       </li>
     );
 };

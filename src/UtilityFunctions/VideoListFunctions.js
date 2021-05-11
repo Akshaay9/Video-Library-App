@@ -64,7 +64,7 @@ export const showModalForVideoPlayListActions = (
                 <div className="modal-playlist-mid-li">
                   <input
                     type="checkbox"
-                    checked={isVideoAlredyInPlaylist(playLists, ele.id, video)}
+                    checked={isVideoAlredyInPlaylist(playLists, ele._id, video)}
                     onClick={() =>
                       addorRemoveVideoToPlayList(
                         playLists,

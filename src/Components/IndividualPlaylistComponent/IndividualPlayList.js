@@ -170,7 +170,7 @@ function IndividualPlayList() {
           {individualPlaylist.length > 0 &&
             individualPlaylist[0].videos.map((ele) => (
               <div className="individual-right-videos">
-                <NavLink to={`/playLists/${playListid}/${ele._id}`}>
+                <NavLink to={`/playLists/${playListid}/${ele.videoID._id}`}>
                   <div className="individual-right-videos-desc">
                     <div className="individual-right-img updated-indi-img">
                       <img src={ele.videoID.img} alt="" />
