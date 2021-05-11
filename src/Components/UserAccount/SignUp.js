@@ -1,7 +1,22 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import { NavLink } from "react-router-dom";
+import { makeAnAPICall } from "../../APICalls";
+import { useLoginContext } from "../../Context/loginRegistrationContext/loginRegistrationContext";
+import { useToastContext } from "../../Context/ToastContext/ToastContext";
+import { useLocation, useNavigate } from "react-router-dom";
 function SignUp() {
+  const navigate = useNavigate();
+  const { state } = useLocation();
+  const {
+    state: { userInfo },
+    authDispatch,
+  } = useLoginContext();
+  const { toastDispatch } = useToastContext();
+
+  if (userInfo.token) {
+    navigate(state?.from ? state.from : "/videos/bodybuilding");
+  }
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -48,6 +63,27 @@ function SignUp() {
     }
   }, [password]);
 
+  const formHandler = async (e) => {
+    e.preventDefault();
+    const dataToBeSent = {
+      name:name,
+      name:name,
+      email: email,
+      password: password,
+    };
+    await makeAnAPICall(
+      "POST",
+      "https://cryptic-hamlet-94693.herokuapp.com/api/users/signup",
+      authDispatch,
+      "USER_LOGGED_SUCCESSFULL",
+      dataToBeSent,
+      null,
+      toastDispatch,
+      "Successfully logged in",
+      null
+    );
+  };
+
   return (
     <>
       <div className="bg-wallper login-bg-wallper ">
@@ -82,7 +118,7 @@ function SignUp() {
               </span>{" "}
             </p>
             <span className="mini-info-login">or sign up with an email</span>
-            <form>
+            <form  onSubmit={(e) => formHandler(e)}>
               <div className="form-top">
                 <input
                   type="text"

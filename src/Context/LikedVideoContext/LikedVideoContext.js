@@ -3,9 +3,7 @@ import { createContext, useContext, useEffect, useReducer } from "react";
 const LikedVideoContext = createContext();
 
 const initialState = {
-  likedVideo: localStorage.getItem("liked-video")
-    ? JSON.parse(localStorage.getItem("liked-video"))
-    : [],
+  likedVideo: [],
   loading: true,
 };
 
@@ -38,12 +36,6 @@ const likedVideoReducer = (state, { type, payload }) => {
 export const LikedVideoContextFun = ({ children }) => {
   const [state, dispatch] = useReducer(likedVideoReducer, initialState);
 
-  useEffect(() => {
-    localStorage.setItem(
-      "liked-video",
-      JSON.stringify(state.likedVideo)
-    );
-  }, [state.likedVideo]);
   return (
     <LikedVideoContext.Provider value={{ state, likedVideoDispatch: dispatch }}>
       {children}

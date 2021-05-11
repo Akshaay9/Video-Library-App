@@ -1,7 +1,25 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import { NavLink } from "react-router-dom";
+import { makeAnAPICall } from "../../APICalls";
+import { useLoginContext } from "../../Context/loginRegistrationContext/loginRegistrationContext";
+import { useToastContext } from "../../Context/ToastContext/ToastContext";
+import { useLocation, useNavigate } from "react-router-dom";
 function Login() {
+  const navigate = useNavigate();
+  const { state } = useLocation();
+  const {
+    state: { userInfo },
+    authDispatch,
+  } = useLoginContext();
+  const { toastDispatch } = useToastContext();
+
+  if (userInfo.token) {
+    navigate(state?.from ? state.from : "/videos/bodybuilding");
+  }
+
+
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -38,6 +56,25 @@ function Login() {
     }
   }, [password]);
 
+  const formHandler = async (e) => {
+    e.preventDefault();
+    const dataToBeSent = {
+      email: email,
+      password: password,
+    };
+    await makeAnAPICall(
+      "POST",
+      "https://cryptic-hamlet-94693.herokuapp.com/api/users/login",
+      authDispatch,
+      "USER_LOGGED_SUCCESSFULL",
+      dataToBeSent,
+      null,
+      toastDispatch,
+      "Successfully logged in",
+      null
+    );
+  };
+
   return (
     <>
       <div className="bg-wallper signup-wallper">
@@ -52,7 +89,7 @@ function Login() {
               </span>{" "}
             </p>
             <span className="mini-info-login">or sign up with an email</span>
-            <form>
+            <form onSubmit={(e) => formHandler(e)}>
               <div className="form-top login-form-top sign-up-form-top">
                 <input
                   type="email"

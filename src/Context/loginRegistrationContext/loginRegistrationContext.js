@@ -5,7 +5,7 @@ const loginRegistrationContext = createContext();
 const initialState = {
   userInfo: localStorage.getItem("user_info")
     ? JSON.parse(localStorage.getItem("user_info"))
-    : [],
+    : {},
   isAuthenticated: false,
   loading: true,
 };

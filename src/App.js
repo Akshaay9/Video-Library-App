@@ -16,42 +16,42 @@ import IndividualVideosOfPlayList from "./Components/IndividualVideoFromPlayList
 import IndividualVideo from "./Components/individualVideo/Index";
 import Login from "./Components/UserAccount/Login";
 import SignUp from "./Components/UserAccount/SignUp";
+import Toast from "./Components/ToastComponent/Toast";
 function App() {
   const [navModal, setNavModal] = useState(false);
   return (
-    <div style={navModal?{ height: "99vh", overflow: "hidden" }:{} }>
-    <BrowserRouter>
-      <NavBar navModal={navModal} setNavModal={setNavModal} />
-      <Routes>
-        <Route path="/" element={<HomeScreen />} />
-        <Route path="/video/:id" element={<IndividualVideo />} />
-        <Route path="/likedvideo" element={<LikedVideos />} />
-        <Route path="/WatchLaterVideos" element={<WatchLaterVideos />} />
-        <Route path="/playlists" element={<PlayListComponent />} />
-        <Route
-          path="/playlists/:playListid"
-          element={<IndividualPlayListComponent />}
-        />
-        <Route
-          path="/playlists/:playListid/:videoid"
-          element={<IndividualVideosOfPlayList />}
-        />
+    <div style={navModal ? { height: "99vh", overflow: "hidden" } : {}}>
+      <BrowserRouter>
+        <NavBar navModal={navModal} setNavModal={setNavModal} />
+        <Toast />
+        <Routes>
+          <Route path="/" element={<HomeScreen />} />
+          <Route path="/video/:id" element={<IndividualVideo />} />
+          <Route path="/likedvideo" element={<LikedVideos />} />
+          <Route path="/WatchLaterVideos" element={<WatchLaterVideos />} />
+          <Route path="/playlists" element={<PlayListComponent />} />
+          <Route
+            path="/playlists/:playListid"
+            element={<IndividualPlayListComponent />}
+          />
+          <Route
+            path="/playlists/:playListid/:videoid"
+            element={<IndividualVideosOfPlayList />}
+          />
 
-        {/* videos pages */}
-        <Route path="/videos/bodybuilding" element={<BodyBuildingScreen />} />
-        <Route path="/videos/fatloss" element={<FatLoss />} />
-        <Route path="/videos/calisthetic" element={<Calisthetic />} />
-        <Route path="/videos/yoga" element={<Yoga />} />
-        <Route path="/videos/zoomba" element={<Zoomba />} />
+          {/* videos pages */}
+          <Route path="/videos/bodybuilding" element={<BodyBuildingScreen />} />
+          <Route path="/videos/fatloss" element={<FatLoss />} />
+          <Route path="/videos/calisthetic" element={<Calisthetic />} />
+          <Route path="/videos/yoga" element={<Yoga />} />
+          <Route path="/videos/zoomba" element={<Zoomba />} />
 
           {/* user account */}
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
-
-          
-      </Routes>
+        </Routes>
       </BrowserRouter>
-      </div>
+    </div>
   );
 }
 

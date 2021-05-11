@@ -2,9 +2,7 @@ import { createContext, useContext, useEffect, useReducer } from "react";
 const WatchLaterVideoContext = createContext();
 
 const initialState = {
-  watchLaterVideo: localStorage.getItem("watch-later-video")
-    ? JSON.parse(localStorage.getItem("watch-later-video"))
-    : [],
+  watchLaterVideo: [],
   loading: true,
 };
 
@@ -27,7 +25,7 @@ const WatchLaterVideoReducer = (state, { type, payload }) => {
       return {
         ...state,
         watchLaterVideo: state.watchLaterVideo.filter(
-          (ele) => ele.id * 1 !== payload* 1
+          (ele) => ele.id * 1 !== payload * 1
         ),
       };
 
@@ -38,13 +36,6 @@ const WatchLaterVideoReducer = (state, { type, payload }) => {
 
 export const WatchLaterVideoContextFun = ({ children }) => {
   const [state, dispatch] = useReducer(WatchLaterVideoReducer, initialState);
-
-  useEffect(() => {
-    localStorage.setItem(
-      "watch-later-video",
-      JSON.stringify(state.watchLaterVideo)
-    );
-  }, [state.watchLaterVideo]);
 
   return (
     <WatchLaterVideoContext.Provider
