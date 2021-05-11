@@ -8,12 +8,14 @@ function PlayLists() {
     playListDispatch,
   } = UsePlayListContext();
 
+  console.log(playLists);
+
   const altImg =
     "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Z3ltfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=60";
 
   const getAnImgForPoster = (videos) => {
     if (videos.length > 0) {
-      return videos[0].img;
+      return videos[0].videoID.img;
     } else {
       return altImg;
     }
@@ -28,7 +30,7 @@ function PlayLists() {
       {playLists.map((ele, index) => (
         <div className="playlists">
           <div className="playlist-img">
-            <NavLink to={`/playlists/${ele.id}`}>
+            <NavLink to={`/playlists/${ele._id}`}>
               <img src={getAnImgForPoster(ele.videos)} alt="" />
             </NavLink>
 
@@ -37,7 +39,12 @@ function PlayLists() {
           <div className="playlist-desc">
             <h2>{ele.name}</h2>
             <h4>{ele.videos.length} videos </h4>
-            <h4>created on : {ele.dateCreated} </h4>
+            <h4>
+              created on : {ele?.createdAt.slice(0, 10)} <span> &nbsp;</span>
+              {ele?.createdAt.slice(11, 20)}{" "}
+            </h4>
+            <h4>Last updated : {ele?.updatedAt.slice(0, 10)}  <span> &nbsp;</span>
+              {ele?.updatedAt.slice(11, 20)}</h4>
             <button
               className="btn btn-secondary btn-secondary-hr-outline-in playlist-btn-cta"
               onClick={() =>

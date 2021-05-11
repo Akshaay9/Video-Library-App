@@ -59,6 +59,7 @@ function IndividialVideo() {
         `https://cryptic-hamlet-94693.herokuapp.com/api/videos/${id}`
       );
       setLoader(true);
+      // console.log(video);
       setIndividualVideos(video.data);
     })();
   }, []);

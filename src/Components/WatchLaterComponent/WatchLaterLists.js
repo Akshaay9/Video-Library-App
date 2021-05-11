@@ -21,7 +21,7 @@ function WatchLaterLists() {
         <div className="liked-video-container">
           <NavLink
             to={{
-              pathname: `/video/${ele._id}`,
+              pathname: `/video/${ele.videoID._id}`,
             }}
             state={{ from: location.pathname }}
           >
@@ -43,7 +43,7 @@ function WatchLaterLists() {
           <div className="liked-video-mid">
             <NavLink
               to={{
-                pathname: `/video/${ele._id}`,
+                pathname: `/video/${ele.videoID._id}`,
               }}
               state={{ from: location.pathname }}
             >
