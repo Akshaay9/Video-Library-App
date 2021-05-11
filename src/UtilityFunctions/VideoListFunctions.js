@@ -36,7 +36,7 @@ export const showModalForVideoPlayListActions = (
     setInputPlayList("");
   };
   const modalCLick = (e) => {
-    console.log(e == "modal-playList-container");
+
     if (e == "modal-playList-container") {
       showModal(false);
       setCreatePlaylistBTN(false);

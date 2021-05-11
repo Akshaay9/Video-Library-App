@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomeScreen from "./Screens/HomeScreen/Index";
@@ -17,8 +17,31 @@ import IndividualVideo from "./Components/individualVideo/Index";
 import Login from "./Components/UserAccount/Login";
 import SignUp from "./Components/UserAccount/SignUp";
 import Toast from "./Components/ToastComponent/Toast";
+import { useLikedVideoContext } from "./Context/LikedVideoContext/LikedVideoContext";
+import { useWatchLaterContext } from "./Context/WatchLaterVideoContext/WatchLaterVideoContext";
+import { UsePlayListContext } from "./Context/PlaylistContext/PlayListContext";
+import { useLoginContext } from "./Context/loginRegistrationContext/loginRegistrationContext";
+import { loadInitailUsersProduct } from "./UtilityFunctions/LoadInitialCOmponents";
 function App() {
   const [navModal, setNavModal] = useState(false);
+  const { likedVideoDispatch } = useLikedVideoContext();
+  const { watchLaterDispatch } = useWatchLaterContext();
+  const { playListDispatch } = UsePlayListContext();
+  const {
+    state: { userInfo },
+  } = useLoginContext();
+
+  useEffect(() => {
+    if (userInfo.token) {
+      loadInitailUsersProduct(
+        userInfo,
+        likedVideoDispatch,
+        watchLaterDispatch,
+        playListDispatch
+      );
+    }
+  }, [userInfo]);
+
   return (
     <div style={navModal ? { height: "99vh", overflow: "hidden" } : {}}>
       <BrowserRouter>

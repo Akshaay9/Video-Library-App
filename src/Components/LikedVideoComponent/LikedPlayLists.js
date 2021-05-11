@@ -9,6 +9,7 @@ function LikedPlayLists() {
   } = useLikedVideoContext();
   let location = useLocation();
 
+
   return (
     <div className="liked-video">
       <div className="playList-container-heading like-heading">
@@ -21,7 +22,7 @@ function LikedPlayLists() {
         <div className="liked-video-container">
           <NavLink
             to={{
-              pathname: `/video/${ele.id}`,
+              pathname: `/video/${ele._id}`,
             }}
             state={{ from: location.pathname }}
           >
@@ -29,12 +30,12 @@ function LikedPlayLists() {
               <div className="individual-right-videos-desc">
                 <span className="like-count">{index + 1}</span>
                 <div className="individual-right-img">
-                  <img src={ele.img} alt="" />
+                  <img src={ele.videoID.img} alt="" />
                 </div>
                 <div className="individual-right-desc-title">
-                  <h2>{ele.title}</h2>
-                  <h3>{ele.ChannelName}</h3>
-                  <p>{ele.desc.slice(0, 220)}...</p>
+                  <h2>{ele.videoID.title}</h2>
+                  <h3>{ele.videoID.ChannelName}</h3>
+                  <p>{ele.videoID.desc.slice(0, 220)}...</p>
                 </div>
               </div>
             </div>
@@ -42,7 +43,7 @@ function LikedPlayLists() {
           <div className="liked-video-mid">
             <NavLink
               to={{
-                pathname: `/video/${ele.id}`,
+                pathname: `/video/${ele._id}`,
               }}
               state={{ from: location.pathname }}
             >

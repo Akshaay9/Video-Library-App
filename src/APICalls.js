@@ -51,6 +51,7 @@ export const makeAnAPICall = async (
     case "GET":
       try {
         const data = await axios.get(url, config);
+       
         if (dispatch1 != null && msg != null) {
           setAlert(msg, "success", dispatch1);
         }
@@ -72,6 +73,7 @@ export const makeAnAPICall = async (
           
       try {
         const data = await axios.post(url, dataToBeDispatched, config);
+        
         if (setLoader) {
           setLoader(false);
         }

@@ -5,7 +5,7 @@ export const getIndividualVideo = async (req, res, next, id) => {
       res.status(400).json({ error: "invalid video id" });
       }
     const individualVideo = await Videos.findById(id);
-    console.log(individualVideo);
+    
       if (!individualVideo) {
         res.status(400).json({ error: "playlist not found" });
       }

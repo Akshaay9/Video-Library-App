@@ -7,26 +7,12 @@ const initialState = {
 };
 
 const WatchLaterVideoReducer = (state, { type, payload }) => {
-  console.log(payload);
+
   switch (type) {
-    case "ADD_TO_WATCH_VIDEOS":
-      const date = new Date();
+    case "LOAD_WATCH_LATER":
       return {
         ...state,
-        watchLaterVideo: [
-          ...state.watchLaterVideo,
-          {
-            ...payload,
-            addedOn: `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`,
-          },
-        ],
-      };
-    case "REMOVE_FROM_WATCH_VIDEOS":
-      return {
-        ...state,
-        watchLaterVideo: state.watchLaterVideo.filter(
-          (ele) => ele.id * 1 !== payload * 1
-        ),
+        watchLaterVideo: payload,
       };
 
     default:

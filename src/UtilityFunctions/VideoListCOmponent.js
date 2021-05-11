@@ -59,7 +59,7 @@ function VideoListCOmponent({ videoData, title }) {
           {videoData.map((ele) => (
           
             <div className="bodyBuildingCard">
-            {console.log(ele)}
+         
               <div className="bodyBuildingCard-img">
                 <NavLink
                   to={{

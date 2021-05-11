@@ -50,7 +50,7 @@ function IndividialVideo() {
     ? location.state?.from
     : "videos/bodybuilding";
 
-  console.log(prevPath);
+ 
 
   useEffect(() => {
     (async () => {
