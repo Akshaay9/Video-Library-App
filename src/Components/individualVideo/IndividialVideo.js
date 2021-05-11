@@ -3,6 +3,7 @@ import { useLocation, useParams } from "react-router";
 import YouTube from "react-youtube";
 import { makeAnAPICall } from "../../APICalls";
 import { useLikedVideoContext } from "../../Context/LikedVideoContext/LikedVideoContext";
+import { useLoginContext } from "../../Context/loginRegistrationContext/loginRegistrationContext";
 import { UsePlayListContext } from "../../Context/PlaylistContext/PlayListContext";
 import { useWatchLaterContext } from "../../Context/WatchLaterVideoContext/WatchLaterVideoContext";
 import {
@@ -44,12 +45,14 @@ function IndividialVideo() {
     watchLaterDispatch,
   } = useWatchLaterContext();
 
+  const {
+    state: { userInfo },
+  } = useLoginContext();
+
   const location = useLocation();
   const prevPath = location.state?.from
     ? location.state?.from
     : "videos/bodybuilding";
-
- 
 
   useEffect(() => {
     (async () => {
@@ -114,12 +117,16 @@ function IndividialVideo() {
                   </h3>{" "}
                 </>
               )}
+              {console.log(individualVideo)}
               {prevPath == "/likedvideo" && (
                 <>
                   {addOrRemoveVideoFromWatchLater(
                     watchLaterVideo,
                     individualVideo,
-                    watchLaterDispatch
+                    watchLaterDispatch,
+                    false,
+                    "h3",
+                    userInfo.token
                   )}
                   <h3
                     onClick={() => {
@@ -143,7 +150,10 @@ function IndividialVideo() {
                   {addOrRemoveVideoFromWatchLater(
                     watchLaterVideo,
                     individualVideo,
-                    watchLaterDispatch
+                    watchLaterDispatch,
+                    false,
+                    "h3",
+                    userInfo.token
                   )}
                   <h3
                     onClick={() => {

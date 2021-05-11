@@ -18,10 +18,11 @@ export const makeAnAPICall = async (
     },
   };
   switch (request) {
-
-// delete request
+    // delete request
 
     case "DELETE":
+      console.log("delete")
+      
       try {
         const data = await axios.delete(url, config);
 
@@ -51,7 +52,7 @@ export const makeAnAPICall = async (
     case "GET":
       try {
         const data = await axios.get(url, config);
-       
+
         if (dispatch1 != null && msg != null) {
           setAlert(msg, "success", dispatch1);
         }
@@ -66,14 +67,14 @@ export const makeAnAPICall = async (
           setAlert(error.response.data.error, "danger", dispatch1);
         }
       }
-          return;
-      
+      return;
+
     //   post
-      case "POST":
-          
+    case "POST":
+      console.log("post")
+    
       try {
         const data = await axios.post(url, dataToBeDispatched, config);
-        
         if (setLoader) {
           setLoader(false);
         }

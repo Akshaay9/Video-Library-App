@@ -42,23 +42,23 @@ function IndividualPlayListComponent() {
   // useState for new Note input
   const [NewNoteForInput, setNewNoteForInput] = useState("");
   const [NewNoteForDesc, setNewNoteForDesc] = useState("");
+  // updateNote
+  // const [updateNote, setUpdateNote] = useState(false);
+
   // fun to save the notes of a video
   const saveNoteOfAVIdeo = () => {
-    const date = new Date();
-    const newNote = {
-      id: Math.random(),
-      title: NewNoteForInput,
-      desc: NewNoteForDesc,
-      editable: false,
-      addedOn: `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`,
-    };
-    playListDispatch({
-      type: "ADD_NOTES_TO_PLAYLIST",
-      payload: { playListid: playListid * 1, videoid: videoid * 1, newNote },
-    });
     setShowModal(false);
     setNewNoteForInput("");
     setNewNoteForDesc("");
+  };
+
+  const updateUsersNote = (id) => {
+    const updateNoteTitleAndDesc =
+      individualVideo.length > 0 &&
+      individualVideo[0]?.notes.filter((ele) => ele.notesID._id == id);
+    setNewNoteForInput(updateNoteTitleAndDesc[0].notesID.title);
+    setNewNoteForDesc(updateNoteTitleAndDesc[0].notesID.description);
+    setShowModal(true);
   };
 
   // Fun to edit and iterate over notes
@@ -75,16 +75,7 @@ function IndividualPlayListComponent() {
               <div className="individual-video-note-header-right">
                 <i
                   className="fas fa-pencil-alt"
-                  onClick={() =>
-                    playListDispatch({
-                      type: "UPDATE_PLAYLIST_NOTES",
-                      payload: {
-                        playListid: playListid * 1,
-                        videoid: videoid * 1,
-                        noteid: ele.id * 1,
-                      },
-                    })
-                  }
+                  onClick={() => updateUsersNote(ele.notesID._id)}
                 ></i>
                 <i
                   className="fas fa-trash"
@@ -109,7 +100,8 @@ function IndividualPlayListComponent() {
       })
     );
   };
-  const addaNewNote = () => {
+
+  const addaNewNote = (id) => {
     return (
       <div className="modal-indi-playList-container">
         <div className="modal-indi-playlist-inputs">
@@ -135,7 +127,11 @@ function IndividualPlayListComponent() {
           <div className="modal-indi-playlist-cta">
             <button
               className="btn btn-primary btn-primary-hr-outline-out"
-              onClick={() => setShowModal(false)}
+              onClick={() => {
+                setShowModal(false);
+                setNewNoteForDesc("");
+                setNewNoteForInput("");
+              }}
             >
               Cancel
             </button>

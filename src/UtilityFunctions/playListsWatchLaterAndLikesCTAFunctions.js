@@ -1,3 +1,6 @@
+import { __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED } from "react-dom";
+import { makeAnAPICall } from "../APICalls";
+
 export const isVideoAlredyInPlaylist = (playLists, playlistID, video) => {
   const getPlayList = playLists.filter((ele) => ele._id == playlistID);
   const isVideoAlredyPlayListed = getPlayList[0].videos.filter(
@@ -34,7 +37,8 @@ export const addOrRemoveVideoFromWatchLater = (
   video,
   watchLaterDispatch,
   icon,
-  tag
+  tag,
+  token
 ) => {
   const isVideoAddedToWatchLater = watchLaterVideo.filter(
     (ele) => ele.videoID._id == video._id
@@ -44,10 +48,17 @@ export const addOrRemoveVideoFromWatchLater = (
     return (
       <li
         onClick={() =>
-          watchLaterDispatch({
-            type: "REMOVE_FROM_WATCH_VIDEOS",
-            payload: video.id,
-          })
+          makeAnAPICall(
+            `DELETE`,
+            `https://cryptic-hamlet-94693.herokuapp.com/api/watchlater/${video._id}`,
+            watchLaterDispatch,
+            "LOAD_WATCH_LATER",
+            null,
+            token,
+            null,
+            null,
+            null
+          )
         }
       >
         {icon && <i className="far fa-clock" />}
@@ -62,7 +73,17 @@ export const addOrRemoveVideoFromWatchLater = (
     return (
       <li
         onClick={() =>
-          watchLaterDispatch({ type: "ADD_TO_WATCH_VIDEOS", payload: video })
+          makeAnAPICall(
+            `POST`,
+            `https://cryptic-hamlet-94693.herokuapp.com/api/watchlater/${video._id}`,
+            watchLaterDispatch,
+            "LOAD_WATCH_LATER",
+            null,
+            token,
+            null,
+            null,
+            null
+          )
         }
       >
         {icon && <i className="far fa-clock" />}
@@ -70,22 +91,31 @@ export const addOrRemoveVideoFromWatchLater = (
       </li>
     );
 };
+// likedvideos
 export const addOrRemoveVideoFromLikedVideo = (
   likedVideo,
   video,
   likedVideoDispatch,
   icon,
-  tag
+  tag,
+  token
 ) => {
   const isVideoLiked = likedVideo.filter((ele) => ele.videoID._id == video._id);
   if (isVideoLiked.length > 0) {
     return (
       <li
         onClick={() =>
-          likedVideoDispatch({
-            type: "REMOVE_FROM_LIKED_VIDEOS",
-            payload: video,
-          })
+          makeAnAPICall(
+            `DELETE`,
+            `https://cryptic-hamlet-94693.herokuapp.com/api/likedvideos/${video._id}`,
+            likedVideoDispatch,
+            "LOAD_LIKED_VIDEOS",
+            null,
+            token,
+            null,
+            null,
+            null
+          )
         }
       >
         {icon && <i className="far fa-thumbs-down" />}
@@ -100,7 +130,17 @@ export const addOrRemoveVideoFromLikedVideo = (
     return (
       <li
         onClick={() =>
-          likedVideoDispatch({ type: "ADD_TO_LIKED_VIDEOS", payload: video })
+          makeAnAPICall(
+            `POST`,
+            `https://cryptic-hamlet-94693.herokuapp.com/api/likedvideos/${video._id}`,
+            likedVideoDispatch,
+            "LOAD_LIKED_VIDEOS",
+            null,
+            token,
+            null,
+            null,
+            null
+          )
         }
       >
         {icon && <i className="far fa-thumbs-up" />}

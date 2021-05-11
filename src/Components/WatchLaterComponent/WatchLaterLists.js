@@ -2,12 +2,17 @@ import React from "react";
 import { useWatchLaterContext } from "../../Context/WatchLaterVideoContext/WatchLaterVideoContext";
 import { NavLink, useLocation } from "react-router-dom";
 import watchLaterSVG from "../../SVG/watchLaterSVG.svg";
+import { useLoginContext } from "../../Context/loginRegistrationContext/loginRegistrationContext";
+import { makeAnAPICall } from "../../APICalls";
 
 function WatchLaterLists() {
   const {
     state: { watchLaterVideo },
     watchLaterDispatch,
   } = useWatchLaterContext();
+  const {
+    state: { userInfo },
+  } = useLoginContext();
   let location = useLocation();
   return (
     <div className="liked-video">
@@ -34,7 +39,7 @@ function WatchLaterLists() {
                 <div className="individual-right-desc-title">
                   <h2>{ele.videoID.title}</h2>
                   <h3>{ele.videoID.ChannelName}</h3>
-                  <p>{ ele.videoID.desc.slice(0,220)}...</p>
+                  <p>{ele.videoID.desc.slice(0, 220)}...</p>
                 </div>
               </div>
             </div>
@@ -52,13 +57,21 @@ function WatchLaterLists() {
           </div>
 
           <div className="liked-video-right">
+            {console.log(ele.videoID._id)}
             <i
               className="fas fa-trash"
               onClick={() =>
-                watchLaterDispatch({
-                  type: "REMOVE_FROM_WATCH_VIDEOS",
-                  payload: ele.id * 1,
-                })
+                makeAnAPICall(
+                  `DELETE`,
+                  `https://cryptic-hamlet-94693.herokuapp.com/api/watchlater/${ele.videoID._id}`,
+                  watchLaterDispatch,
+                  "LOAD_WATCH_LATER",
+                  null,
+                  userInfo.token,
+                  null,
+                  null,
+                  null
+                )
               }
             ></i>
           </div>

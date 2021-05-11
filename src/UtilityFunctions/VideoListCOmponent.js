@@ -9,9 +9,13 @@ import {
   addOrRemoveVideoFromLikedVideo,
   addOrRemoveVideoFromWatchLater,
 } from "./playListsWatchLaterAndLikesCTAFunctions";
+import { useLoginContext } from "../Context/loginRegistrationContext/loginRegistrationContext";
 function VideoListCOmponent({ videoData, title }) {
   
   let location = useLocation();
+  const {
+    state: { userInfo }
+  } = useLoginContext();
   const {
     state: { playLists, loading },
     playListDispatch,
@@ -120,14 +124,16 @@ function VideoListCOmponent({ videoData, title }) {
                       ele,
                       likedVideoDispatch,
                       true,
-                      "span"
+                      "span",
+                      userInfo.token
                     )}
                     {addOrRemoveVideoFromWatchLater(
                       watchLaterVideo,
                       ele,
                       watchLaterDispatch,
                       true,
-                      "span"
+                      "span",
+                      userInfo.token
                     )}
                   </ul>
                 </div>

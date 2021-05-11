@@ -2,11 +2,16 @@ import React from "react";
 import { useLikedVideoContext } from "../../Context/LikedVideoContext/LikedVideoContext";
 import { NavLink, useLocation } from "react-router-dom";
 import likedSVG from "../../SVG/likesSVG.svg";
+import { useLoginContext } from "../../Context/loginRegistrationContext/loginRegistrationContext";
 function LikedPlayLists() {
   const {
     state: { likedVideo },
     likedVideoDispatch,
   } = useLikedVideoContext();
+  const {
+    state: { userInfo },
+  } = useLoginContext
+      ();
   let location = useLocation();
 
 
