@@ -15,7 +15,7 @@ const initialState = {
   yogaVideo: [],
   yogaLoading: true,
 
-  zumbaData: [],
+  zumbaVideos: [],
   zumbaLoading: true,
 };
 
@@ -48,7 +48,7 @@ const videoContextReducer = (state, { type, payload }) => {
     case "LOAD_ZUMBA_VIDEO":
       return {
         ...state,
-        zumbaData: payload,
+        zumbaVideos: payload,
         zumbaLoading: false,
       };
 

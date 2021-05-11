@@ -10,6 +10,7 @@ import {
   addOrRemoveVideoFromWatchLater,
 } from "./playListsWatchLaterAndLikesCTAFunctions";
 function VideoListCOmponent({ videoData, title }) {
+  
   let location = useLocation();
   const {
     state: { playLists, loading },
@@ -56,11 +57,13 @@ function VideoListCOmponent({ videoData, title }) {
         <h2 className="intro">{title}</h2>
         <div className="bodyBuilding-Beginner-container">
           {videoData.map((ele) => (
+          
             <div className="bodyBuildingCard">
+            {console.log(ele)}
               <div className="bodyBuildingCard-img">
                 <NavLink
                   to={{
-                    pathname: `/video/${ele.id}`,
+                    pathname: `/video/${ele._id}`,
                   }}
                   state={{ from: location.pathname }}
                 >
@@ -80,7 +83,7 @@ function VideoListCOmponent({ videoData, title }) {
                   </button>
                   <NavLink
                     to={{
-                      pathname: `/video/${ele.id}`,
+                      pathname: `/video/${ele._id}`,
                     }}
                     state={{ from: location.pathname }}
                   >

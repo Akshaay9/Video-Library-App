@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router";
 import YouTube from "react-youtube";
+import { makeAnAPICall } from "../../APICalls";
 import { useLikedVideoContext } from "../../Context/LikedVideoContext/LikedVideoContext";
 import { UsePlayListContext } from "../../Context/PlaylistContext/PlayListContext";
 import { useWatchLaterContext } from "../../Context/WatchLaterVideoContext/WatchLaterVideoContext";
@@ -24,6 +25,10 @@ function IndividialVideo() {
   const [videoid, setVideoid] = useState(null);
   // playlist input
   const [inputPlayList, setInputPlayList] = useState("");
+  // useState to store individual video
+  const [individualVideo, setIndividualVideos] = useState({});
+  // useState from loading 1
+  const [loader, setLoader] = useState(false);
 
   const { id } = useParams();
   const {
@@ -41,37 +46,52 @@ function IndividialVideo() {
   } = useWatchLaterContext();
 
   const location = useLocation();
-  const prevPath = location.state.from;
+  const prevPath = location.state?.from
+    ? location.state?.from
+    : "videos/bodybuilding";
+
+  console.log(prevPath);
+
+  useEffect(() => {
+    (async () => {
+      const video = await makeAnAPICall(
+        "GET",
+        `https://cryptic-hamlet-94693.herokuapp.com/api/videos/${id}`
+      );
+      setLoader(true);
+      setIndividualVideos(video.data);
+    })();
+  }, []);
 
   // get the individual video based on the pre path in hisotry
-  const getIndividualVideoBasedOnPReviousPathOfHistory = () => {
-    // if (prevPath === "/WatchLaterVideos") {
-    //   return watchLaterVideo.filter((ele)=>ele.id==id)
-    // }
-    // else if (prevPath === "/likedvideo") {
-    //   return likedVideo.filter((ele)=>ele.id==id)
-    // }
-    // else {
-    return allVideoData.filter((ele) => ele.id == id * 1);
-    // }
-  };
+  // const getIndividualVideoBasedOnPReviousPathOfHistory = () => {
+  // if (prevPath === "/WatchLaterVideos") {
+  //   return watchLaterVideo.filter((ele)=>ele.id==id)
+  // }
+  // else if (prevPath === "/likedvideo") {
+  //   return likedVideo.filter((ele)=>ele.id==id)
+  // }
+  // else {
+  // return allVideoData.filter((ele) => ele.id == id * 1);
+  // }
+  // };
 
-  const individualVideo = getIndividualVideoBasedOnPReviousPathOfHistory();
+  // const individualVideo = getIndividualVideoBasedOnPReviousPathOfHistory();
 
   return (
     <div className="individualVideo">
       <div className="individual-videos-of-playList-container-left indi-video">
         <div className="individual-videos-of-playList-container-left-video">
-          <YouTube videoId={individualVideo[0].url} opts={opts} />
+          {loader && <YouTube videoId={individualVideo?.url} opts={opts} />}
         </div>
 
         <div className="individual-videos-of-playList-container-left-mid">
           <div className="individual-videos-of-playList-container-left-mid1">
-            <h2>{individualVideo[0].title}</h2>
+            <h2>{individualVideo?.title}</h2>
           </div>
           <div className="individual-videos-of-playList-container-left-mid2">
-            {individualVideo[0].addedOn && (
-              <h3>Added on : {individualVideo[0].addedOn}</h3>
+            {individualVideo?.addedOn && (
+              <h3>Added on : {individualVideo.addedOn}</h3>
             )}
             <div className="individual-videos-of-playList-container-left-mid2-icons indi-cta">
               {prevPath == "/WatchLaterVideos" && (
@@ -79,7 +99,7 @@ function IndividialVideo() {
                   {" "}
                   {addOrRemoveVideoFromLikedVideo(
                     likedVideo,
-                    individualVideo[0],
+                    individualVideo,
                     likedVideoDispatch,
                     false,
                     "h3"
@@ -87,7 +107,7 @@ function IndividialVideo() {
                   <h3
                     onClick={() => {
                       showModal(true);
-                      setVideoid(individualVideo[0]);
+                      setVideoid(individualVideo);
                     }}
                   >
                     Add To Playlist
@@ -98,13 +118,13 @@ function IndividialVideo() {
                 <>
                   {addOrRemoveVideoFromWatchLater(
                     watchLaterVideo,
-                    individualVideo[0],
+                    individualVideo,
                     watchLaterDispatch
                   )}
                   <h3
                     onClick={() => {
                       showModal(true);
-                      setVideoid(individualVideo[0]);
+                      setVideoid(individualVideo);
                     }}
                   >
                     Add To Playlist
@@ -115,20 +135,20 @@ function IndividialVideo() {
                 <>
                   {addOrRemoveVideoFromLikedVideo(
                     likedVideo,
-                    individualVideo[0],
+                    individualVideo,
                     likedVideoDispatch,
                     false,
                     "h3"
                   )}
                   {addOrRemoveVideoFromWatchLater(
                     watchLaterVideo,
-                    individualVideo[0],
+                    individualVideo,
                     watchLaterDispatch
                   )}
                   <h3
                     onClick={() => {
                       showModal(true);
-                      setVideoid(individualVideo[0]);
+                      setVideoid(individualVideo);
                     }}
                   >
                     Add To Playlist
@@ -140,16 +160,16 @@ function IndividialVideo() {
         </div>
         <div className="individual-videos-of-playList-container-left-bottom">
           <div className="individual-videos-of-playList-container-left-bottom-img">
-            <a href={individualVideo[0].channelLink}>
-              <img src={individualVideo[0].channelIMG} alt="" />
+            <a href={individualVideo?.channelLink}>
+              <img src={individualVideo?.channelIMG} alt="" />
             </a>
           </div>
           <div className="individual-videos-of-playList-container-left-bottom-desc">
             <h3>
-              {individualVideo[0].ChannelName}
+              {individualVideo?.ChannelName}
               <i style={{ marginLeft: "5px" }} className="fas fa-check"></i>
             </h3>
-            <p>{individualVideo[0].desc}</p>
+            <p>{individualVideo?.desc}</p>
           </div>
         </div>
       </div>

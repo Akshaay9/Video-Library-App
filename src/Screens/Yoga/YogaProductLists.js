@@ -1,12 +1,28 @@
-import React from 'react'
-import {yogaVideos} from "../../Data/YogaData"
-import VideoListCOmponent from '../../UtilityFunctions/VideoListCOmponent'
+import React, { useEffect } from "react";
+import { makeAnAPICall } from "../../APICalls";
+import { useVideosContext } from "../../Context/VideoLists/VideoContext";
+import VideoListCOmponent from "../../UtilityFunctions/VideoListCOmponent";
 function YogaProductLists() {
-    return (
-        <>
-        <VideoListCOmponent videoData={yogaVideos} title={"Yoga"} />
-      </>
-    )
+  const {
+    state: { yogaVideo, yogaLoading },
+    videoDIspatch,
+  } = useVideosContext();
+
+  useEffect(() => {
+    (async () => {
+      await makeAnAPICall(
+        "GET",
+        `https://cryptic-hamlet-94693.herokuapp.com/api/videos/yoga`,
+        videoDIspatch,
+        "LOAD_YOGA_VIDEO"
+      );
+    })();
+  }, []);
+  return (
+    <>
+      <VideoListCOmponent videoData={yogaVideo} title={"Yoga"} />
+    </>
+  );
 }
 
-export default YogaProductLists
+export default YogaProductLists;
