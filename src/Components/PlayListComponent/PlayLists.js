@@ -2,13 +2,18 @@ import React from "react";
 import { UsePlayListContext } from "../../Context/PlaylistContext/PlayListContext";
 import { NavLink } from "react-router-dom";
 import playlistSVG from "../../SVG/playlistSVG.svg";
+import { useLoginContext } from "../../Context/loginRegistrationContext/loginRegistrationContext";
+import { makeAnAPICall } from "../../APICalls";
 function PlayLists() {
   const {
     state: { playLists, loading },
     playListDispatch,
   } = UsePlayListContext();
 
-  console.log(playLists);
+  // usercontxt api
+  const {
+    state: { userInfo },
+  } = useLoginContext();
 
   const altImg =
     "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Z3ltfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=60";
@@ -43,12 +48,24 @@ function PlayLists() {
               created on : {ele?.createdAt.slice(0, 10)} <span> &nbsp;</span>
               {ele?.createdAt.slice(11, 20)}{" "}
             </h4>
-            <h4>Last updated : {ele?.updatedAt.slice(0, 10)}  <span> &nbsp;</span>
-              {ele?.updatedAt.slice(11, 20)}</h4>
+            <h4>
+              Last updated : {ele?.updatedAt.slice(0, 10)} <span> &nbsp;</span>
+              {ele?.updatedAt.slice(11, 20)}
+            </h4>
             <button
               className="btn btn-secondary btn-secondary-hr-outline-in playlist-btn-cta"
               onClick={() =>
-                playListDispatch({ type: "DELETE_PLAYLIST", payload: ele.id })
+                makeAnAPICall(
+                  `DELETE`,
+                  `https://cryptic-hamlet-94693.herokuapp.com/api/playlist/${ele._id}`,
+                  playListDispatch,
+                  "LOAD_PLAYLIST",
+                  null,
+                  userInfo.token,
+                  null,
+                  null,
+                  null
+                )
               }
             >
               Delete

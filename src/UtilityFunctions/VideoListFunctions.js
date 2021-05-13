@@ -18,7 +18,7 @@ export const showModalForVideoPlayListActions = (
   // function to dispatch acton which create a new playlists and adds a video to it
   const funToCreatePlaylistAddVideo = (video) => {
     const dataToBeDispatched = {
-      "name":inputPlayList,
+      name: inputPlayList,
     };
     apiCallToCreatePlaylist(
       video._id,
@@ -64,9 +64,10 @@ export const showModalForVideoPlayListActions = (
                     onClick={() =>
                       addorRemoveVideoToPlayList(
                         playLists,
-                        ele.id,
+                        ele._id,
                         video,
-                        playListDispatch
+                        playListDispatch,
+                        token
                       )
                     }
                   />

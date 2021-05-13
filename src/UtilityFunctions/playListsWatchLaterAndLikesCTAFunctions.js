@@ -5,7 +5,7 @@ export const apiCallToCreatePlaylist = (
   videoID,
   playListDispatch,
   dataToBeDispatched,
-  token,
+  token
 ) => {
   makeAnAPICall(
     "POST",
@@ -16,9 +16,9 @@ export const apiCallToCreatePlaylist = (
     token,
     null,
     null,
-    null,
-  )
-}
+    null
+  );
+};
 // check for playlist
 export const isVideoAlredyInPlaylist = (playLists, playlistID, video) => {
   const getPlayList = playLists.filter((ele) => ele._id == playlistID);
@@ -32,7 +32,8 @@ export const addorRemoveVideoToPlayList = (
   playLists,
   playlistID,
   video,
-  playListDispatch
+  playListDispatch,
+  token
 ) => {
   const getPlayList = playLists.filter((ele) => ele._id == playlistID);
   const isVideoAlredyPlayListed = getPlayList[0].videos.filter(
@@ -40,15 +41,29 @@ export const addorRemoveVideoToPlayList = (
   );
 
   if (isVideoAlredyPlayListed.length > 0) {
-    playListDispatch({
-      type: "REMOVE_FROM_PLAYLIST",
-      payload: { playlistID, video },
-    });
+    makeAnAPICall(
+      "DELETE",
+      `https://cryptic-hamlet-94693.herokuapp.com/api/playlist/${playlistID}/${video._id}`,
+      playListDispatch,
+      "LOAD_PLAYLIST",
+      null,
+      token,
+      null,
+      null,
+      null
+    );
   } else {
-    playListDispatch({
-      type: "ADD_VIDEO_TO_PLAYLIST",
-      payload: { playlistID, video },
-    });
+    makeAnAPICall(
+      "POST",
+      `https://cryptic-hamlet-94693.herokuapp.com/api/playlist/${playlistID}/${video._id}`,
+      playListDispatch,
+      "LOAD_PLAYLIST",
+      null,
+      token,
+      null,
+      null,
+      null
+    );
   }
 };
 

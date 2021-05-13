@@ -47,11 +47,12 @@
 }
 
 .individual-playlist-left-row1-input input {
+  /* border: none; */
   border-bottom: 1px solid blue;
-  border-left: 1px solid white;
-  border-right: 1px solid white;
-  border-top: 1px solid white;
-  outline: none;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    border-top: 1px solid white;
+    outline: none;
   display: block;
   animation: inputSinglePlayList 400ms ease-in-out;
   width: 70%;
@@ -59,7 +60,7 @@
 @keyframes inputSinglePlayList {
   0% {
     width: 30%;
-    border-bottom: 1px solid rgb(119, 119, 126);
+   
   }
   100% {
     width: 70%;

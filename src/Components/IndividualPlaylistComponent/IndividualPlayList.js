@@ -4,6 +4,7 @@ import { UsePlayListContext } from "../../Context/PlaylistContext/PlayListContex
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useLoginContext } from "../../Context/loginRegistrationContext/loginRegistrationContext";
+import { makeAnAPICall } from "../../APICalls";
 function IndividualPlayList() {
   let navigate = useNavigate();
   // useState open playsit update name modal
@@ -14,8 +15,6 @@ function IndividualPlayList() {
   // UseParams
   const { playListid } = useParams();
 
- 
-
   const {
     state: { playLists, loading },
     playListDispatch,
@@ -23,12 +22,34 @@ function IndividualPlayList() {
 
   const individualPlaylist = playLists.filter((ele) => ele._id == playListid);
 
-  console.log(individualPlaylist);
+  const {
+    state: { userInfo },
+  } = useLoginContext();
 
   // useState for playList Name on input
   const [playListNameForInput, setPlayListNameForInput] = useState("");
   // useState for playList Dec on input
   const [playListDescForInput, setPlayListDescForInput] = useState("");
+
+  const apiCallForUpdatePlaylistName = () => {
+    const dataToBeDispatched = {
+      name: playListNameForInput,
+      description: playListDescForInput,
+    };
+    makeAnAPICall(
+      `POST`,
+      `https://cryptic-hamlet-94693.herokuapp.com/api/playlist/${playListid}/update`,
+      playListDispatch,
+      `LOAD_PLAYLIST`,
+      dataToBeDispatched,
+      userInfo.token,
+      null,
+      null,
+      null
+    );
+    setUpdatePlayListName(true);
+    setUpdatePlayListDesc(true);
+  };
 
   const updateThePlayListName = () => {
     if (updatePlayListName)
@@ -37,7 +58,11 @@ function IndividualPlayList() {
           <h2>{individualPlaylist[0]?.name}</h2>
           <i
             className="fas fa-pen"
-            onClick={() => setUpdatePlayListName(false)}
+            onClick={() => {
+              setUpdatePlayListName(false);
+              setPlayListNameForInput(individualPlaylist[0]?.name);
+              setPlayListDescForInput(individualPlaylist[0]?.description || "");
+            }}
           ></i>
         </div>
       );
@@ -61,13 +86,8 @@ function IndividualPlayList() {
             </button>
             <button
               className="btn btn-primary btn-primary-hr-outline-out indi-playList-btn-cta"
-              onClick={() => {
-                playListDispatch({
-                  type: "UPDATE_PLAYLIST_NAME",
-                  payload: { playListid, name: playListNameForInput },
-                });
-                setUpdatePlayListName(true);
-              }}
+              disabled={playListNameForInput == ""}
+              onClick={() => apiCallForUpdatePlaylistName()}
             >
               Update
             </button>
@@ -83,7 +103,11 @@ function IndividualPlayList() {
           <h2> {individualPlaylist[0]?.description || "Enter Description"}</h2>
           <i
             class="fas fa-pen"
-            onClick={() => setUpdatePlayListDesc(false)}
+            onClick={() => {
+              setUpdatePlayListDesc(false);
+              setPlayListDescForInput(individualPlaylist[0]?.description || "");
+              setPlayListNameForInput(individualPlaylist[0]?.name);
+            }}
           ></i>
         </div>
       );
@@ -108,13 +132,7 @@ function IndividualPlayList() {
               </button>
               <button
                 className="btn btn-primary btn-primary-hr-outline-out indi-playList-btn-cta"
-                onClick={() => {
-                  playListDispatch({
-                    type: "UPDATE_PLAYLIST_DESC",
-                    payload: { id: playListid * 1, desc: playListDescForInput },
-                  });
-                  setUpdatePlayListDesc(true);
-                }}
+                onClick={() => apiCallForUpdatePlaylistName()}
               >
                 Update
               </button>
@@ -190,10 +208,17 @@ function IndividualPlayList() {
                     class="fas fa-trash-alt"
                     style={{ paddingRight: ".7rem" }}
                     onClick={() =>
-                      playListDispatch({
-                        type: "REMOVE_FROM_PLAYLIST",
-                        payload: { playlistID: playListid, video: ele },
-                      })
+                      makeAnAPICall(
+                        `DELETE`,
+                        `https://cryptic-hamlet-94693.herokuapp.com/api/playlist/${playListid}/${ele.videoID._id}`,
+                        playListDispatch,
+                        `LOAD_PLAYLIST`,
+                        null,
+                        userInfo.token,
+                        null,
+                        null,
+                        null
+                      )
                     }
                   ></i>
                 </div>

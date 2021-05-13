@@ -87,7 +87,7 @@ export const makeAnAPICall = async (
         }
         dispatch({ type: dispatchType, payload: data.data });
       } catch (error) {
-        console.log(error);
+        console.log(error.response);
         if (setLoader) {
           setLoader(false);
         }
