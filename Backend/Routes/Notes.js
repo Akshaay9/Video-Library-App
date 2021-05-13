@@ -57,7 +57,9 @@ router.post("/:notesID", privateRoute, async (req, res) => {
   return res.status(200).json(allPlaylist);
 });
 
-export default router;
+// delete
+// private
+// delete notes
 
 router.delete(
   "/:playlistID/:videoID/:notesID",
@@ -86,3 +88,7 @@ router.delete(
     return res.status(200).json(allPlaylist);
   }
 );
+
+export default router;
+
+

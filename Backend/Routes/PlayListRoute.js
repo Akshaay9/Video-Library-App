@@ -4,6 +4,8 @@ import { getIndividualPlayList } from "../MiddleWears/IndividualPlayList.js";
 import Playlist from "../Models/PlayListModel.js";
 import Videos from "../Models/VideoModel.js";
 import Notes from "../Models/NotesModel.js";
+import pkg from "lodash";
+const { extend } = pkg;
 const router = express.Router();
 
 router.param("playlistID", getIndividualPlayList);
@@ -24,6 +26,20 @@ router.get("/", privateRoute, async (req, res) => {
 router.delete("/:playlistID", privateRoute, async (req, res) => {
   const { playlistID } = req.params;
   await Playlist.findByIdAndDelete(playlistID);
+  const allPlaylist = await Playlist.find({ user: req.user.id })
+    .populate("videos.videoID")
+    .populate("videos.notes.notesID");
+  return res.status(200).json(allPlaylist);
+});
+
+// /update
+// private
+/// update title and description
+router.post("/:playlistID/update", privateRoute, async (req, res) => {
+  let individualPlaylist = req.individualPlaylist;
+  let updatePlaylist = req.body;
+  updatePlaylist = extend(individualPlaylist, updatePlaylist);
+  await individualPlaylist.save();
   const allPlaylist = await Playlist.find({ user: req.user.id })
     .populate("videos.videoID")
     .populate("videos.notes.notesID");
