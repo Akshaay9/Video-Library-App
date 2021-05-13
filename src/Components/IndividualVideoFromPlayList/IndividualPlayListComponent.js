@@ -4,6 +4,7 @@ import YouTube from "react-youtube";
 import { useLikedVideoContext } from "../../Context/LikedVideoContext/LikedVideoContext";
 import { UsePlayListContext } from "../../Context/PlaylistContext/PlayListContext";
 import { useWatchLaterContext } from "../../Context/WatchLaterVideoContext/WatchLaterVideoContext";
+import { useLoginContext } from "../../Context/loginRegistrationContext/loginRegistrationContext";
 import {
   addOrRemoveVideoFromLikedVideo,
   addOrRemoveVideoFromWatchLater,
@@ -24,6 +25,11 @@ function IndividualPlayListComponent() {
     state: { likedVideo },
     likedVideoDispatch,
   } = useLikedVideoContext();
+
+  // usercontxt api
+  const {
+    state: { userInfo },
+  } = useLoginContext();
 
   const individualPlaylist = playLists.filter((ele) => ele._id == playListid);
 
@@ -170,12 +176,18 @@ function IndividualPlayListComponent() {
                 {addOrRemoveVideoFromLikedVideo(
                   likedVideo,
                   individualVideo.length > 0 && individualVideo[0].videoID,
-                  likedVideoDispatch
+                  likedVideoDispatch,
+                  false,
+                  "h3",
+                  userInfo.token
                 )}
                 {addOrRemoveVideoFromWatchLater(
                   watchLaterVideo,
                   individualVideo.length > 0 && individualVideo[0].videoID,
-                  watchLaterDispatch
+                  watchLaterDispatch,
+                  false,
+                  "h3",
+                  userInfo.token
                 )}
               </div>
             </div>

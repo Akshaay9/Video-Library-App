@@ -3,6 +3,7 @@ import { useLikedVideoContext } from "../../Context/LikedVideoContext/LikedVideo
 import { NavLink, useLocation } from "react-router-dom";
 import likedSVG from "../../SVG/likesSVG.svg";
 import { useLoginContext } from "../../Context/loginRegistrationContext/loginRegistrationContext";
+import { makeAnAPICall } from "../../APICalls";
 function LikedPlayLists() {
   const {
     state: { likedVideo },
@@ -10,10 +11,8 @@ function LikedPlayLists() {
   } = useLikedVideoContext();
   const {
     state: { userInfo },
-  } = useLoginContext
-      ();
+  } = useLoginContext();
   let location = useLocation();
-
 
   return (
     <div className="liked-video">
@@ -59,10 +58,14 @@ function LikedPlayLists() {
             <i
               className="fas fa-trash"
               onClick={() =>
-                likedVideoDispatch({
-                  type: "REMOVE_FROM_LIKED_VIDEOS",
-                  payload: ele,
-                })
+                makeAnAPICall(
+                  `DELETE`,
+                  `https://cryptic-hamlet-94693.herokuapp.com/api/likedvideos/${ele.videoID._id}`,
+                  likedVideoDispatch,
+                  "LOAD_LIKED_VIDEOS",
+                  null,
+                  userInfo.token
+                )
               }
             ></i>
           </div>

@@ -57,7 +57,7 @@ router.post("/new/:videoID", privateRoute, async (req, res) => {
     name: name,
   });
   if (isPlayListAlredyPresent.length !== 0) {
-    return res.status(200).json({ error: "playlist alredy exist" });
+    return res.status(400).json({ error: "playlist alredy exist" });
   }
   const newPlaylist = new Playlist({
     user: req.user.id,

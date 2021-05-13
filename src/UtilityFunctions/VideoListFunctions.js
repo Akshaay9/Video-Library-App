@@ -1,5 +1,6 @@
 import {
   addorRemoveVideoToPlayList,
+  apiCallToCreatePlaylist,
   isVideoAlredyInPlaylist,
 } from "./playListsWatchLaterAndLikesCTAFunctions";
 
@@ -11,32 +12,24 @@ export const showModalForVideoPlayListActions = (
   setCreatePlaylistBTN,
   inputPlayList,
   setInputPlayList,
-  playListDispatch
+  playListDispatch,
+  token
 ) => {
   // function to dispatch acton which create a new playlists and adds a video to it
   const funToCreatePlaylistAddVideo = (video) => {
-    const date = new Date();
-    const newPlayList = {
-      id: Math.random(),
-      name: inputPlayList,
-      dateCreated: `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`,
-      videos: [
-        {
-          ...video,
-          addedOn: `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`,
-          notes: [],
-        },
-      ],
+    const dataToBeDispatched = {
+      "name":inputPlayList,
     };
-    playListDispatch({
-      type: "CREATE_NEW_PLAYLIST",
-      payload: newPlayList,
-    });
+    apiCallToCreatePlaylist(
+      video._id,
+      playListDispatch,
+      dataToBeDispatched,
+      token
+    );
     setCreatePlaylistBTN(false);
     setInputPlayList("");
   };
   const modalCLick = (e) => {
-
     if (e == "modal-playList-container") {
       showModal(false);
       setCreatePlaylistBTN(false);
@@ -45,8 +38,11 @@ export const showModalForVideoPlayListActions = (
   };
 
   return (
-    <div className="modal-playList-container" onClick={(e) => modalCLick(e.target.classList.value)}>
-      <div className="modal-playList-cta" >
+    <div
+      className="modal-playList-container"
+      onClick={(e) => modalCLick(e.target.classList.value)}
+    >
+      <div className="modal-playList-cta">
         <div className="modal-playlist-top">
           <h3>Save To...</h3>
           {/* <i

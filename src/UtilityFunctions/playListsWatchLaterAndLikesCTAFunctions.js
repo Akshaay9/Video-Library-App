@@ -1,6 +1,25 @@
-import { __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED } from "react-dom";
 import { makeAnAPICall } from "../APICalls";
 
+// new playlist
+export const apiCallToCreatePlaylist = (
+  videoID,
+  playListDispatch,
+  dataToBeDispatched,
+  token,
+) => {
+  makeAnAPICall(
+    "POST",
+    `https://cryptic-hamlet-94693.herokuapp.com/api/playlist/new/${videoID}`,
+    playListDispatch,
+    "LOAD_PLAYLIST",
+    dataToBeDispatched,
+    token,
+    null,
+    null,
+    null,
+  )
+}
+// check for playlist
 export const isVideoAlredyInPlaylist = (playLists, playlistID, video) => {
   const getPlayList = playLists.filter((ele) => ele._id == playlistID);
   const isVideoAlredyPlayListed = getPlayList[0].videos.filter(
@@ -8,7 +27,7 @@ export const isVideoAlredyInPlaylist = (playLists, playlistID, video) => {
   );
   return isVideoAlredyPlayListed.length > 0 ? true : false;
 };
-
+// add or remove from playlist
 export const addorRemoveVideoToPlayList = (
   playLists,
   playlistID,
@@ -32,6 +51,7 @@ export const addorRemoveVideoToPlayList = (
     });
   }
 };
+
 export const addOrRemoveVideoFromWatchLater = (
   watchLaterVideo,
   video,

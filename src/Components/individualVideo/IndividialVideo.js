@@ -105,7 +105,8 @@ function IndividialVideo() {
                     individualVideo,
                     likedVideoDispatch,
                     false,
-                    "h3"
+                    "h3",
+                    userInfo.token
                   )}
                   <h3
                     onClick={() => {
@@ -117,7 +118,6 @@ function IndividialVideo() {
                   </h3>{" "}
                 </>
               )}
-              {console.log(individualVideo)}
               {prevPath == "/likedvideo" && (
                 <>
                   {addOrRemoveVideoFromWatchLater(
@@ -145,7 +145,8 @@ function IndividialVideo() {
                     individualVideo,
                     likedVideoDispatch,
                     false,
-                    "h3"
+                    "h3",
+                    userInfo.token
                   )}
                   {addOrRemoveVideoFromWatchLater(
                     watchLaterVideo,
@@ -193,7 +194,8 @@ function IndividialVideo() {
           setCreatePlaylistBTN,
           inputPlayList,
           setInputPlayList,
-          playListDispatch
+          playListDispatch,
+          userInfo.token
         )}
     </div>
   );

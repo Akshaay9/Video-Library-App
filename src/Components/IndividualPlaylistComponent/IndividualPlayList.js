@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { UsePlayListContext } from "../../Context/PlaylistContext/PlayListContext";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useLoginContext } from "../../Context/loginRegistrationContext/loginRegistrationContext";
 function IndividualPlayList() {
   let navigate = useNavigate();
   // useState open playsit update name modal
@@ -12,6 +13,8 @@ function IndividualPlayList() {
 
   // UseParams
   const { playListid } = useParams();
+
+ 
 
   const {
     state: { playLists, loading },
@@ -77,7 +80,7 @@ function IndividualPlayList() {
     if (updatePlayListDesc) {
       return (
         <div className="individual-playlist-left-macro-desc-1">
-          <h2> {individualPlaylist[0]?.desc || "Enter Description"}</h2>
+          <h2> {individualPlaylist[0]?.description || "Enter Description"}</h2>
           <i
             class="fas fa-pen"
             onClick={() => setUpdatePlayListDesc(false)}

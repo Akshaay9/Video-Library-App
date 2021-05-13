@@ -152,7 +152,8 @@ function VideoListCOmponent({ videoData, title }) {
           setCreatePlaylistBTN,
           inputPlayList,
           setInputPlayList,
-          playListDispatch
+          playListDispatch,
+          userInfo.token
         )}
     </div>
   );
