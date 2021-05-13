@@ -9,6 +9,7 @@ import {
   addOrRemoveVideoFromLikedVideo,
   addOrRemoveVideoFromWatchLater,
 } from "../../UtilityFunctions/playListsWatchLaterAndLikesCTAFunctions";
+import { makeAnAPICall } from "../../APICalls";
 function IndividualPlayListComponent() {
   const { playListid, videoid } = useParams();
 
@@ -49,13 +50,51 @@ function IndividualPlayListComponent() {
   const [NewNoteForInput, setNewNoteForInput] = useState("");
   const [NewNoteForDesc, setNewNoteForDesc] = useState("");
   // updateNote
-  // const [updateNote, setUpdateNote] = useState(false);
+  const [updateNote, setUpdateNote] = useState(false);
+  // useState to get notes id
+  const [notesid, setNotesid] = useState(null);
 
   // fun to save the notes of a video
   const saveNoteOfAVIdeo = () => {
-    setShowModal(false);
-    setNewNoteForInput("");
-    setNewNoteForDesc("");
+    if (updateNote == false) {
+      const dataToBeDispatched = {
+        title: NewNoteForInput,
+        description: NewNoteForDesc,
+      };
+      makeAnAPICall(
+        `POST`,
+        `https://cryptic-hamlet-94693.herokuapp.com/api/notes/${playListid}/${videoid}`,
+        playListDispatch,
+        `LOAD_PLAYLIST`,
+        dataToBeDispatched,
+        userInfo.token,
+        null,
+        null,
+        null
+      );
+      setShowModal(false);
+      setNewNoteForInput("");
+      setNewNoteForDesc("");
+    } else {
+      const dataToBeDispatched = {
+        title: NewNoteForInput,
+        description: NewNoteForDesc,
+      };
+      makeAnAPICall(
+        `POST`,
+        `https://cryptic-hamlet-94693.herokuapp.com/api/notes/${notesid}`,
+        playListDispatch,
+        `LOAD_PLAYLIST`,
+        dataToBeDispatched,
+        userInfo.token,
+        null,
+        null,
+        null
+      );
+      setShowModal(false);
+      setNewNoteForInput("");
+      setNewNoteForDesc("");
+    }
   };
 
   const updateUsersNote = (id) => {
@@ -64,6 +103,8 @@ function IndividualPlayListComponent() {
       individualVideo[0]?.notes.filter((ele) => ele.notesID._id == id);
     setNewNoteForInput(updateNoteTitleAndDesc[0].notesID.title);
     setNewNoteForDesc(updateNoteTitleAndDesc[0].notesID.description);
+    setUpdateNote(true);
+    setNotesid(id);
     setShowModal(true);
   };
 
@@ -86,14 +127,17 @@ function IndividualPlayListComponent() {
                 <i
                   className="fas fa-trash"
                   onClick={() =>
-                    playListDispatch({
-                      type: "DELETE_PLAYLIST_NOTES",
-                      payload: {
-                        playListid: playListid * 1,
-                        videoid: videoid * 1,
-                        noteid: ele.id * 1,
-                      },
-                    })
+                    makeAnAPICall(
+                      `DELETE`,
+                      `https://cryptic-hamlet-94693.herokuapp.com/api/notes/${playListid}/${videoid}/${ele.notesID._id}`,
+                      playListDispatch,
+                      `LOAD_PLAYLIST`,
+                      null,
+                      userInfo.token,
+                      null,
+                      null,
+                      null
+                    )
                   }
                 ></i>
               </div>
@@ -135,6 +179,7 @@ function IndividualPlayListComponent() {
               className="btn btn-primary btn-primary-hr-outline-out"
               onClick={() => {
                 setShowModal(false);
+                setNotesid(id);
                 setNewNoteForDesc("");
                 setNewNoteForInput("");
               }}
