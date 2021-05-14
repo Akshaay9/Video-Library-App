@@ -7,6 +7,12 @@ export const playListReducer = (state, { type, payload }) => {
         playLists:payload
 
       }
+    case "CLEAR_PLAYLISTS":
+      return {
+        ...state,
+        playLists:[]
+
+      }
     // case "ADD_VIDEO_TO_PLAYLIST":
     //   const date = new Date();
     //   return {

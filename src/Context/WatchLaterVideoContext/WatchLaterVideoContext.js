@@ -7,12 +7,16 @@ const initialState = {
 };
 
 const WatchLaterVideoReducer = (state, { type, payload }) => {
-
   switch (type) {
     case "LOAD_WATCH_LATER":
       return {
         ...state,
         watchLaterVideo: payload,
+      };
+    case "CLEAR_WATCH_LATER":
+      return {
+        ...state,
+        watchLaterVideo: [],
       };
 
     default:

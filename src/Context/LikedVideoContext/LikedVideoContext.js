@@ -15,6 +15,11 @@ const likedVideoReducer = (state, { type, payload }) => {
         ...state,
         likedVideo: payload,
       };
+    case "CLEAR_LIKED_VIDEOS":
+      return {
+        ...state,
+        likedVideo: [],
+      };
 
     default:
       return state;

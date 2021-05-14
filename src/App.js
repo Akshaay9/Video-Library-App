@@ -22,6 +22,8 @@ import { useWatchLaterContext } from "./Context/WatchLaterVideoContext/WatchLate
 import { UsePlayListContext } from "./Context/PlaylistContext/PlayListContext";
 import { useLoginContext } from "./Context/loginRegistrationContext/loginRegistrationContext";
 import { loadInitailUsersProduct } from "./UtilityFunctions/LoadInitialCOmponents";
+import PrivateRoute from "./PrivateRoute"
+
 function App() {
   const [navModal, setNavModal] = useState(false);
   const { likedVideoDispatch } = useLikedVideoContext();
@@ -53,11 +55,11 @@ function App() {
           <Route path="/likedvideo" element={<LikedVideos />} />
           <Route path="/WatchLaterVideos" element={<WatchLaterVideos />} />
           <Route path="/playlists" element={<PlayListComponent />} />
-          <Route
+          <PrivateRoute
             path="/playlists/:playListid"
             element={<IndividualPlayListComponent />}
           />
-          <Route
+          <PrivateRoute
             path="/playlists/:playListid/:videoid"
             element={<IndividualVideosOfPlayList />}
           />
