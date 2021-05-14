@@ -3,6 +3,7 @@ import {
   apiCallToCreatePlaylist,
   isVideoAlredyInPlaylist,
 } from "./playListsWatchLaterAndLikesCTAFunctions";
+import LinearProgress from "@material-ui/core/LinearProgress";
 
 export const showModalForVideoPlayListActions = (
   playLists,
@@ -13,7 +14,9 @@ export const showModalForVideoPlayListActions = (
   inputPlayList,
   setInputPlayList,
   playListDispatch,
-  token
+  token,
+  progressLoader,
+  setProgressLoader
 ) => {
   // function to dispatch acton which create a new playlists and adds a video to it
   const funToCreatePlaylistAddVideo = (video) => {
@@ -24,7 +27,8 @@ export const showModalForVideoPlayListActions = (
       video._id,
       playListDispatch,
       dataToBeDispatched,
-      token
+      token,
+      setProgressLoader
     );
     setCreatePlaylistBTN(false);
     setInputPlayList("");
@@ -54,6 +58,7 @@ export const showModalForVideoPlayListActions = (
           ></i> */}
         </div>
         <div className="modal-playlist-mid">
+          {progressLoader && <LinearProgress />}
           {playLists.length > 0 && (
             <ul>
               {playLists.map((ele) => (
@@ -79,6 +84,7 @@ export const showModalForVideoPlayListActions = (
           <div className="modal-playlist-bottom">
             <button
               className="btn btn-secondary btn-secondary-hr-outline-in btn-playlist-cta "
+              disabled={progressLoader==true}
               onClick={() => setCreatePlaylistBTN(true)}
             >
               Add a PlayList

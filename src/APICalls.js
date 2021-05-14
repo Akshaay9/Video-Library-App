@@ -9,7 +9,8 @@ export const makeAnAPICall = async (
   token,
   dispatch1,
   msg,
-  setLoader
+  setLoader,
+  setProgressLoader
 ) => {
   const config = {
     headers: {
@@ -21,8 +22,8 @@ export const makeAnAPICall = async (
     // delete request
 
     case "DELETE":
-      console.log("delete")
-      
+      console.log("delete");
+
       try {
         const data = await axios.delete(url, config);
 
@@ -32,9 +33,9 @@ export const makeAnAPICall = async (
         if (dispatch1 != null && msg != null) {
           setAlert(msg, "danger", dispatch1);
         }
-        if (!dispatch || !dispatchType) {
-          return data.data;
-        }
+        // if (!dispatch || !dispatchType) {
+        //   return data.data;
+        // }
         dispatch({ type: dispatchType, payload: data.data });
       } catch (error) {
         if (setLoader) {
@@ -56,9 +57,9 @@ export const makeAnAPICall = async (
         if (dispatch1 != null && msg != null) {
           setAlert(msg, "success", dispatch1);
         }
-        if (!dispatch) {
-          return data;
-        }
+        // if (!dispatch) {
+        //   return data;
+        // }
         dispatch({ type: dispatchType, payload: data.data });
       } catch (error) {
         console.log(error.response);
@@ -71,25 +72,31 @@ export const makeAnAPICall = async (
 
     //   post
     case "POST":
-      console.log("post")
-    
+      console.log("post");
+
       try {
         const data = await axios.post(url, dataToBeDispatched, config);
         if (setLoader) {
           setLoader(false);
         }
+        if (setProgressLoader) {
+          setProgressLoader(false);
+        }
         if (dispatch1 != null && msg != null) {
           setAlert(msg, "success", dispatch1);
         }
 
-        if (!dispatch || !dispatchType) {
-          return data.data;
-        }
+        // if (!dispatch || !dispatchType) {
+        //   return data.data;
+        // }
         dispatch({ type: dispatchType, payload: data.data });
       } catch (error) {
         console.log(error.response);
         if (setLoader) {
           setLoader(false);
+        }
+        if (setProgressLoader) {
+          setProgressLoader(false);
         }
         if (dispatch1 != null) {
           setAlert(error.response.data.error, "danger", dispatch1);

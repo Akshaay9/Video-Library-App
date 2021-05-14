@@ -29,6 +29,7 @@ function VideoListCOmponent({ videoData, title }) {
     state: { likedVideo },
     likedVideoDispatch,
   } = useLikedVideoContext();
+  
 
   // modal useState
   const [modal, showModal] = useState(false);
@@ -40,6 +41,8 @@ function VideoListCOmponent({ videoData, title }) {
   const [inputPlayList, setInputPlayList] = useState("");
   // video description
   const [videoURl, setVideoURL] = useState("");
+  // loader
+  const[progressLoader,setProgressLoader]=useState(false)
   // video description
   const opts = {
     height: "580vh",
@@ -153,7 +156,9 @@ function VideoListCOmponent({ videoData, title }) {
           inputPlayList,
           setInputPlayList,
           playListDispatch,
-          userInfo.token
+          userInfo.token,
+          progressLoader,
+          setProgressLoader
         )}
     </div>
   );

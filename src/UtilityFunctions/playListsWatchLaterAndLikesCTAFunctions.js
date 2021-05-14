@@ -5,8 +5,12 @@ export const apiCallToCreatePlaylist = (
   videoID,
   playListDispatch,
   dataToBeDispatched,
-  token
+  token,
+  setProgressLoader
 ) => {
+  if (setProgressLoader) {
+    setProgressLoader(true);
+  }
   makeAnAPICall(
     "POST",
     `https://cryptic-hamlet-94693.herokuapp.com/api/playlist/new/${videoID}`,
@@ -16,7 +20,8 @@ export const apiCallToCreatePlaylist = (
     token,
     null,
     null,
-    null
+    null,
+    setProgressLoader
   );
 };
 // check for playlist

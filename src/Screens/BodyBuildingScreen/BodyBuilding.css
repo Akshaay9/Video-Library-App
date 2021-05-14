@@ -289,7 +289,8 @@
   padding: 0.3rem 1.8rem;
 }
 .modal-playlist-mid ul {
-  border: 1px solid var(--line-color);
+  border-bottom: 1px solid var(--line-color);
+
 }
 .btn-playlist-cta {
   padding: 0.1rem 1rem;
@@ -346,6 +347,13 @@ input:focus {
 
 .secondary-disabled:disabled {
   background-color: rgb(184, 179, 179);
+}
+/* loader color */
+.MuiLinearProgress-barColorPrimary {
+  background-color: #1330d4 !important;
+}
+.MuiLinearProgress-colorPrimary {
+  background-color: rgb(254 254 254) !important;
 }
 @media screen and (max-width: 800px) {
   .zoomba-banner {
