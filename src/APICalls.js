@@ -9,7 +9,7 @@ export const makeAnAPICall = async (
   token,
   dispatch1,
   msg,
-  setLoader,
+  setCircleLoader,
   setProgressLoader
 ) => {
   const config = {
@@ -27,19 +27,19 @@ export const makeAnAPICall = async (
       try {
         const data = await axios.delete(url, config);
 
-        if (setLoader) {
-          setLoader(false);
+        if (setCircleLoader) {
+          setCircleLoader(false);
         }
         if (dispatch1 != null && msg != null) {
           setAlert(msg, "danger", dispatch1);
         }
-        // if (!dispatch || !dispatchType) {
-        //   return data.data;
-        // }
+        if (!dispatch || !dispatchType) {
+          return data.data;
+        }
         dispatch({ type: dispatchType, payload: data.data });
       } catch (error) {
-        if (setLoader) {
-          setLoader(false);
+        if (setCircleLoader) {
+          setCircleLoader(false);
         }
         console.log(error.response);
         if (dispatch1 != null) {
@@ -57,9 +57,9 @@ export const makeAnAPICall = async (
         if (dispatch1 != null && msg != null) {
           setAlert(msg, "success", dispatch1);
         }
-        // if (!dispatch) {
-        //   return data;
-        // }
+        if (!dispatch) {
+          return data;
+        }
         dispatch({ type: dispatchType, payload: data.data });
       } catch (error) {
         console.log(error.response);
@@ -76,8 +76,8 @@ export const makeAnAPICall = async (
 
       try {
         const data = await axios.post(url, dataToBeDispatched, config);
-        if (setLoader) {
-          setLoader(false);
+        if (setCircleLoader) {
+          setCircleLoader(false);
         }
         if (setProgressLoader) {
           setProgressLoader(false);
@@ -86,14 +86,14 @@ export const makeAnAPICall = async (
           setAlert(msg, "success", dispatch1);
         }
 
-        // if (!dispatch || !dispatchType) {
-        //   return data.data;
-        // }
+        if (!dispatch || !dispatchType) {
+          return data.data;
+        }
         dispatch({ type: dispatchType, payload: data.data });
       } catch (error) {
         console.log(error.response);
-        if (setLoader) {
-          setLoader(false);
+        if (setCircleLoader) {
+          setCircleLoader(false);
         }
         if (setProgressLoader) {
           setProgressLoader(false);

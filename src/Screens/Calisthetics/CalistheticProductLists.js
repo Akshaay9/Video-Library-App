@@ -20,10 +20,10 @@ function CalistheticProductLists() {
   }, []);
   return (
     <>
-      <VideoListCOmponent
+      {/* <VideoListCOmponent
         videoData={calisthenicsVideos}
         title={"Calisthenic training"}
-      />
+      /> */}
     </>
   );
 }

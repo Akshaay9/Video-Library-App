@@ -29,6 +29,10 @@ function IndividialVideo() {
   const [individualVideo, setIndividualVideos] = useState({});
   // useState from loading 1
   const [loader, setLoader] = useState(false);
+  // circle loader
+  const [circleLoader, setCircleLoader] = useState(false);
+  // circle loader
+  const [circleLoader1, setCircleLoader1] = useState(false);
 
   const { id } = useParams();
   const {
@@ -106,7 +110,9 @@ function IndividialVideo() {
                     likedVideoDispatch,
                     false,
                     "h3",
-                    userInfo.token
+                    userInfo.token,
+                    circleLoader,
+                    setCircleLoader
                   )}
                   <h3
                     onClick={() => {
@@ -126,7 +132,9 @@ function IndividialVideo() {
                     watchLaterDispatch,
                     false,
                     "h3",
-                    userInfo.token
+                    userInfo.token,
+                    circleLoader1,
+                    setCircleLoader1
                   )}
                   <h3
                     onClick={() => {
@@ -146,7 +154,9 @@ function IndividialVideo() {
                     likedVideoDispatch,
                     false,
                     "h3",
-                    userInfo.token
+                    userInfo.token,
+                    circleLoader,
+                    setCircleLoader
                   )}
                   {addOrRemoveVideoFromWatchLater(
                     watchLaterVideo,
@@ -154,7 +164,9 @@ function IndividialVideo() {
                     watchLaterDispatch,
                     false,
                     "h3",
-                    userInfo.token
+                    userInfo.token,
+                    circleLoader1,
+                    setCircleLoader1
                   )}
                   <h3
                     onClick={() => {

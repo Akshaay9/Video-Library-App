@@ -21,7 +21,7 @@ function ZoombaProductList() {
 
   return (
     <>
-      <VideoListCOmponent videoData={zumbaVideos} title={"zumba Workout"} />
+      {/* <VideoListCOmponent videoData={zumbaVideos} title={"zumba Workout"} /> */}
     </>
   );
 }

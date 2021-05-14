@@ -19,9 +19,7 @@ function YogaProductLists() {
     })();
   }, []);
   return (
-    <>
-      <VideoListCOmponent videoData={yogaVideo} title={"Yoga"} />
-    </>
+    <>{/* <VideoListCOmponent videoData={yogaVideo} title={"Yoga"} /> */}</>
   );
 }
 

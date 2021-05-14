@@ -4,6 +4,7 @@ import {
   isVideoAlredyInPlaylist,
 } from "./playListsWatchLaterAndLikesCTAFunctions";
 import LinearProgress from "@material-ui/core/LinearProgress";
+import InputPlaylistComponent from "../Components/InputPlayListComponent/InputPlaylistComponent";
 
 export const showModalForVideoPlayListActions = (
   playLists,
@@ -62,29 +63,20 @@ export const showModalForVideoPlayListActions = (
           {playLists.length > 0 && (
             <ul>
               {playLists.map((ele) => (
-                <div className="modal-playlist-mid-li">
-                  <input
-                    type="checkbox"
-                    checked={isVideoAlredyInPlaylist(playLists, ele._id, video)}
-                    onClick={() =>
-                      addorRemoveVideoToPlayList(
-                        playLists,
-                        ele._id,
-                        video,
-                        playListDispatch,
-                        token
-                      )
-                    }
-                  />
-                  <span>{ele.name}</span>
-                </div>
+                <InputPlaylistComponent
+                  playLists={playLists}
+                  ele={ele}
+                  video={video}
+                  playListDispatch={playListDispatch}
+                  token={token}
+                />
               ))}
             </ul>
           )}
           <div className="modal-playlist-bottom">
             <button
               className="btn btn-secondary btn-secondary-hr-outline-in btn-playlist-cta "
-              disabled={progressLoader==true}
+              disabled={progressLoader == true}
               onClick={() => setCreatePlaylistBTN(true)}
             >
               Add a PlayList

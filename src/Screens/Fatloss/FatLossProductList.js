@@ -22,7 +22,7 @@ function FatLossProductList() {
   
   return (
     <>
-      <VideoListCOmponent videoData={fatlossVideo} title={"Loose Fat"} />
+      {/* <VideoListCOmponent videoData={fatlossVideo} title={"Loose Fat"} /> */}
     </>
   );
 }

@@ -1,5 +1,5 @@
 import { makeAnAPICall } from "../APICalls";
-
+import PulseLoader from "react-spinners/PulseLoader";
 // new playlist
 export const apiCallToCreatePlaylist = (
   videoID,
@@ -38,7 +38,8 @@ export const addorRemoveVideoToPlayList = (
   playlistID,
   video,
   playListDispatch,
-  token
+  token,
+  setCircleLoader
 ) => {
   const getPlayList = playLists.filter((ele) => ele._id == playlistID);
   const isVideoAlredyPlayListed = getPlayList[0].videos.filter(
@@ -55,7 +56,7 @@ export const addorRemoveVideoToPlayList = (
       token,
       null,
       null,
-      null
+      setCircleLoader
     );
   } else {
     makeAnAPICall(
@@ -67,10 +68,12 @@ export const addorRemoveVideoToPlayList = (
       token,
       null,
       null,
-      null
+      setCircleLoader
     );
   }
 };
+
+// watch later
 
 export const addOrRemoveVideoFromWatchLater = (
   watchLaterVideo,
@@ -78,7 +81,9 @@ export const addOrRemoveVideoFromWatchLater = (
   watchLaterDispatch,
   icon,
   tag,
-  token
+  token,
+  circleLoader,
+  setCircleLoader
 ) => {
   const isVideoAddedToWatchLater = watchLaterVideo.filter(
     (ele) => ele.videoID._id == video._id
@@ -87,7 +92,8 @@ export const addOrRemoveVideoFromWatchLater = (
   if (isVideoAddedToWatchLater.length > 0) {
     return (
       <li
-        onClick={() =>
+        onClick={(e) => {
+          setCircleLoader(true);
           makeAnAPICall(
             `DELETE`,
             `https://cryptic-hamlet-94693.herokuapp.com/api/watchlater/${video._id}`,
@@ -97,22 +103,33 @@ export const addOrRemoveVideoFromWatchLater = (
             token,
             null,
             null,
-            null
-          )
-        }
+            setCircleLoader
+          );
+        }}
       >
-        {icon && <i className="far fa-clock" />}
-        {tag == "span" ? (
-          <span>remove from Watch later</span>
+        {circleLoader ? (
+          <>
+            <div className="circle-loader">
+              <PulseLoader />
+            </div>
+          </>
         ) : (
-          <h3>remove from Watch later</h3>
+          <>
+            {icon && <i className="far fa-clock" />}
+            {tag == "span" ? (
+              <span>remove from Watch later</span>
+            ) : (
+              <h3>remove from Watch later</h3>
+            )}
+          </>
         )}
       </li>
     );
   } else
     return (
       <li
-        onClick={() =>
+        onClick={(e) => {
+          setCircleLoader(true);
           makeAnAPICall(
             `POST`,
             `https://cryptic-hamlet-94693.herokuapp.com/api/watchlater/${video._id}`,
@@ -122,15 +139,26 @@ export const addOrRemoveVideoFromWatchLater = (
             token,
             null,
             null,
-            null
-          )
-        }
+            setCircleLoader
+          );
+        }}
       >
-        {icon && <i className="far fa-clock" />}
-        {tag == "span" ? <span> Watch later</span> : <h3>Watch later</h3>}
+        {circleLoader ? (
+          <>
+            <div className="circle-loader">
+              <PulseLoader />
+            </div>
+          </>
+        ) : (
+          <>
+            {icon && <i className="far fa-clock" />}
+            {tag == "span" ? <span>Watch later</span> : <h3>Watch later</h3>}
+          </>
+        )}
       </li>
     );
 };
+
 // likedvideos
 export const addOrRemoveVideoFromLikedVideo = (
   likedVideo,
@@ -138,13 +166,17 @@ export const addOrRemoveVideoFromLikedVideo = (
   likedVideoDispatch,
   icon,
   tag,
-  token
+  token,
+  circleLoader,
+  setCircleLoader
 ) => {
   const isVideoLiked = likedVideo.filter((ele) => ele.videoID._id == video._id);
   if (isVideoLiked.length > 0) {
     return (
       <li
-        onClick={() =>
+        id={+5}
+        onClick={(e) => {
+          setCircleLoader(true);
           makeAnAPICall(
             `DELETE`,
             `https://cryptic-hamlet-94693.herokuapp.com/api/likedvideos/${video._id}`,
@@ -154,22 +186,33 @@ export const addOrRemoveVideoFromLikedVideo = (
             token,
             null,
             null,
-            null
-          )
-        }
+            setCircleLoader
+          );
+        }}
       >
-        {icon && <i className="far fa-thumbs-down" />}
-        {tag == "span" ? (
-          <span> UnLike the video</span>
+        {circleLoader ? (
+          <>
+            <div className="circle-loader">
+              <PulseLoader />
+            </div>
+          </>
         ) : (
-          <h3>UnLike the video</h3>
+          <>
+            {icon && <i className="far fa-thumbs-down" />}
+            {tag == "span" ? (
+              <span> UnLike the video</span>
+            ) : (
+              <h3>UnLike the video</h3>
+            )}
+          </>
         )}
       </li>
     );
   } else
     return (
       <li
-        onClick={() =>
+        onClick={(e) => {
+          setCircleLoader(true);
           makeAnAPICall(
             `POST`,
             `https://cryptic-hamlet-94693.herokuapp.com/api/likedvideos/${video._id}`,
@@ -179,12 +222,26 @@ export const addOrRemoveVideoFromLikedVideo = (
             token,
             null,
             null,
-            null
-          )
-        }
+            setCircleLoader
+          );
+        }}
       >
-        {icon && <i className="far fa-thumbs-up" />}
-        {tag == "span" ? <span> Like the video</span> : <h3>Like the video</h3>}
+        {circleLoader ? (
+          <>
+            <div className="circle-loader">
+              <PulseLoader />
+            </div>
+          </>
+        ) : (
+          <>
+            {icon && <i className="far fa-thumbs-up" />}
+            {tag == "span" ? (
+              <span> Like the video</span>
+            ) : (
+              <h3>Like the video</h3>
+            )}
+          </>
+        )}
       </li>
     );
 };

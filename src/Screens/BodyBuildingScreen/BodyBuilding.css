@@ -271,7 +271,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   border-bottom: 1px solid var(--line-color);
 }
 .modal-playlist-top h3 {
@@ -290,7 +290,6 @@
 }
 .modal-playlist-mid ul {
   border-bottom: 1px solid var(--line-color);
-
 }
 .btn-playlist-cta {
   padding: 0.1rem 1rem;
@@ -318,9 +317,9 @@ input:focus {
 .btn-playlist-cta2 {
   padding: 0.1rem 1rem;
   display: block;
-  margin: .6rem auto;
+  margin: 0.6rem auto;
 }
-.btn-dark{
+.btn-dark {
   display: block;
   margin: 0.1rem auto;
   border-radius: 5px;
@@ -330,7 +329,7 @@ input:focus {
   color: white;
   outline: none;
   border: none;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
 }
 
 .fa-times {
@@ -348,12 +347,41 @@ input:focus {
 .secondary-disabled:disabled {
   background-color: rgb(184, 179, 179);
 }
-/* loader color */
+/* line loader color */
+/* progress bar */
 .MuiLinearProgress-barColorPrimary {
   background-color: #1330d4 !important;
 }
 .MuiLinearProgress-colorPrimary {
   background-color: rgb(254 254 254) !important;
+}
+/* circle loader color */
+/* circlebar */
+.css-a3xia2,
+.css-ta3lg2,
+.css-1028e8w {
+  background-color: #1330d4 !important;
+  /* display:flex !important; */
+  flex-direction: row !important;
+  align-items: center !important;
+}
+
+.circle-loader span {
+  margin: auto 0rem auto 1rem !important;
+}
+
+/* spinner puff bar */
+.css-1rxp7yl,
+.css-1soeyf7 {
+  border: thick solid #0020d8 !important;
+  width: 23px !important;
+  height: 23px !important;
+  left: -1;
+}
+.css-3fvcat {
+  width: 23px !important;
+  height: 23px !important;
+  left: -5px;
 }
 @media screen and (max-width: 800px) {
   .zoomba-banner {
