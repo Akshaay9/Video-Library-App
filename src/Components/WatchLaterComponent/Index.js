@@ -1,10 +1,9 @@
 import React from 'react'
-import WatchLaterLists from './WatchLaterLists'
-import "./App.css"
+import WatchLaterIndividualList from './WatchLaterIndividualList'
 function Index() {
     return (
         <>
-            <WatchLaterLists />
+            <WatchLaterIndividualList />
          
         </>
     )

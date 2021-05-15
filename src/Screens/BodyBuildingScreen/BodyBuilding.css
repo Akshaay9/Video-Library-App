@@ -372,6 +372,8 @@ input:focus {
 
 /* spinner puff bar */
 .css-1rxp7yl,
+.css-14hgwh,
+.css-1fymig2,
 .css-1soeyf7 {
   border: thick solid #0020d8 !important;
   width: 23px !important;
@@ -382,6 +384,14 @@ input:focus {
   width: 23px !important;
   height: 23px !important;
   left: -5px;
+}
+
+/* bounce loader */
+.css-1fymig2,
+.css-14hgwh {
+  background-color: #0020d8 !important;
+  left: -8px !important;
+  top:-10px !important;
 }
 @media screen and (max-width: 800px) {
   .zoomba-banner {

@@ -1,10 +1,11 @@
 import React from 'react'
-import LikedPlayLists from './LikedPlayLists'
+
 import "./App.css"
+import IndividualLikedComponent from './IndividualLikedComponent'
 function Index() {
     return (
         <>
-         <LikedPlayLists/>   
+         <IndividualLikedComponent/>   
         </>
     )
 }

@@ -39,15 +39,10 @@ function BodyBuildingScreenProductList() {
           <YouTube videoId={videoURl} opts={opts} className="BG-video-player" />
         </div>
       )}
-      {/* <VideoListCOmponent
-        videoData={bodyBuildingVideo}
-        title={"Resistance Training"}
-      /> */}
       <div className="bodyBuilding-Beginner-container">
         {bodyBuildingVideo.map((ele) => (
           <>
-            <VideoListCOmponent ele={ele}
-              setVideoURL={setVideoURL}/>
+            <VideoListCOmponent ele={ele} setVideoURL={setVideoURL} />
           </>
         ))}
       </div>

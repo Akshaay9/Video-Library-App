@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import playlistSVG from "../../SVG/playlistSVG.svg";
 import { useLoginContext } from "../../Context/loginRegistrationContext/loginRegistrationContext";
 import { makeAnAPICall } from "../../APICalls";
+import ButtonLoader from "../ButtonLoader/ButtonLoader";
 function PlayLists() {
   const {
     state: { playLists, loading },
@@ -52,7 +53,7 @@ function PlayLists() {
               Last updated : {ele?.updatedAt.slice(0, 10)} <span> &nbsp;</span>
               {ele?.updatedAt.slice(11, 20)}
             </h4>
-            <button
+            {/* <button
               className="btn btn-secondary btn-secondary-hr-outline-in playlist-btn-cta"
               onClick={() =>
                 makeAnAPICall(
@@ -69,7 +70,16 @@ function PlayLists() {
               }
             >
               Delete
-            </button>
+            </button> */}
+            <ButtonLoader
+              url={`https://cryptic-hamlet-94693.herokuapp.com/api/playlist/${ele._id}`}
+              dispatch={playListDispatch}
+              dispatchtype={`LOAD_PLAYLIST`}
+              dataToBeDispatched={null}
+              token={userInfo.token}
+              toastDIspatch={null}
+              msg={null}
+            />
           </div>
           <div className="playlist-cta">
             <NavLink to={`/playlists/${ele.id}`}>
