@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 import { makeAnAPICall } from "../../APICalls";
+import { useToastContext } from "../../Context/ToastContext/ToastContext";
 
 function TrashButtonLoader({
   url,
@@ -8,10 +9,12 @@ function TrashButtonLoader({
   dispatchtype,
   dataToBeDispatched,
   token,
-  toastDIspatch,
-  msg,
+  msg
+
 }) {
   const [loading, setLoading] = useState(false);
+  const { toastDispatch } = useToastContext();
+
   return (
     <div>
       {loading ? (
@@ -28,7 +31,7 @@ function TrashButtonLoader({
               dispatchtype,
               dataToBeDispatched,
               token,
-              toastDIspatch,
+              toastDispatch,
               msg,
               setLoading
             );

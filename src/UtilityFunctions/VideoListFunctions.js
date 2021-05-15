@@ -17,7 +17,8 @@ export const showModalForVideoPlayListActions = (
   playListDispatch,
   token,
   progressLoader,
-  setProgressLoader
+  setProgressLoader,
+  toastDispatch
 ) => {
   // function to dispatch acton which create a new playlists and adds a video to it
   const funToCreatePlaylistAddVideo = (video) => {
@@ -29,7 +30,8 @@ export const showModalForVideoPlayListActions = (
       playListDispatch,
       dataToBeDispatched,
       token,
-      setProgressLoader
+      setProgressLoader,
+      toastDispatch
     );
     setCreatePlaylistBTN(false);
     setInputPlayList("");

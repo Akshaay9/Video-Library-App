@@ -60,8 +60,7 @@ function PlayLists() {
               dispatchtype={`LOAD_PLAYLIST`}
               dataToBeDispatched={null}
               token={userInfo.token}
-              toastDIspatch={null}
-              msg={null}
+              msg={"playlist deleted"}
             />
           </div>
           <div className="playlist-cta">

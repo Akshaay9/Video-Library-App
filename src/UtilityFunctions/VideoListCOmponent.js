@@ -10,6 +10,7 @@ import {
   addOrRemoveVideoFromWatchLater,
 } from "./playListsWatchLaterAndLikesCTAFunctions";
 import { useLoginContext } from "../Context/loginRegistrationContext/loginRegistrationContext";
+import { useToastContext } from "../Context/ToastContext/ToastContext";
 function VideoListCOmponent({ ele, setVideoURL }) {
   let location = useLocation();
   const {
@@ -28,6 +29,7 @@ function VideoListCOmponent({ ele, setVideoURL }) {
     state: { likedVideo },
     likedVideoDispatch,
   } = useLikedVideoContext();
+  const { toastDispatch } = useToastContext();
 
   // modal useState
   const [modal, showModal] = useState(false);
@@ -109,7 +111,8 @@ function VideoListCOmponent({ ele, setVideoURL }) {
                   "span",
                   userInfo.token,
                   circleLoader,
-                  setCircleLoader
+                  setCircleLoader,
+                  toastDispatch
                 )}
                 {addOrRemoveVideoFromWatchLater(
                   watchLaterVideo,
@@ -119,7 +122,8 @@ function VideoListCOmponent({ ele, setVideoURL }) {
                   "span",
                   userInfo.token,
                   circleLoader1,
-                  setCircleLoader1
+                  setCircleLoader1,
+                  toastDispatch
                 )}
               </ul>
             </div>
@@ -139,7 +143,8 @@ function VideoListCOmponent({ ele, setVideoURL }) {
           playListDispatch,
           userInfo.token,
           progressLoader,
-          setProgressLoader
+          setProgressLoader,
+          toastDispatch
         )}
     </div>
   );

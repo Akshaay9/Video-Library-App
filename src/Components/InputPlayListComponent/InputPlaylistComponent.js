@@ -4,7 +4,7 @@ import {
   isVideoAlredyInPlaylist,
 } from "../../UtilityFunctions/playListsWatchLaterAndLikesCTAFunctions";
 import PuffLoader from "react-spinners/PuffLoader";
-
+import { useToastContext } from "../../Context/ToastContext/ToastContext";
 
 function InputPlaylistComponent({
   playLists,
@@ -15,6 +15,7 @@ function InputPlaylistComponent({
 }) {
   // circle loader
   const [circleLoader, setCircleLoader] = useState(false);
+  const { toastDispatch } = useToastContext();
   return (
     <div className="modal-playlist-mid-li">
       {circleLoader ? (
@@ -31,7 +32,8 @@ function InputPlaylistComponent({
               video,
               playListDispatch,
               token,
-              setCircleLoader
+              setCircleLoader,
+              toastDispatch
             );
           }}
         />

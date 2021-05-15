@@ -6,7 +6,8 @@ export const apiCallToCreatePlaylist = (
   playListDispatch,
   dataToBeDispatched,
   token,
-  setProgressLoader
+  setProgressLoader,
+  toastDispatch
 ) => {
   if (setProgressLoader) {
     setProgressLoader(true);
@@ -18,8 +19,8 @@ export const apiCallToCreatePlaylist = (
     "LOAD_PLAYLIST",
     dataToBeDispatched,
     token,
-    null,
-    null,
+    toastDispatch,
+    "playlist has been created",
     null,
     setProgressLoader
   );
@@ -39,7 +40,8 @@ export const addorRemoveVideoToPlayList = (
   video,
   playListDispatch,
   token,
-  setCircleLoader
+  setCircleLoader,
+  toastDispatch
 ) => {
   const getPlayList = playLists.filter((ele) => ele._id == playlistID);
   const isVideoAlredyPlayListed = getPlayList[0].videos.filter(
@@ -54,8 +56,8 @@ export const addorRemoveVideoToPlayList = (
       "LOAD_PLAYLIST",
       null,
       token,
-      null,
-      null,
+      toastDispatch,
+      "Video removed from playlist",
       setCircleLoader
     );
   } else {
@@ -66,8 +68,8 @@ export const addorRemoveVideoToPlayList = (
       "LOAD_PLAYLIST",
       null,
       token,
-      null,
-      null,
+      toastDispatch,
+      "Video added to playlist",
       setCircleLoader
     );
   }
@@ -83,7 +85,8 @@ export const addOrRemoveVideoFromWatchLater = (
   tag,
   token,
   circleLoader,
-  setCircleLoader
+  setCircleLoader,
+  toastDispatch
 ) => {
   const isVideoAddedToWatchLater = watchLaterVideo.filter(
     (ele) => ele.videoID._id == video._id
@@ -101,8 +104,8 @@ export const addOrRemoveVideoFromWatchLater = (
             "LOAD_WATCH_LATER",
             null,
             token,
-            null,
-            null,
+            toastDispatch,
+            "Video Removed From watchlater",
             setCircleLoader
           );
         }}
@@ -137,8 +140,8 @@ export const addOrRemoveVideoFromWatchLater = (
             "LOAD_WATCH_LATER",
             null,
             token,
-            null,
-            null,
+            toastDispatch,
+            "Video added to watchlater",
             setCircleLoader
           );
         }}
@@ -168,7 +171,8 @@ export const addOrRemoveVideoFromLikedVideo = (
   tag,
   token,
   circleLoader,
-  setCircleLoader
+  setCircleLoader,
+  toastDispatch
 ) => {
   const isVideoLiked = likedVideo.filter((ele) => ele.videoID._id == video._id);
   if (isVideoLiked.length > 0) {
@@ -184,8 +188,8 @@ export const addOrRemoveVideoFromLikedVideo = (
             "LOAD_LIKED_VIDEOS",
             null,
             token,
-            null,
-            null,
+            toastDispatch,
+            "Video has been disliked",
             setCircleLoader
           );
         }}
@@ -220,8 +224,8 @@ export const addOrRemoveVideoFromLikedVideo = (
             "LOAD_LIKED_VIDEOS",
             null,
             token,
-            null,
-            null,
+            toastDispatch,
+            "Video has been liked",
             setCircleLoader
           );
         }}

@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { makeAnAPICall } from "../../APICalls";
+import { useToastContext } from "../../Context/ToastContext/ToastContext";
 function ButtonLoader({
   url,
   dispatch,
   dispatchtype,
   dataToBeDispatched,
   token,
-  toastDIspatch,
   msg,
 }) {
   const [loading, setLoading] = useState(false);
+  const { toastDispatch } = useToastContext();
   return (
     <div>
       {loading ? (
@@ -30,7 +31,7 @@ function ButtonLoader({
               dispatchtype,
               dataToBeDispatched,
               token,
-              toastDIspatch,
+              toastDispatch,
               msg,
               setLoading
             );

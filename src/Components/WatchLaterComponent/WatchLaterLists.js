@@ -53,8 +53,7 @@ function WatchLaterLists({ index, ele, watchLaterDispatch }) {
           dispatchtype={`LOAD_WATCH_LATER`}
           dataToBeDispatched={null}
           token={userInfo.token}
-          toastDIspatch={null}
-          msg={null}
+          msg={"video removed from watch later"}
         />
       </div>
     </>

@@ -7,6 +7,7 @@ import { useLoginContext } from "../../Context/loginRegistrationContext/loginReg
 import { makeAnAPICall } from "../../APICalls";
 import TrashButtonLoader from "../TrashButtonLoader/TrashButtonLoader";
 import LinearProgress from "@material-ui/core/LinearProgress";
+import { useToastContext } from "../../Context/ToastContext/ToastContext";
 function IndividualPlayList() {
   let navigate = useNavigate();
   // useState open playsit update name modal
@@ -29,6 +30,7 @@ function IndividualPlayList() {
   const {
     state: { userInfo },
   } = useLoginContext();
+  const { toastDispatch } = useToastContext();
 
   // useState for playList Name on input
   const [playListNameForInput, setPlayListNameForInput] = useState("");
@@ -48,8 +50,8 @@ function IndividualPlayList() {
       `LOAD_PLAYLIST`,
       dataToBeDispatched,
       userInfo.token,
-      null,
-      null,
+      toastDispatch,
+      "playlist info is updated",
       setProgressLoader
     );
     setUpdatePlayListName(true);
@@ -219,8 +221,7 @@ function IndividualPlayList() {
                       dispatchtype={`LOAD_PLAYLIST`}
                       dataToBeDispatched={null}
                       token={userInfo.token}
-                      toastDIspatch={null}
-                      msg={null}
+                      msg={"video removed from playlist"}
                     />
                   </div>
                 </div>

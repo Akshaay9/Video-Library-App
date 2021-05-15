@@ -50,8 +50,7 @@ function LikedPlayLists({ ele, index, likedVideoDispatch }) {
           dispatchtype={`LOAD_LIKED_VIDEOS`}
           dataToBeDispatched={null}
           token={userInfo.token}
-          toastDIspatch={null}
-          msg={null}
+          msg={"video has been unliked"}
         />
       </div>
     </>

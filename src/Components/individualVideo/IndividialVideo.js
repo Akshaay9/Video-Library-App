@@ -5,6 +5,7 @@ import { makeAnAPICall } from "../../APICalls";
 import { useLikedVideoContext } from "../../Context/LikedVideoContext/LikedVideoContext";
 import { useLoginContext } from "../../Context/loginRegistrationContext/loginRegistrationContext";
 import { UsePlayListContext } from "../../Context/PlaylistContext/PlayListContext";
+import { useToastContext } from "../../Context/ToastContext/ToastContext";
 import { useWatchLaterContext } from "../../Context/WatchLaterVideoContext/WatchLaterVideoContext";
 import {
   addOrRemoveVideoFromLikedVideo,
@@ -33,6 +34,9 @@ function IndividialVideo() {
   const [circleLoader, setCircleLoader] = useState(false);
   // circle loader
   const [circleLoader1, setCircleLoader1] = useState(false);
+    // loader
+    const [progressLoader, setProgressLoader] = useState(false);
+  
 
   const { id } = useParams();
   const {
@@ -52,6 +56,7 @@ function IndividialVideo() {
   const {
     state: { userInfo },
   } = useLoginContext();
+  const { toastDispatch } = useToastContext();
 
   const location = useLocation();
   const prevPath = location.state?.from
@@ -112,7 +117,8 @@ function IndividialVideo() {
                     "h3",
                     userInfo.token,
                     circleLoader,
-                    setCircleLoader
+                    setCircleLoader,
+                    toastDispatch
                   )}
                   <h3
                     onClick={() => {
@@ -134,7 +140,8 @@ function IndividialVideo() {
                     "h3",
                     userInfo.token,
                     circleLoader1,
-                    setCircleLoader1
+                    setCircleLoader1,
+                    toastDispatch
                   )}
                   <h3
                     onClick={() => {
@@ -156,7 +163,8 @@ function IndividialVideo() {
                     "h3",
                     userInfo.token,
                     circleLoader,
-                    setCircleLoader
+                    setCircleLoader,
+                    toastDispatch
                   )}
                   {addOrRemoveVideoFromWatchLater(
                     watchLaterVideo,
@@ -166,7 +174,8 @@ function IndividialVideo() {
                     "h3",
                     userInfo.token,
                     circleLoader1,
-                    setCircleLoader1
+                    setCircleLoader1,
+                    toastDispatch
                   )}
                   <h3
                     onClick={() => {
@@ -207,7 +216,10 @@ function IndividialVideo() {
           inputPlayList,
           setInputPlayList,
           playListDispatch,
-          userInfo.token
+          userInfo.token,
+          progressLoader,
+          setProgressLoader,
+          toastDispatch
         )}
     </div>
   );

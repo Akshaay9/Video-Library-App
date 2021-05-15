@@ -65,9 +65,10 @@ function SignUp() {
 
   const formHandler = async (e) => {
     e.preventDefault();
+    setLoader(true);
     const dataToBeSent = {
-      name:name,
-      name:name,
+      name: name,
+      name: name,
       email: email,
       password: password,
     };
@@ -80,7 +81,7 @@ function SignUp() {
       null,
       toastDispatch,
       "Successfully logged in",
-      null
+      setLoader
     );
   };
 
@@ -118,7 +119,7 @@ function SignUp() {
               </span>{" "}
             </p>
             <span className="mini-info-login">or sign up with an email</span>
-            <form  onSubmit={(e) => formHandler(e)}>
+            <form onSubmit={(e) => formHandler(e)}>
               <div className="form-top">
                 <input
                   type="text"
@@ -192,7 +193,9 @@ function SignUp() {
               >
                 I agree with Terms and conditions
               </label>
-              <button>Sign up</button>
+              <button disabled={loader}>
+                {loader ? <i class="fas fa-spinner fa-spin"></i> : "sign up"}
+              </button>
             </form>
           </div>
         </div>

@@ -12,6 +12,7 @@ import {
 import { makeAnAPICall } from "../../APICalls";
 import TrashButtonLoader from "../TrashButtonLoader/TrashButtonLoader";
 import LinearProgress from "@material-ui/core/LinearProgress";
+import { useToastContext } from "../../Context/ToastContext/ToastContext";
 function IndividualPlayListComponent() {
   const { playListid, videoid } = useParams();
 
@@ -33,6 +34,8 @@ function IndividualPlayListComponent() {
   const {
     state: { userInfo },
   } = useLoginContext();
+
+  const { toastDispatch } = useToastContext();
 
   const individualPlaylist = playLists.filter((ele) => ele._id == playListid);
 
@@ -77,8 +80,8 @@ function IndividualPlayListComponent() {
         `LOAD_PLAYLIST`,
         dataToBeDispatched,
         userInfo.token,
-        null,
-        null,
+        toastDispatch,
+        "Note has been added",
         setProgressLoader
       );
       setShowModal(false);
@@ -97,8 +100,8 @@ function IndividualPlayListComponent() {
         `LOAD_PLAYLIST`,
         dataToBeDispatched,
         userInfo.token,
-        null,
-        null,
+        toastDispatch,
+        "Note has been updated",
         setProgressLoader
       );
       console.log("run2");
@@ -141,8 +144,7 @@ function IndividualPlayListComponent() {
                   dispatchtype={`LOAD_PLAYLIST`}
                   dataToBeDispatched={null}
                   token={userInfo.token}
-                  toastDIspatch={null}
-                  msg={null}
+                  msg={"notes removed from playlist"}
                 />
               </div>
             </div>
@@ -231,7 +233,8 @@ function IndividualPlayListComponent() {
                   "h3",
                   userInfo.token,
                   circleLoader,
-                  setCircleLoader
+                  setCircleLoader,
+                  toastDispatch
                 )}
                 {addOrRemoveVideoFromWatchLater(
                   watchLaterVideo,
@@ -241,7 +244,8 @@ function IndividualPlayListComponent() {
                   "h3",
                   userInfo.token,
                   circleLoader1,
-                  setCircleLoader1
+                  setCircleLoader1,
+                  toastDispatch
                 )}
               </div>
             </div>

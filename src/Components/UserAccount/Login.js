@@ -18,8 +18,6 @@ function Login() {
     navigate(state?.from ? state.from : "/videos/bodybuilding");
   }
 
-
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -58,6 +56,7 @@ function Login() {
 
   const formHandler = async (e) => {
     e.preventDefault();
+    setLoader(true);
     const dataToBeSent = {
       email: email,
       password: password,
@@ -71,7 +70,7 @@ function Login() {
       null,
       toastDispatch,
       "Successfully logged in",
-      null
+      setLoader
     );
   };
 
@@ -143,7 +142,9 @@ function Login() {
               >
                 I agree with Terms and conditions
               </label>
-              <button>Sign up</button>
+              <button disabled={loader}>
+                {loader ? <i class="fas fa-spinner fa-spin"></i> : "log In"}
+              </button>
             </form>
           </div>
         </div>
