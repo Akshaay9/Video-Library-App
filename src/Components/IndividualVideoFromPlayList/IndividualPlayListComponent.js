@@ -10,6 +10,8 @@ import {
   addOrRemoveVideoFromWatchLater,
 } from "../../UtilityFunctions/playListsWatchLaterAndLikesCTAFunctions";
 import { makeAnAPICall } from "../../APICalls";
+import TrashButtonLoader from "../TrashButtonLoader/TrashButtonLoader";
+import LinearProgress from "@material-ui/core/LinearProgress";
 function IndividualPlayListComponent() {
   const { playListid, videoid } = useParams();
 
@@ -54,8 +56,15 @@ function IndividualPlayListComponent() {
   // useState to get notes id
   const [notesid, setNotesid] = useState(null);
 
+  const [circleLoader, setCircleLoader] = useState(false);
+  // circle loader
+  const [circleLoader1, setCircleLoader1] = useState(false);
+
+  const [progressLoader, setProgressLoader] = useState(false);
+
   // fun to save the notes of a video
   const saveNoteOfAVIdeo = () => {
+    setProgressLoader(true);
     if (updateNote == false) {
       const dataToBeDispatched = {
         title: NewNoteForInput,
@@ -70,11 +79,12 @@ function IndividualPlayListComponent() {
         userInfo.token,
         null,
         null,
-        null
+        setProgressLoader
       );
       setShowModal(false);
       setNewNoteForInput("");
       setNewNoteForDesc("");
+      return;
     } else {
       const dataToBeDispatched = {
         title: NewNoteForInput,
@@ -89,8 +99,9 @@ function IndividualPlayListComponent() {
         userInfo.token,
         null,
         null,
-        null
+        setProgressLoader
       );
+      console.log("run2");
       setShowModal(false);
       setNewNoteForInput("");
       setNewNoteForDesc("");
@@ -124,22 +135,15 @@ function IndividualPlayListComponent() {
                   className="fas fa-pencil-alt"
                   onClick={() => updateUsersNote(ele.notesID._id)}
                 ></i>
-                <i
-                  className="fas fa-trash"
-                  onClick={() =>
-                    makeAnAPICall(
-                      `DELETE`,
-                      `https://cryptic-hamlet-94693.herokuapp.com/api/notes/${playListid}/${videoid}/${ele.notesID._id}`,
-                      playListDispatch,
-                      `LOAD_PLAYLIST`,
-                      null,
-                      userInfo.token,
-                      null,
-                      null,
-                      null
-                    )
-                  }
-                ></i>
+                <TrashButtonLoader
+                  url={`https://cryptic-hamlet-94693.herokuapp.com/api/notes/${playListid}/${videoid}/${ele.notesID._id}`}
+                  dispatch={playListDispatch}
+                  dispatchtype={`LOAD_PLAYLIST`}
+                  dataToBeDispatched={null}
+                  token={userInfo.token}
+                  toastDIspatch={null}
+                  msg={null}
+                />
               </div>
             </div>
             <div className="individual-video-note-header-desc">
@@ -156,6 +160,7 @@ function IndividualPlayListComponent() {
       <div className="modal-indi-playList-container">
         <div className="modal-indi-playlist-inputs">
           <h1>Notes</h1>
+
           <div className="modal-indi-playlist-title">
             <label htmlFor="">Title</label>
             <input
@@ -224,7 +229,9 @@ function IndividualPlayListComponent() {
                   likedVideoDispatch,
                   false,
                   "h3",
-                  userInfo.token
+                  userInfo.token,
+                  circleLoader,
+                  setCircleLoader
                 )}
                 {addOrRemoveVideoFromWatchLater(
                   watchLaterVideo,
@@ -232,7 +239,9 @@ function IndividualPlayListComponent() {
                   watchLaterDispatch,
                   false,
                   "h3",
-                  userInfo.token
+                  userInfo.token,
+                  circleLoader1,
+                  setCircleLoader1
                 )}
               </div>
             </div>
@@ -260,6 +269,7 @@ function IndividualPlayListComponent() {
             <div className="individual-videos-of-playList-container-right-notes-header">
               <h2>Notes</h2>
             </div>
+            {progressLoader && <LinearProgress />}
             <div className="individual-videos-of-playlists-container-right-notes-body">
               {iterateOverNotes()}
             </div>

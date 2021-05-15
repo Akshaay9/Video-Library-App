@@ -53,24 +53,7 @@ function PlayLists() {
               Last updated : {ele?.updatedAt.slice(0, 10)} <span> &nbsp;</span>
               {ele?.updatedAt.slice(11, 20)}
             </h4>
-            {/* <button
-              className="btn btn-secondary btn-secondary-hr-outline-in playlist-btn-cta"
-              onClick={() =>
-                makeAnAPICall(
-                  `DELETE`,
-                  `https://cryptic-hamlet-94693.herokuapp.com/api/playlist/${ele._id}`,
-                  playListDispatch,
-                  "LOAD_PLAYLIST",
-                  null,
-                  userInfo.token,
-                  null,
-                  null,
-                  null
-                )
-              }
-            >
-              Delete
-            </button> */}
+
             <ButtonLoader
               url={`https://cryptic-hamlet-94693.herokuapp.com/api/playlist/${ele._id}`}
               dispatch={playListDispatch}

@@ -5,12 +5,16 @@ import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useLoginContext } from "../../Context/loginRegistrationContext/loginRegistrationContext";
 import { makeAnAPICall } from "../../APICalls";
+import TrashButtonLoader from "../TrashButtonLoader/TrashButtonLoader";
+import LinearProgress from "@material-ui/core/LinearProgress";
 function IndividualPlayList() {
   let navigate = useNavigate();
   // useState open playsit update name modal
   const [updatePlayListName, setUpdatePlayListName] = useState(true);
   // useState to open update playlist description modal
   const [updatePlayListDesc, setUpdatePlayListDesc] = useState(true);
+
+  const [progressLoader, setProgressLoader] = useState(false);
 
   // UseParams
   const { playListid } = useParams();
@@ -32,6 +36,7 @@ function IndividualPlayList() {
   const [playListDescForInput, setPlayListDescForInput] = useState("");
 
   const apiCallForUpdatePlaylistName = () => {
+    setProgressLoader(true);
     const dataToBeDispatched = {
       name: playListNameForInput,
       description: playListDescForInput,
@@ -45,7 +50,7 @@ function IndividualPlayList() {
       userInfo.token,
       null,
       null,
-      null
+      setProgressLoader
     );
     setUpdatePlayListName(true);
     setUpdatePlayListDesc(true);
@@ -57,6 +62,7 @@ function IndividualPlayList() {
         <div className="individual-playlist-left-row1-df">
           <h2>{individualPlaylist[0]?.name}</h2>
           <i
+            style={progressLoader ? { pointerEvents: "none" } : {}}
             className="fas fa-pen"
             onClick={() => {
               setUpdatePlayListName(false);
@@ -103,6 +109,7 @@ function IndividualPlayList() {
           <h2> {individualPlaylist[0]?.description || "Enter Description"}</h2>
           <i
             class="fas fa-pen"
+            style={progressLoader ? { pointerEvents: "none" } : {}}
             onClick={() => {
               setUpdatePlayListDesc(false);
               setPlayListDescForInput(individualPlaylist[0]?.description || "");
@@ -165,6 +172,7 @@ function IndividualPlayList() {
               />
             )}
           </div>
+          {progressLoader && <LinearProgress />}
           <div className="individual-playlist-left-desc">
             {updateThePlayListName()}
           </div>
@@ -204,23 +212,17 @@ function IndividualPlayList() {
                 </NavLink>
 
                 <div className="individual-right-actions">
-                  <i
-                    class="fas fa-trash-alt"
-                    style={{ paddingRight: ".7rem" }}
-                    onClick={() =>
-                      makeAnAPICall(
-                        `DELETE`,
-                        `https://cryptic-hamlet-94693.herokuapp.com/api/playlist/${playListid}/${ele.videoID._id}`,
-                        playListDispatch,
-                        `LOAD_PLAYLIST`,
-                        null,
-                        userInfo.token,
-                        null,
-                        null,
-                        null
-                      )
-                    }
-                  ></i>
+                  <div style={{ paddingRight: "2rem" }}>
+                    <TrashButtonLoader
+                      url={`https://cryptic-hamlet-94693.herokuapp.com/api/playlist/${playListid}/${ele.videoID._id}`}
+                      dispatch={playListDispatch}
+                      dispatchtype={`LOAD_PLAYLIST`}
+                      dataToBeDispatched={null}
+                      token={userInfo.token}
+                      toastDIspatch={null}
+                      msg={null}
+                    />
+                  </div>
                 </div>
               </div>
             ))}

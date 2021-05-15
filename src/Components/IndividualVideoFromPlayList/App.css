@@ -173,11 +173,13 @@
   display: flex;
   justify-content: space-between;
 }
-.individual-video-note-header-right i {
-  padding: 0rem 0.5rem;
-  color: rgb(66, 65, 65);
-  transition: all 1s ease-in-out;
-  cursor: pointer;
+.individual-video-note-header-right  {
+  /* border: 1px solid red; */
+  display: flex;
+  width: 5rem;
+  justify-content: space-between;
+  align-items: center;
+  cursor:pointer
 }
 .individual-video-note-header-right i:hover {
   transform: scale(1.09);

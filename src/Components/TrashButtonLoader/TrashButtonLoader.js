@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import CircularProgress from '@material-ui/core/CircularProgress';
+import ClipLoader from "react-spinners/ClipLoader";
 import { makeAnAPICall } from "../../APICalls";
+
 function TrashButtonLoader({
   url,
   dispatch,
@@ -14,7 +15,7 @@ function TrashButtonLoader({
   return (
     <div>
       {loading ? (
-        <CircularProgress />
+        <ClipLoader color={"blue"}  size={30} />
       ) : (
         <i
           className="fas fa-trash"
