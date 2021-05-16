@@ -1,17 +1,41 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import { debugContextDevtool } from "react-context-devtool";
+import App from "./App";
+import PlayListContextFun from "./Context/PlaylistContext/PlayListContext";
+import { LikedVideoContextFun } from "./Context/LikedVideoContext/LikedVideoContext";
+import { WatchLaterVideoContextFun } from "./Context/WatchLaterVideoContext/WatchLaterVideoContext";
+import { LoginContextFun } from "./Context/loginRegistrationContext/loginRegistrationContext";
+import { ToastConTextFun } from "./Context/ToastContext/ToastContext";
+import { VideoContextFun } from "./Context/VideoLists/VideoContext";
 
+const container = document.getElementById("root");
 ReactDOM.render(
   <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+    <PlayListContextFun>
+      {/* {PlayListc context} */}
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+      <LikedVideoContextFun>
+        {/* Liked video Context */}
+
+        <WatchLaterVideoContextFun>
+          {/* Watch Later context */}
+
+          <LoginContextFun>
+            {/* login conect */}
+
+            <ToastConTextFun>
+              {/* toast context */}
+
+              <VideoContextFun>
+                <App />
+              </VideoContextFun>
+            </ToastConTextFun>
+          </LoginContextFun>
+        </WatchLaterVideoContextFun>
+      </LikedVideoContextFun>
+    </PlayListContextFun>
+  </React.StrictMode>,
+  container
+);
+debugContextDevtool(container);
