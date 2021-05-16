@@ -391,9 +391,19 @@ input:focus {
 .css-14hgwh {
   background-color: #0020d8 !important;
   left: -8px !important;
-  top:-10px !important;
+  top: -10px !important;
+}
+.mobile-skeleton-loader {
+  display: none ;
 }
 @media screen and (max-width: 800px) {
+  .desktop-skeleton-loader {
+    display: none !important;
+  }
+  .mobile-skeleton-loader{
+    display: block !important;
+  }
+
   .zoomba-banner {
     background-position: center;
   }

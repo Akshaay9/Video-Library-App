@@ -94,6 +94,7 @@ function IndividialVideo() {
 
   return (
     <>
+      
       {loginModal && <LoginModal setLoginModal={setLoginModal} />}
       <div className="individualVideo">
         <div className="individual-videos-of-playList-container-left indi-video">
