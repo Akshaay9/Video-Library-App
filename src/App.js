@@ -24,6 +24,7 @@ import { useLoginContext } from "./Context/loginRegistrationContext/loginRegistr
 import { loadInitailUsersProduct } from "./UtilityFunctions/LoadInitialCOmponents";
 import PrivateRoute from "./PrivateRoute"
 
+
 function App() {
   const [navModal, setNavModal] = useState(false);
   const { likedVideoDispatch } = useLikedVideoContext();
@@ -49,6 +50,7 @@ function App() {
       <BrowserRouter>
         <NavBar navModal={navModal} setNavModal={setNavModal} />
         <Toast />
+   
         <Routes>
           <Route path="/" element={<HomeScreen />} />
           <Route path="/video/:id" element={<IndividualVideo />} />

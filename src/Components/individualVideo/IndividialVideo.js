@@ -12,6 +12,7 @@ import {
   addOrRemoveVideoFromWatchLater,
 } from "../../UtilityFunctions/playListsWatchLaterAndLikesCTAFunctions";
 import { showModalForVideoPlayListActions } from "../../UtilityFunctions/VideoListFunctions";
+import LoginModal from "../LoginModal/LoginModal";
 const opts = {
   height: "450vh",
   width: "100%",
@@ -34,9 +35,10 @@ function IndividialVideo() {
   const [circleLoader, setCircleLoader] = useState(false);
   // circle loader
   const [circleLoader1, setCircleLoader1] = useState(false);
-    // loader
-    const [progressLoader, setProgressLoader] = useState(false);
-  
+  // loader
+  const [progressLoader, setProgressLoader] = useState(false);
+
+  const [loginModal, setLoginModal] = useState(false);
 
   const { id } = useParams();
   const {
@@ -91,137 +93,145 @@ function IndividialVideo() {
   // const individualVideo = getIndividualVideoBasedOnPReviousPathOfHistory();
 
   return (
-    <div className="individualVideo">
-      <div className="individual-videos-of-playList-container-left indi-video">
-        <div className="individual-videos-of-playList-container-left-video">
-          {loader && <YouTube videoId={individualVideo?.url} opts={opts} />}
-        </div>
-
-        <div className="individual-videos-of-playList-container-left-mid">
-          <div className="individual-videos-of-playList-container-left-mid1">
-            <h2>{individualVideo?.title}</h2>
+    <>
+      {loginModal && <LoginModal setLoginModal={setLoginModal} />}
+      <div className="individualVideo">
+        <div className="individual-videos-of-playList-container-left indi-video">
+          <div className="individual-videos-of-playList-container-left-video">
+            {loader && <YouTube videoId={individualVideo?.url} opts={opts} />}
           </div>
-          <div className="individual-videos-of-playList-container-left-mid2">
-            {individualVideo?.addedOn && (
-              <h3>Added on : {individualVideo.addedOn}</h3>
-            )}
-            <div className="individual-videos-of-playList-container-left-mid2-icons indi-cta">
-              {prevPath == "/WatchLaterVideos" && (
-                <>
-                  {" "}
-                  {addOrRemoveVideoFromLikedVideo(
-                    likedVideo,
-                    individualVideo,
-                    likedVideoDispatch,
-                    false,
-                    "h3",
-                    userInfo.token,
-                    circleLoader,
-                    setCircleLoader,
-                    toastDispatch
-                  )}
-                  <h3
-                    onClick={() => {
-                      showModal(true);
-                      setVideoid(individualVideo);
-                    }}
-                  >
-                    Add To Playlist
-                  </h3>{" "}
-                </>
+
+          <div className="individual-videos-of-playList-container-left-mid">
+            <div className="individual-videos-of-playList-container-left-mid1">
+              <h2>{individualVideo?.title}</h2>
+            </div>
+            <div className="individual-videos-of-playList-container-left-mid2">
+              {individualVideo?.addedOn && (
+                <h3>Added on : {individualVideo.addedOn}</h3>
               )}
-              {prevPath == "/likedvideo" && (
-                <>
-                  {addOrRemoveVideoFromWatchLater(
-                    watchLaterVideo,
-                    individualVideo,
-                    watchLaterDispatch,
-                    false,
-                    "h3",
-                    userInfo.token,
-                    circleLoader1,
-                    setCircleLoader1,
-                    toastDispatch
-                  )}
-                  <h3
-                    onClick={() => {
-                      showModal(true);
-                      setVideoid(individualVideo);
-                    }}
-                  >
-                    Add To Playlist
-                  </h3>
-                </>
-              )}
-              {prevPath.includes("videos") && (
-                <>
-                  {addOrRemoveVideoFromLikedVideo(
-                    likedVideo,
-                    individualVideo,
-                    likedVideoDispatch,
-                    false,
-                    "h3",
-                    userInfo.token,
-                    circleLoader,
-                    setCircleLoader,
-                    toastDispatch
-                  )}
-                  {addOrRemoveVideoFromWatchLater(
-                    watchLaterVideo,
-                    individualVideo,
-                    watchLaterDispatch,
-                    false,
-                    "h3",
-                    userInfo.token,
-                    circleLoader1,
-                    setCircleLoader1,
-                    toastDispatch
-                  )}
-                  <h3
-                    onClick={() => {
-                      showModal(true);
-                      setVideoid(individualVideo);
-                    }}
-                  >
-                    Add To Playlist
-                  </h3>
-                </>
-              )}
+              <div className="individual-videos-of-playList-container-left-mid2-icons indi-cta">
+                {prevPath == "/WatchLaterVideos" && (
+                  <>
+                    {" "}
+                    {addOrRemoveVideoFromLikedVideo(
+                      likedVideo,
+                      individualVideo,
+                      likedVideoDispatch,
+                      false,
+                      "h3",
+                      userInfo.token,
+                      circleLoader,
+                      setCircleLoader,
+                      toastDispatch
+                    )}
+                    <h3
+                      onClick={() => {
+                        showModal(true);
+                        setVideoid(individualVideo);
+                      }}
+                    >
+                      Add To Playlist
+                    </h3>{" "}
+                  </>
+                )}
+                {prevPath == "/likedvideo" && (
+                  <>
+                    {addOrRemoveVideoFromWatchLater(
+                      watchLaterVideo,
+                      individualVideo,
+                      watchLaterDispatch,
+                      false,
+                      "h3",
+                      userInfo.token,
+                      circleLoader1,
+                      setCircleLoader1,
+                      toastDispatch
+                    )}
+                    <h3
+                      onClick={() => {
+                        showModal(true);
+                        setVideoid(individualVideo);
+                      }}
+                    >
+                      Add To Playlist
+                    </h3>
+                  </>
+                )}
+                {prevPath.includes("videos") && (
+                  <>
+                    {addOrRemoveVideoFromLikedVideo(
+                      likedVideo,
+                      individualVideo,
+                      likedVideoDispatch,
+                      false,
+                      "h3",
+                      userInfo.token,
+                      circleLoader,
+                      setCircleLoader,
+                      toastDispatch,
+                      setLoginModal
+                    )}
+                    {addOrRemoveVideoFromWatchLater(
+                      watchLaterVideo,
+                      individualVideo,
+                      watchLaterDispatch,
+                      false,
+                      "h3",
+                      userInfo.token,
+                      circleLoader1,
+                      setCircleLoader1,
+                      toastDispatch,
+                      setLoginModal
+                    )}
+                    <h3
+                      onClick={() => {
+                        if (!userInfo.token || userInfo.token == null) {
+                          setLoginModal(true);
+                          return;
+                        } else showModal(true);
+                        setVideoid(individualVideo);
+                      }}
+                    >
+                      Add To Playlist
+                    </h3>
+                  </>
+                )}
+              </div>
+            </div>
+          </div>
+          <div className="individual-videos-of-playList-container-left-bottom">
+            <div className="individual-videos-of-playList-container-left-bottom-img">
+              <a href={individualVideo?.channelLink}>
+                <img src={individualVideo?.channelIMG} alt="" />
+              </a>
+            </div>
+            <div className="individual-videos-of-playList-container-left-bottom-desc">
+              <h3>
+                {individualVideo?.ChannelName}
+                <i style={{ marginLeft: "5px" }} className="fas fa-check"></i>
+              </h3>
+              <p>{individualVideo?.desc}</p>
             </div>
           </div>
         </div>
-        <div className="individual-videos-of-playList-container-left-bottom">
-          <div className="individual-videos-of-playList-container-left-bottom-img">
-            <a href={individualVideo?.channelLink}>
-              <img src={individualVideo?.channelIMG} alt="" />
-            </a>
-          </div>
-          <div className="individual-videos-of-playList-container-left-bottom-desc">
-            <h3>
-              {individualVideo?.ChannelName}
-              <i style={{ marginLeft: "5px" }} className="fas fa-check"></i>
-            </h3>
-            <p>{individualVideo?.desc}</p>
-          </div>
-        </div>
+        {modal &&
+          videoid != null &&
+          showModalForVideoPlayListActions(
+            playLists,
+            showModal,
+            videoid,
+            createPlaylistBTN,
+            setCreatePlaylistBTN,
+            inputPlayList,
+            setInputPlayList,
+            playListDispatch,
+            userInfo.token,
+            progressLoader,
+            setProgressLoader,
+            toastDispatch
+          )}
       </div>
-      {modal &&
-        videoid != null &&
-        showModalForVideoPlayListActions(
-          playLists,
-          showModal,
-          videoid,
-          createPlaylistBTN,
-          setCreatePlaylistBTN,
-          inputPlayList,
-          setInputPlayList,
-          playListDispatch,
-          userInfo.token,
-          progressLoader,
-          setProgressLoader,
-          toastDispatch
-        )}
-    </div>
+    </>
   );
 }
 

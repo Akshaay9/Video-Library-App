@@ -18,12 +18,11 @@ export const makeAnAPICall = async (
       "auth-token": token,
     },
   };
+
   switch (request) {
     // delete request
 
     case "DELETE":
-      console.log("delete");
-
       try {
         const data = await axios.delete(url, config);
 
@@ -72,8 +71,6 @@ export const makeAnAPICall = async (
 
     //   post
     case "POST":
-      console.log("post");
-
       try {
         const data = await axios.post(url, dataToBeDispatched, config);
         if (setCircleLoader) {

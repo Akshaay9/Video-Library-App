@@ -7,7 +7,7 @@ function PrivateRoute({ path, ...props }) {
     state: { userInfo },
   } = useLoginContext();
 
-  console.log(props);
+ 
 
   return userInfo.token ? (
     <Route {...props} path={path} />

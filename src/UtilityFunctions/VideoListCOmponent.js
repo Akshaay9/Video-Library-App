@@ -11,6 +11,8 @@ import {
 } from "./playListsWatchLaterAndLikesCTAFunctions";
 import { useLoginContext } from "../Context/loginRegistrationContext/loginRegistrationContext";
 import { useToastContext } from "../Context/ToastContext/ToastContext";
+import LoginModal from "../Components/LoginModal/LoginModal";
+import { unstable_renderSubtreeIntoContainer } from "react-dom";
 function VideoListCOmponent({ ele, setVideoURL }) {
   let location = useLocation();
   const {
@@ -46,10 +48,11 @@ function VideoListCOmponent({ ele, setVideoURL }) {
   const [circleLoader, setCircleLoader] = useState(false);
   // circle loader
   const [circleLoader1, setCircleLoader1] = useState(false);
+  const [loginModal, setLoginModal] = useState(false);
 
   return (
     <div>
-      {console.log(ele)}
+      {loginModal && <LoginModal setLoginModal={setLoginModal} />}
       <div>
         <div className="bodyBuildingCard">
           <div className="bodyBuildingCard-img">
@@ -95,7 +98,10 @@ function VideoListCOmponent({ ele, setVideoURL }) {
               <ul>
                 <li
                   onClick={() => {
-                    showModal(true);
+                    if (!userInfo.token || userInfo.token == null) {
+                      setLoginModal(true);
+                      return;
+                    } else showModal(true);
                     setVideoid(ele);
                   }}
                 >
@@ -112,7 +118,8 @@ function VideoListCOmponent({ ele, setVideoURL }) {
                   userInfo.token,
                   circleLoader,
                   setCircleLoader,
-                  toastDispatch
+                  toastDispatch,
+                  setLoginModal
                 )}
                 {addOrRemoveVideoFromWatchLater(
                   watchLaterVideo,
@@ -123,7 +130,8 @@ function VideoListCOmponent({ ele, setVideoURL }) {
                   userInfo.token,
                   circleLoader1,
                   setCircleLoader1,
-                  toastDispatch
+                  toastDispatch,
+                  setLoginModal
                 )}
               </ul>
             </div>
@@ -144,7 +152,8 @@ function VideoListCOmponent({ ele, setVideoURL }) {
           userInfo.token,
           progressLoader,
           setProgressLoader,
-          toastDispatch
+          toastDispatch,
+          setLoginModal
         )}
     </div>
   );

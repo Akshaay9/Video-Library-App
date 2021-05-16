@@ -42,7 +42,7 @@ function IndividualPlayListComponent() {
   const individualVideo =
     individualPlaylist.length > 0 &&
     individualPlaylist[0]?.videos.filter((ele) => ele.videoID._id == videoid);
-  console.log(individualVideo);
+
 
   const opts = {
     height: "450vh",

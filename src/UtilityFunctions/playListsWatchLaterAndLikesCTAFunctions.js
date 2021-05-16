@@ -86,7 +86,8 @@ export const addOrRemoveVideoFromWatchLater = (
   token,
   circleLoader,
   setCircleLoader,
-  toastDispatch
+  toastDispatch,
+  setLoginModal
 ) => {
   const isVideoAddedToWatchLater = watchLaterVideo.filter(
     (ele) => ele.videoID._id == video._id
@@ -106,7 +107,9 @@ export const addOrRemoveVideoFromWatchLater = (
             token,
             toastDispatch,
             "Video Removed From watchlater",
-            setCircleLoader
+            setCircleLoader,
+            null,
+            setLoginModal
           );
         }}
       >
@@ -132,7 +135,10 @@ export const addOrRemoveVideoFromWatchLater = (
     return (
       <li
         onClick={(e) => {
-          setCircleLoader(true);
+          if (token == null || !token) {
+            setLoginModal(true);
+            return;
+          } else setCircleLoader(true);
           makeAnAPICall(
             `POST`,
             `https://cryptic-hamlet-94693.herokuapp.com/api/watchlater/${video._id}`,
@@ -142,7 +148,9 @@ export const addOrRemoveVideoFromWatchLater = (
             token,
             toastDispatch,
             "Video added to watchlater",
-            setCircleLoader
+            setCircleLoader,
+            null,
+            setLoginModal
           );
         }}
       >
@@ -172,7 +180,8 @@ export const addOrRemoveVideoFromLikedVideo = (
   token,
   circleLoader,
   setCircleLoader,
-  toastDispatch
+  toastDispatch,
+  setLoginModal
 ) => {
   const isVideoLiked = likedVideo.filter((ele) => ele.videoID._id == video._id);
   if (isVideoLiked.length > 0) {
@@ -190,7 +199,9 @@ export const addOrRemoveVideoFromLikedVideo = (
             token,
             toastDispatch,
             "Video has been disliked",
-            setCircleLoader
+            setCircleLoader,
+            null,
+            setLoginModal
           );
         }}
       >
@@ -216,7 +227,10 @@ export const addOrRemoveVideoFromLikedVideo = (
     return (
       <li
         onClick={(e) => {
-          setCircleLoader(true);
+          if (token == null || !token) {
+            setLoginModal(true);
+            return;
+          } else setCircleLoader(true);
           makeAnAPICall(
             `POST`,
             `https://cryptic-hamlet-94693.herokuapp.com/api/likedvideos/${video._id}`,
@@ -226,7 +240,9 @@ export const addOrRemoveVideoFromLikedVideo = (
             token,
             toastDispatch,
             "Video has been liked",
-            setCircleLoader
+            setCircleLoader,
+            null,
+            setLoginModal
           );
         }}
       >
