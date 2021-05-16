@@ -1,0 +1,22 @@
+.footer-fit {
+    display: flex;
+    height: 3rem;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0rem 0rem 0rem 0.5rem;
+    border-top: 1px solid var(--line-color);
+  }
+  .footer-fit-bottom {
+    position: fixed;
+    bottom: 0%;
+    background-color: white;
+    width: 100%;
+  }
+  
+  .footer-bottom-righ i {
+    padding: 0rem 0.9rem;
+    font-size: 1.6rem;
+  }
+  .footer-bottom-p-font {
+    word-spacing: 0.5rem;
+  }
