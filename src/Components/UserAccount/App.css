@@ -178,7 +178,7 @@
   border: 1px solid black;
 }
 /* login validation */
-input:optional {
+form input:optional {
   border-color: gray;
 }
 
