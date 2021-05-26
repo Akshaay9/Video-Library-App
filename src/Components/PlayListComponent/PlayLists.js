@@ -28,11 +28,12 @@ function PlayLists() {
   };
 
   return (
-    <>
+    <div >
       <div className="playList-container-heading">PlayList</div>
       <div className="svg-empty">
         {playLists.length == 0 && <img src={playlistSVG} alt="" />}
       </div>
+      <div className="playlists-container">
       {playLists.map((ele, index) => (
         <div className="playlists">
           <div className="playlist-img">
@@ -70,7 +71,8 @@ function PlayLists() {
           </div>
         </div>
       ))}
-    </>
+    </div>
+    </div>
   );
 }
 
