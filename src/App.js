@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
+import axios from "axios";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomeScreen from "./Screens/HomeScreen/Index";
 import NavBar from "./Screens/HomeScreen/NavBar";
@@ -22,8 +23,7 @@ import { useWatchLaterContext } from "./Context/WatchLaterVideoContext/WatchLate
 import { UsePlayListContext } from "./Context/PlaylistContext/PlayListContext";
 import { useLoginContext } from "./Context/loginRegistrationContext/loginRegistrationContext";
 import { loadInitailUsersProduct } from "./UtilityFunctions/LoadInitialCOmponents";
-import PrivateRoute from "./PrivateRoute"
-
+import PrivateRoute from "./PrivateRoute";
 
 function App() {
   const [navModal, setNavModal] = useState(false);
@@ -45,12 +45,18 @@ function App() {
     }
   }, [userInfo]);
 
+  useEffect(() => {
+    (async () => {
+      const initialPing = await axios.get(`https://cryptic-hamlet-94693.herokuapp.com/`);
+    })();
+  }, []);
+
   return (
     <div style={navModal ? { height: "99vh", overflow: "hidden" } : {}}>
       <BrowserRouter>
         <NavBar navModal={navModal} setNavModal={setNavModal} />
         <Toast />
-   
+
         <Routes>
           <Route path="/" element={<HomeScreen />} />
           <Route path="/video/:id" element={<IndividualVideo />} />
