@@ -24,6 +24,7 @@ function SignUp() {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [loader, setLoader] = useState(false);
+  const [loader1, setLoader1] = useState(false);
 
   useEffect(() => {
     if (name.length == 0) {
@@ -84,6 +85,24 @@ function SignUp() {
       setLoader
     );
   };
+  const guestUserLogin = async () => {
+    setLoader1(true);
+    const dataToBeSent = {
+      email: "test@gmail.com",
+      password: "Test98#",
+    };
+    await makeAnAPICall(
+      "POST",
+      "https://cryptic-hamlet-94693.herokuapp.com/api/users/login",
+      authDispatch,
+      "USER_LOGGED_SUCCESSFULL",
+      dataToBeSent,
+      null,
+      toastDispatch,
+      "Successfully logged in",
+      setLoader1
+    );
+  };
 
   return (
     <>
@@ -118,7 +137,7 @@ function SignUp() {
                 <NavLink to="/login">Login in here</NavLink>{" "}
               </span>{" "}
             </p>
-            <span className="mini-info-login">or sign up with an email</span>
+          
             <form onSubmit={(e) => formHandler(e)}>
               <div className="form-top">
                 <input
@@ -193,10 +212,20 @@ function SignUp() {
               >
                 I agree with Terms and conditions
               </label>
-              <button disabled={loader}>
-                {loader ? <i class="fas fa-spinner fa-spin"></i> : "sign up"}
+              <button disabled={loader || loader1}>
+                {loader ? <i class="fas fa-spinner fa-spin"></i> : "log In"}
               </button>
             </form>
+            <button
+              disabled={loader || loader1}
+              onClick={() => guestUserLogin()}
+            >
+              {loader1 ? (
+                <i class="fas fa-spinner fa-spin"></i>
+              ) : (
+                "Login as Guest"
+              )}
+            </button>
           </div>
         </div>
       </div>

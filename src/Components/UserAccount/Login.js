@@ -23,6 +23,8 @@ function Login() {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [loader, setLoader] = useState(false);
+  const [loader1, setLoader1] = useState(false);
+  
 
   useEffect(() => {
     var re = /\S+@\S+\.\S+/;
@@ -71,6 +73,25 @@ function Login() {
       toastDispatch,
       "Successfully logged in",
       setLoader
+    );
+  };
+
+  const guestUserLogin = async () => {
+    setLoader1(true);
+    const dataToBeSent = {
+      email: "test@gmail.com",
+      password: "Test98#",
+    };
+    await makeAnAPICall(
+      "POST",
+      "https://cryptic-hamlet-94693.herokuapp.com/api/users/login",
+      authDispatch,
+      "USER_LOGGED_SUCCESSFULL",
+      dataToBeSent,
+      null,
+      toastDispatch,
+      "Successfully logged in",
+      setLoader1
     );
   };
 
@@ -142,10 +163,20 @@ function Login() {
               >
                 I agree with Terms and conditions
               </label>
-              <button disabled={loader}>
+              <button disabled={loader || loader1}>
                 {loader ? <i class="fas fa-spinner fa-spin"></i> : "log In"}
               </button>
             </form>
+            <button
+              disabled={loader || loader1}
+              onClick={() => guestUserLogin()}
+            >
+              {loader1 ? (
+                <i class="fas fa-spinner fa-spin"></i>
+              ) : (
+                "Login as Guest"
+              )}
+            </button>
           </div>
         </div>
       </div>

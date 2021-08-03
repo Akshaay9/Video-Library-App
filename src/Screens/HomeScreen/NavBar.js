@@ -123,7 +123,7 @@ function NavBar({ navModal, setNavModal }) {
                 </span>
               )}
               <img
-                style={{ width: "52%", objectFit: "contain", height: "2rem" }}
+                style={{ width: "72%", objectFit: "contain", height: "2rem" }}
                 src="https://img.icons8.com/ios/50/000000/video-playlist.png"
               />
             </NavLink>
