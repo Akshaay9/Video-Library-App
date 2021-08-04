@@ -6,7 +6,7 @@ function Footerbottom() {
       <div className="footer-bottom-left">
         <p className="footer-bottom-p-font">
           © 2021 | Gym.Fit Limited | All Rights Reserved @Akshay |{" "}
-          <a href="https://akshayportfoloio98.netlify.app/"> About me</a>
+          <a href="https://akshaytech.netlify.app/"> About me</a>
         </p>
       </div>
 

@@ -1,11 +1,12 @@
 import React from "react";
- import "./App.css"
+import "./App.css";
 function Footer() {
   return (
     <div className="footer-fit">
       <div className="footer-bottom-left">
         <p className="footer-bottom-p-font">
-          © 2021 | Gym.Fit Limited | All Rights Reserved @Akshay |  <a href="https://akshayportfoloio98.netlify.app/"> About me</a>
+          © 2021 | Gym.Fit Limited | All Rights Reserved @Akshay |{" "}
+          <a href="https://akshaytech.netlify.app/"> About me</a>
         </p>
       </div>
 
