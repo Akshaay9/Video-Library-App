@@ -1,20 +1,39 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { useLikedVideoContext } from "../../Context/LikedVideoContext/LikedVideoContext";
+import { useLoginContext } from "../../Context/loginRegistrationContext/loginRegistrationContext";
 import { UsePlayListContext } from "../../Context/PlaylistContext/PlayListContext";
+import { useToastContext } from "../../Context/ToastContext/ToastContext";
 import { useWatchLaterContext } from "../../Context/WatchLaterVideoContext/WatchLaterVideoContext";
 
 function NavBar({ navModal, setNavModal }) {
   const {
     state: { likedVideo },
+    likedVideoDispatch,
   } = useLikedVideoContext();
   const {
     state: { playLists },
+    playListDispatch,
   } = UsePlayListContext();
 
   const {
     state: { watchLaterVideo },
+    watchLaterDispatch,
   } = useWatchLaterContext();
+  const {
+    state: { userInfo },
+    authDispatch,
+  } = useLoginContext();
+
+  const { toastDispatch } = useToastContext();
+
+  const logOutHandler = () => {
+    authDispatch({ type: "USER_LOGOUT" });
+    likedVideoDispatch({ type: "CLEAR_LIKED_VIDEOS" });
+    playListDispatch({ type: "CLEAR_PLAYLISTS" });
+    watchLaterDispatch({ type: "CLEAR_WATCH_LATER" });
+  };
+
   return (
     <>
       <div className="nav">
@@ -104,15 +123,31 @@ function NavBar({ navModal, setNavModal }) {
                 </span>
               )}
               <img
-                style={{ width: "52%", objectFit: "contain", height: "2rem" }}
+                style={{ width: "72%", objectFit: "contain", height: "2rem" }}
                 src="https://img.icons8.com/ios/50/000000/video-playlist.png"
               />
             </NavLink>
           </div>
           <div className="user-info mobile-hide">
-            <NavLink to="/login">
-              <i class="fas fa-user"></i>
-            </NavLink>
+            {userInfo.token ? (
+              <div className="user-info nav_logi">
+                <ul className="user-details-nav">
+                  <h3>Welcome</h3>
+                  <h3 className="user-details-nav-h3">
+                    {userInfo.name} <i className="fas fa-chevron-down"></i>
+                  </h3>
+                </ul>
+                <ul className="drop-down-info">
+                  <h3 onClick={() => logOutHandler()}>Logout</h3>
+                </ul>
+              </div>
+            ) : (
+              <NavLink to="/signup">
+                <div className="nav_logi">
+                  <i className="fas fa-user"></i>
+                </div>
+              </NavLink>
+            )}
           </div>
         </div>
       </div>

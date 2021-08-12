@@ -4,6 +4,8 @@ import { getIndividualPlayList } from "../MiddleWears/IndividualPlayList.js";
 import Playlist from "../Models/PlayListModel.js";
 import Videos from "../Models/VideoModel.js";
 import Notes from "../Models/NotesModel.js";
+import pkg from "lodash";
+const { extend } = pkg;
 const router = express.Router();
 
 router.param("playlistID", getIndividualPlayList);
@@ -30,6 +32,20 @@ router.delete("/:playlistID", privateRoute, async (req, res) => {
   return res.status(200).json(allPlaylist);
 });
 
+// /update
+// private
+/// update title and description
+router.post("/:playlistID/update", privateRoute, async (req, res) => {
+  let individualPlaylist = req.individualPlaylist;
+  let updatePlaylist = req.body;
+  updatePlaylist = extend(individualPlaylist, updatePlaylist);
+  await individualPlaylist.save();
+  const allPlaylist = await Playlist.find({ user: req.user.id })
+    .populate("videos.videoID")
+    .populate("videos.notes.notesID");
+  return res.status(200).json(allPlaylist);
+});
+
 // post
 // private
 // post new playlist
@@ -41,7 +57,7 @@ router.post("/new/:videoID", privateRoute, async (req, res) => {
     name: name,
   });
   if (isPlayListAlredyPresent.length !== 0) {
-    return res.status(200).json({ error: "playlist alredy exist" });
+    return res.status(400).json({ error: "playlist alredy exist" });
   }
   const newPlaylist = new Playlist({
     user: req.user.id,

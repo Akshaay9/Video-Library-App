@@ -271,7 +271,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   border-bottom: 1px solid var(--line-color);
 }
 .modal-playlist-top h3 {
@@ -289,7 +289,7 @@
   padding: 0.3rem 1.8rem;
 }
 .modal-playlist-mid ul {
-  border: 1px solid var(--line-color);
+  border-bottom: 1px solid var(--line-color);
 }
 .btn-playlist-cta {
   padding: 0.1rem 1rem;
@@ -317,9 +317,9 @@ input:focus {
 .btn-playlist-cta2 {
   padding: 0.1rem 1rem;
   display: block;
-  margin: .6rem auto;
+  margin: 0.6rem auto;
 }
-.btn-dark{
+.btn-dark {
   display: block;
   margin: 0.1rem auto;
   border-radius: 5px;
@@ -329,7 +329,7 @@ input:focus {
   color: white;
   outline: none;
   border: none;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
 }
 
 .fa-times {
@@ -347,7 +347,63 @@ input:focus {
 .secondary-disabled:disabled {
   background-color: rgb(184, 179, 179);
 }
+/* line loader color */
+/* progress bar */
+.MuiLinearProgress-barColorPrimary {
+  background-color: #1330d4 !important;
+}
+.MuiLinearProgress-colorPrimary {
+  background-color: rgb(254 254 254) !important;
+}
+/* circle loader color */
+/* circlebar */
+.css-a3xia2,
+.css-ta3lg2,
+.css-1028e8w {
+  background-color: #1330d4 !important;
+  /* display:flex !important; */
+  flex-direction: row !important;
+  align-items: center !important;
+}
+
+.circle-loader span {
+  margin: auto 0rem auto 1rem !important;
+}
+
+/* spinner puff bar */
+.css-1rxp7yl,
+.css-14hgwh,
+.css-1fymig2,
+.css-1soeyf7 {
+  border: thick solid #0020d8 !important;
+  width: 23px !important;
+  height: 23px !important;
+  left: -1;
+}
+.css-3fvcat {
+  width: 23px !important;
+  height: 23px !important;
+  left: -5px;
+}
+
+/* bounce loader */
+.css-1fymig2,
+.css-14hgwh {
+  background-color: #0020d8 !important;
+  left: -8px !important;
+  top: -10px !important;
+}
+.mobile-skeleton-loader {
+  display: none ;
+}
 @media screen and (max-width: 800px) {
+  .desktop-skeleton-loader {
+    display: none !important;
+  }
+  .mobile-skeleton-loader{
+    display: block !important;
+  }
+
   .zoomba-banner {
     background-position: center;
   }

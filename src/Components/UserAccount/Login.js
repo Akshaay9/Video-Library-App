@@ -1,12 +1,30 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import { NavLink } from "react-router-dom";
+import { makeAnAPICall } from "../../APICalls";
+import { useLoginContext } from "../../Context/loginRegistrationContext/loginRegistrationContext";
+import { useToastContext } from "../../Context/ToastContext/ToastContext";
+import { useLocation, useNavigate } from "react-router-dom";
 function Login() {
+  const navigate = useNavigate();
+  const { state } = useLocation();
+  const {
+    state: { userInfo },
+    authDispatch,
+  } = useLoginContext();
+  const { toastDispatch } = useToastContext();
+
+  if (userInfo.token) {
+    navigate(state?.from ? state.from : "/videos/bodybuilding");
+  }
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [loader, setLoader] = useState(false);
+  const [loader1, setLoader1] = useState(false);
+  
 
   useEffect(() => {
     var re = /\S+@\S+\.\S+/;
@@ -38,6 +56,45 @@ function Login() {
     }
   }, [password]);
 
+  const formHandler = async (e) => {
+    e.preventDefault();
+    setLoader(true);
+    const dataToBeSent = {
+      email: email,
+      password: password,
+    };
+    await makeAnAPICall(
+      "POST",
+      "https://cryptic-hamlet-94693.herokuapp.com/api/users/login",
+      authDispatch,
+      "USER_LOGGED_SUCCESSFULL",
+      dataToBeSent,
+      null,
+      toastDispatch,
+      "Successfully logged in",
+      setLoader
+    );
+  };
+
+  const guestUserLogin = async () => {
+    setLoader1(true);
+    const dataToBeSent = {
+      email: "test@gmail.com",
+      password: "Test98#",
+    };
+    await makeAnAPICall(
+      "POST",
+      "https://cryptic-hamlet-94693.herokuapp.com/api/users/login",
+      authDispatch,
+      "USER_LOGGED_SUCCESSFULL",
+      dataToBeSent,
+      null,
+      toastDispatch,
+      "Successfully logged in",
+      setLoader1
+    );
+  };
+
   return (
     <>
       <div className="bg-wallper signup-wallper">
@@ -52,7 +109,7 @@ function Login() {
               </span>{" "}
             </p>
             <span className="mini-info-login">or sign up with an email</span>
-            <form>
+            <form onSubmit={(e) => formHandler(e)}>
               <div className="form-top login-form-top sign-up-form-top">
                 <input
                   type="email"
@@ -106,8 +163,20 @@ function Login() {
               >
                 I agree with Terms and conditions
               </label>
-              <button>Sign up</button>
+              <button disabled={loader || loader1}>
+                {loader ? <i class="fas fa-spinner fa-spin"></i> : "log In"}
+              </button>
             </form>
+            <button
+              disabled={loader || loader1}
+              onClick={() => guestUserLogin()}
+            >
+              {loader1 ? (
+                <i class="fas fa-spinner fa-spin"></i>
+              ) : (
+                "Login as Guest"
+              )}
+            </button>
           </div>
         </div>
       </div>

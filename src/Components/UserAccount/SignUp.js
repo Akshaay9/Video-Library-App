@@ -1,7 +1,22 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import { NavLink } from "react-router-dom";
+import { makeAnAPICall } from "../../APICalls";
+import { useLoginContext } from "../../Context/loginRegistrationContext/loginRegistrationContext";
+import { useToastContext } from "../../Context/ToastContext/ToastContext";
+import { useLocation, useNavigate } from "react-router-dom";
 function SignUp() {
+  const navigate = useNavigate();
+  const { state } = useLocation();
+  const {
+    state: { userInfo },
+    authDispatch,
+  } = useLoginContext();
+  const { toastDispatch } = useToastContext();
+
+  if (userInfo.token) {
+    navigate(state?.from ? state.from : "/videos/bodybuilding");
+  }
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -9,6 +24,7 @@ function SignUp() {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [loader, setLoader] = useState(false);
+  const [loader1, setLoader1] = useState(false);
 
   useEffect(() => {
     if (name.length == 0) {
@@ -48,6 +64,46 @@ function SignUp() {
     }
   }, [password]);
 
+  const formHandler = async (e) => {
+    e.preventDefault();
+    setLoader(true);
+    const dataToBeSent = {
+      name: name,
+      name: name,
+      email: email,
+      password: password,
+    };
+    await makeAnAPICall(
+      "POST",
+      "https://cryptic-hamlet-94693.herokuapp.com/api/users/signup",
+      authDispatch,
+      "USER_LOGGED_SUCCESSFULL",
+      dataToBeSent,
+      null,
+      toastDispatch,
+      "Successfully logged in",
+      setLoader
+    );
+  };
+  const guestUserLogin = async () => {
+    setLoader1(true);
+    const dataToBeSent = {
+      email: "test@gmail.com",
+      password: "Test98#",
+    };
+    await makeAnAPICall(
+      "POST",
+      "https://cryptic-hamlet-94693.herokuapp.com/api/users/login",
+      authDispatch,
+      "USER_LOGGED_SUCCESSFULL",
+      dataToBeSent,
+      null,
+      toastDispatch,
+      "Successfully logged in",
+      setLoader1
+    );
+  };
+
   return (
     <>
       <div className="bg-wallper login-bg-wallper ">
@@ -81,8 +137,8 @@ function SignUp() {
                 <NavLink to="/login">Login in here</NavLink>{" "}
               </span>{" "}
             </p>
-            <span className="mini-info-login">or sign up with an email</span>
-            <form>
+          
+            <form onSubmit={(e) => formHandler(e)}>
               <div className="form-top">
                 <input
                   type="text"
@@ -156,8 +212,20 @@ function SignUp() {
               >
                 I agree with Terms and conditions
               </label>
-              <button>Sign up</button>
+              <button disabled={loader || loader1}>
+                {loader ? <i class="fas fa-spinner fa-spin"></i> : "log In"}
+              </button>
             </form>
+            <button
+              disabled={loader || loader1}
+              onClick={() => guestUserLogin()}
+            >
+              {loader1 ? (
+                <i class="fas fa-spinner fa-spin"></i>
+              ) : (
+                "Login as Guest"
+              )}
+            </button>
           </div>
         </div>
       </div>

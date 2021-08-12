@@ -20,7 +20,9 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () =>
   console.log(`server started on port ${PORT}`.yellow.underline.bold)
 );
-
+app.get("/", (req, res) => {
+  res.send("API is running....");
+});
 // routes
 app.use(`/api/users`, UserLoginAndSignUpRoute);
 app.use(`/api/playlist`, PlaylistRoute);

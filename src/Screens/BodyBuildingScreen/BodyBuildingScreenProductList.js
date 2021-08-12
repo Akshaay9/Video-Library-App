@@ -1,31 +1,66 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useVideosContext } from "../../Context/VideoLists/VideoContext";
-import { beginnerBodyBuilding } from "../../Data/BeginnerBodyBuildingData";
 import VideoListCOmponent from "../../UtilityFunctions/VideoListCOmponent";
+import YouTube from "react-youtube";
 import { makeAnAPICall } from "../../APICalls";
+import YoutubeMagic from "../../SkeletonLoader/VideoListSkeletonLoader/DesktopSkeletonLoader";
+import MobileYoutubeMagic from "../../SkeletonLoader/VideoListSkeletonLoader/MobileSkeletonLoader";
+
 function BodyBuildingScreenProductList() {
+  const [videoURl, setVideoURL] = useState("");
   const {
     state: { bodyBuildingVideo, bodyBuildingLoading },
     videoDIspatch,
   } = useVideosContext();
 
-  // useEffect(() => {
-  //   (async () => {
-  //     const data = await makeAnAPICall(
-  //       "GET",
-  //       `https://cryptic-hamlet-94693.herokuapp.com/api/videos/bodybuilding`,
+  useEffect(() => {
+    (async () => {
+      await makeAnAPICall(
+        "GET",
+        `https://cryptic-hamlet-94693.herokuapp.com/api/videos/bodybuilding`,
+        videoDIspatch,
+        "LOAD_BODYBUILDING_VIDEO"
+      );
+    })();
+  }, []);
 
-  //     );
-  //     console.log(data.data);
-  //   })();
-  // });
+  const opts = {
+    height: "580vh",
+    width: "100%",
+  };
 
   return (
     <>
-      <VideoListCOmponent
-        videoData={beginnerBodyBuilding}
-        title={"Resistance Training"}
-      />
+      {bodyBuildingLoading ? (
+        <>
+          <div className="desktop-skeleton-loader">{<YoutubeMagic />}</div>
+          <div className="mobile-skeleton-loader">{<MobileYoutubeMagic />}</div>
+        </>
+      ) : (
+        <>
+          <h2 className="intro">Resistance Training</h2>
+          {videoURl !== "" && (
+            <div className="test">
+              <i
+                className="far fa-times-circle"
+                onClick={() => setVideoURL("")}
+              ></i>
+              <YouTube
+                videoId={videoURl}
+                opts={opts}
+                className="BG-video-player"
+              />
+            </div>
+          )}
+          <div className="bodyBuilding-Beginner-container">
+            {bodyBuildingVideo.map((ele) => (
+              <>
+                <VideoListCOmponent ele={ele} setVideoURL={setVideoURL} />
+              </>
+            ))}
+          </div>
+        </>
+      )}
     </>
   );
 }

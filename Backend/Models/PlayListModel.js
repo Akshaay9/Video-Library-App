@@ -10,6 +10,9 @@ const playListSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    description: {
+      type: String,
+    },
     videos: [
       {
         videoID: {

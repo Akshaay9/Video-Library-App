@@ -33,7 +33,7 @@ router.post("/:playlistID/:videoID", privateRoute, async (req, res) => {
   const indiVIdeo = individualPlaylist.videos.filter(
     (ele) => JSON.stringify(ele.videoID) == JSON.stringify(videoID)
   );
-console.log(indiVIdeo);
+
   indiVIdeo[0].notes.push({ notesID: saveNewNote._id });
   await individualPlaylist.save({ suppressWarning: true });
 
@@ -57,7 +57,9 @@ router.post("/:notesID", privateRoute, async (req, res) => {
   return res.status(200).json(allPlaylist);
 });
 
-export default router;
+// delete
+// private
+// delete notes
 
 router.delete(
   "/:playlistID/:videoID/:notesID",
@@ -77,7 +79,7 @@ router.delete(
     //   (ele) => JSON.stringify(ele.notesID) !== JSON.stringify(notesID)
     //   );
       
-      console.log(indiVIdeo[0].notes);
+   
       indiVIdeo[0].notes=indiVIdeo[0].notes.filter( (ele) => JSON.stringify(ele.notesID) !== JSON.stringify(notesID))
     await individualPlaylist.save();
     const allPlaylist = await Playlist.find({ user: req.user.id })
@@ -86,3 +88,7 @@ router.delete(
     return res.status(200).json(allPlaylist);
   }
 );
+
+export default router;
+
+

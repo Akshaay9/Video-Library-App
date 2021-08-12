@@ -1,7 +1,10 @@
 import {
   addorRemoveVideoToPlayList,
+  apiCallToCreatePlaylist,
   isVideoAlredyInPlaylist,
 } from "./playListsWatchLaterAndLikesCTAFunctions";
+import LinearProgress from "@material-ui/core/LinearProgress";
+import InputPlaylistComponent from "../Components/InputPlayListComponent/InputPlaylistComponent";
 
 export const showModalForVideoPlayListActions = (
   playLists,
@@ -11,32 +14,29 @@ export const showModalForVideoPlayListActions = (
   setCreatePlaylistBTN,
   inputPlayList,
   setInputPlayList,
-  playListDispatch
+  playListDispatch,
+  token,
+  progressLoader,
+  setProgressLoader,
+  toastDispatch
 ) => {
   // function to dispatch acton which create a new playlists and adds a video to it
   const funToCreatePlaylistAddVideo = (video) => {
-    const date = new Date();
-    const newPlayList = {
-      id: Math.random(),
+    const dataToBeDispatched = {
       name: inputPlayList,
-      dateCreated: `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`,
-      videos: [
-        {
-          ...video,
-          addedOn: `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`,
-          notes: [],
-        },
-      ],
     };
-    playListDispatch({
-      type: "CREATE_NEW_PLAYLIST",
-      payload: newPlayList,
-    });
+    apiCallToCreatePlaylist(
+      video._id,
+      playListDispatch,
+      dataToBeDispatched,
+      token,
+      setProgressLoader,
+      toastDispatch
+    );
     setCreatePlaylistBTN(false);
     setInputPlayList("");
   };
   const modalCLick = (e) => {
-    console.log(e == "modal-playList-container");
     if (e == "modal-playList-container") {
       showModal(false);
       setCreatePlaylistBTN(false);
@@ -45,8 +45,11 @@ export const showModalForVideoPlayListActions = (
   };
 
   return (
-    <div className="modal-playList-container" onClick={(e) => modalCLick(e.target.classList.value)}>
-      <div className="modal-playList-cta" >
+    <div
+      className="modal-playList-container"
+      onClick={(e) => modalCLick(e.target.classList.value)}
+    >
+      <div className="modal-playList-cta">
         <div className="modal-playlist-top">
           <h3>Save To...</h3>
           {/* <i
@@ -58,30 +61,24 @@ export const showModalForVideoPlayListActions = (
           ></i> */}
         </div>
         <div className="modal-playlist-mid">
+          {progressLoader && <LinearProgress />}
           {playLists.length > 0 && (
             <ul>
               {playLists.map((ele) => (
-                <div className="modal-playlist-mid-li">
-                  <input
-                    type="checkbox"
-                    checked={isVideoAlredyInPlaylist(playLists, ele.id, video)}
-                    onClick={() =>
-                      addorRemoveVideoToPlayList(
-                        playLists,
-                        ele.id,
-                        video,
-                        playListDispatch
-                      )
-                    }
-                  />
-                  <span>{ele.name}</span>
-                </div>
+                <InputPlaylistComponent
+                  playLists={playLists}
+                  ele={ele}
+                  video={video}
+                  playListDispatch={playListDispatch}
+                  token={token}
+                />
               ))}
             </ul>
           )}
           <div className="modal-playlist-bottom">
             <button
               className="btn btn-secondary btn-secondary-hr-outline-in btn-playlist-cta "
+              disabled={progressLoader == true}
               onClick={() => setCreatePlaylistBTN(true)}
             >
               Add a PlayList

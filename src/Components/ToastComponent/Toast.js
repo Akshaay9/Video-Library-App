@@ -1,5 +1,5 @@
 import React from "react";
-import { useToastContext } from "../../Contexts/ToastContext/ToastContext";
+import { useToastContext } from "../../Context/ToastContext/ToastContext";
 import "./App.css";
 
 function Toast() {

@@ -1,5 +1,6 @@
 .individualVideo {
-  margin-top: 4rem;
+  margin-top: 4.3rem;
+  margin-bottom: 3rem;
 }
 .indi-video {
   width: 80%;
@@ -28,7 +29,7 @@
   .individual-videos-of-playList-container-left-mid2 {
     display: block;
   }
-  .individual-videos-of-playList-container-left-mid2-icons{
+  .individual-videos-of-playList-container-left-mid2-icons {
     width: 100%;
   }
 }

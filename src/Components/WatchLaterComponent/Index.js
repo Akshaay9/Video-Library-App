@@ -1,10 +1,11 @@
 import React from 'react'
-import WatchLaterLists from './WatchLaterLists'
-import "./App.css"
+import Footerbottom from '../FooterComponent/FooterBottom'
+import WatchLaterIndividualList from './WatchLaterIndividualList'
 function Index() {
     return (
         <>
-            <WatchLaterLists />
+            <WatchLaterIndividualList />
+            <Footerbottom/>
          
         </>
     )

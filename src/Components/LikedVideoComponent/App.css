@@ -1,5 +1,6 @@
 .like-heading {
   width: 80% !important;
+  margin-top: 4.5rem;
 }
 .liked-video-container {
   display: grid;

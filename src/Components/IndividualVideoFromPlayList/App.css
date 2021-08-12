@@ -1,8 +1,8 @@
 .individual-videos-of-playList-container {
   display: grid;
-  /* margin-top: 3.5rem; */
+ 
   width: 95%;
-  margin: 4rem auto 1rem auto;
+  margin: 4.5rem auto 4rem auto;
   /* border: 1px solid red; */
   grid-template-columns: 1.3fr 0.7fr;
 }
@@ -135,6 +135,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+  border-radius: 1rem;
+}
+.modal-indi-playlist-inputs h1{
+font-family: sans-serif;
 }
 .modal-indi-playlist-title label,
 .modal-indi-playlist-desc label {
@@ -163,7 +167,7 @@
 }
 /* indi notes */
 .individual-video-note {
-  margin: 0.5rem 0rem;
+  margin: .3rem 0rem;
   padding: 0.2rem 0.5rem;
   border-bottom: 1px solid var(--line-color);
 }
@@ -173,11 +177,13 @@
   display: flex;
   justify-content: space-between;
 }
-.individual-video-note-header-right i {
-  padding: 0rem 0.5rem;
-  color: rgb(66, 65, 65);
-  transition: all 1s ease-in-out;
-  cursor: pointer;
+.individual-video-note-header-right  {
+  /* border: 1px solid red; */
+  display: flex;
+  width: 5rem;
+  justify-content: space-between;
+  align-items: center;
+  cursor:pointer
 }
 .individual-video-note-header-right i:hover {
   transform: scale(1.09);
@@ -185,7 +191,7 @@
 .individual-video-note-header-left h3 {
   font-size: 1rem;
   font-family: var(--font-sans-serif);
-  line-height: 2rem;
+  line-height: 1.3rem;
   color: rgb(66, 65, 65);
   margin: 0 0 0.3rem;
   padding-right: 0;
@@ -222,6 +228,6 @@
     grid-template-columns: 1fr;
   }
   .modal-indi-playlist-inputs {
-    width: 70%;
+    width: 90%;
   }
 }

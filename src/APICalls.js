@@ -9,7 +9,8 @@ export const makeAnAPICall = async (
   token,
   dispatch1,
   msg,
-  setLoader
+  setCircleLoader,
+  setProgressLoader
 ) => {
   const config = {
     headers: {
@@ -17,16 +18,16 @@ export const makeAnAPICall = async (
       "auth-token": token,
     },
   };
-  switch (request) {
 
-// delete request
+  switch (request) {
+    // delete request
 
     case "DELETE":
       try {
         const data = await axios.delete(url, config);
 
-        if (setLoader) {
-          setLoader(false);
+        if (setCircleLoader) {
+          setCircleLoader(false);
         }
         if (dispatch1 != null && msg != null) {
           setAlert(msg, "danger", dispatch1);
@@ -36,8 +37,8 @@ export const makeAnAPICall = async (
         }
         dispatch({ type: dispatchType, payload: data.data });
       } catch (error) {
-        if (setLoader) {
-          setLoader(false);
+        if (setCircleLoader) {
+          setCircleLoader(false);
         }
         console.log(error.response);
         if (dispatch1 != null) {
@@ -51,6 +52,7 @@ export const makeAnAPICall = async (
     case "GET":
       try {
         const data = await axios.get(url, config);
+
         if (dispatch1 != null && msg != null) {
           setAlert(msg, "success", dispatch1);
         }
@@ -65,15 +67,17 @@ export const makeAnAPICall = async (
           setAlert(error.response.data.error, "danger", dispatch1);
         }
       }
-          return;
-      
+      return;
+
     //   post
-      case "POST":
-          
+    case "POST":
       try {
         const data = await axios.post(url, dataToBeDispatched, config);
-        if (setLoader) {
-          setLoader(false);
+        if (setCircleLoader) {
+          setCircleLoader(false);
+        }
+        if (setProgressLoader) {
+          setProgressLoader(false);
         }
         if (dispatch1 != null && msg != null) {
           setAlert(msg, "success", dispatch1);
@@ -84,9 +88,12 @@ export const makeAnAPICall = async (
         }
         dispatch({ type: dispatchType, payload: data.data });
       } catch (error) {
-        console.log(error);
-        if (setLoader) {
-          setLoader(false);
+        console.log(error.response);
+        if (setCircleLoader) {
+          setCircleLoader(false);
+        }
+        if (setProgressLoader) {
+          setProgressLoader(false);
         }
         if (dispatch1 != null) {
           setAlert(error.response.data.error, "danger", dispatch1);
