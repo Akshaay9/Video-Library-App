@@ -5,6 +5,8 @@ import { useVideosContext } from "../../Context/VideoLists/VideoContext";
 import VideoListCOmponent from "../../UtilityFunctions/VideoListCOmponent";
 import YoutubeMagic from "../../SkeletonLoader/VideoListSkeletonLoader/DesktopSkeletonLoader";
 import MobileYoutubeMagic from "../../SkeletonLoader/VideoListSkeletonLoader/MobileSkeletonLoader";
+import {BE_URL} from "../../const"
+
 function ZoombaProductList() {
   const [videoURl, setVideoURL] = useState("");
   const {
@@ -16,7 +18,7 @@ function ZoombaProductList() {
     (async () => {
       await makeAnAPICall(
         "GET",
-        `https://cryptic-hamlet-94693.herokuapp.com/api/videos/zumba`,
+        `${BE_URL}/api/videos/zumba`,
         videoDIspatch,
         "LOAD_ZUMBA_VIDEO"
       );

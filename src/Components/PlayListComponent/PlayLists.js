@@ -5,6 +5,7 @@ import playlistSVG from "../../SVG/playlistSVG.svg";
 import { useLoginContext } from "../../Context/loginRegistrationContext/loginRegistrationContext";
 import { makeAnAPICall } from "../../APICalls";
 import ButtonLoader from "../ButtonLoader/ButtonLoader";
+import {BE_URL} from "../../const"
 function PlayLists() {
   const {
     state: { playLists, loading },
@@ -56,7 +57,7 @@ function PlayLists() {
             </h4>
 
             <ButtonLoader
-              url={`https://cryptic-hamlet-94693.herokuapp.com/api/playlist/${ele._id}`}
+              url={`${BE_URL}/api/playlist/${ele._id}`}
               dispatch={playListDispatch}
               dispatchtype={`LOAD_PLAYLIST`}
               dataToBeDispatched={null}

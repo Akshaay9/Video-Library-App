@@ -8,6 +8,7 @@ import { makeAnAPICall } from "../../APICalls";
 import TrashButtonLoader from "../TrashButtonLoader/TrashButtonLoader";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import { useToastContext } from "../../Context/ToastContext/ToastContext";
+import {BE_URL} from "../../const"
 function IndividualPlayList() {
   let navigate = useNavigate();
   // useState open playsit update name modal
@@ -45,7 +46,7 @@ function IndividualPlayList() {
     };
     makeAnAPICall(
       `POST`,
-      `https://cryptic-hamlet-94693.herokuapp.com/api/playlist/${playListid}/update`,
+      `${BE_URL}/api/playlist/${playListid}/update`,
       playListDispatch,
       `LOAD_PLAYLIST`,
       dataToBeDispatched,
@@ -216,7 +217,7 @@ function IndividualPlayList() {
                 <div className="individual-right-actions">
                   <div style={{ paddingRight: "2rem" }}>
                     <TrashButtonLoader
-                      url={`https://cryptic-hamlet-94693.herokuapp.com/api/playlist/${playListid}/${ele.videoID._id}`}
+                      url={`${BE_URL}/api/playlist/${playListid}/${ele.videoID._id}`}
                       dispatch={playListDispatch}
                       dispatchtype={`LOAD_PLAYLIST`}
                       dataToBeDispatched={null}

@@ -5,6 +5,7 @@ import { makeAnAPICall } from "../../APICalls";
 import { useLoginContext } from "../../Context/loginRegistrationContext/loginRegistrationContext";
 import { useToastContext } from "../../Context/ToastContext/ToastContext";
 import { useLocation, useNavigate } from "react-router-dom";
+import {BE_URL} from "../../const"
 function Login() {
   const navigate = useNavigate();
   const { state } = useLocation();
@@ -24,7 +25,6 @@ function Login() {
   const [passwordError, setPasswordError] = useState("");
   const [loader, setLoader] = useState(false);
   const [loader1, setLoader1] = useState(false);
-  
 
   useEffect(() => {
     var re = /\S+@\S+\.\S+/;
@@ -65,7 +65,7 @@ function Login() {
     };
     await makeAnAPICall(
       "POST",
-      "https://cryptic-hamlet-94693.herokuapp.com/api/users/login",
+      `${BE_URL}/api/users/login`,
       authDispatch,
       "USER_LOGGED_SUCCESSFULL",
       dataToBeSent,
@@ -84,7 +84,7 @@ function Login() {
     };
     await makeAnAPICall(
       "POST",
-      "https://cryptic-hamlet-94693.herokuapp.com/api/users/login",
+      `${BE_URL}/api/users/login`,
       authDispatch,
       "USER_LOGGED_SUCCESSFULL",
       dataToBeSent,

@@ -13,6 +13,7 @@ import {
 } from "../../UtilityFunctions/playListsWatchLaterAndLikesCTAFunctions";
 import { showModalForVideoPlayListActions } from "../../UtilityFunctions/VideoListFunctions";
 import LoginModal from "../LoginModal/LoginModal";
+import {BE_URL} from "../../const"
 const opts = {
   height: "450vh",
   width: "100%",
@@ -69,7 +70,7 @@ function IndividialVideo() {
     (async () => {
       const video = await makeAnAPICall(
         "GET",
-        `https://cryptic-hamlet-94693.herokuapp.com/api/videos/${id}`
+        `${BE_URL}/api/videos/${id}`
       );
       setLoader(true);
       // console.log(video);

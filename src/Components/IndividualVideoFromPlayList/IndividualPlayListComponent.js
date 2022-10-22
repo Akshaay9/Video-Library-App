@@ -13,6 +13,7 @@ import { makeAnAPICall } from "../../APICalls";
 import TrashButtonLoader from "../TrashButtonLoader/TrashButtonLoader";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import { useToastContext } from "../../Context/ToastContext/ToastContext";
+import {BE_URL} from "../../const"
 function IndividualPlayListComponent() {
   const { playListid, videoid } = useParams();
 
@@ -75,7 +76,7 @@ function IndividualPlayListComponent() {
       };
       makeAnAPICall(
         `POST`,
-        `https://cryptic-hamlet-94693.herokuapp.com/api/notes/${playListid}/${videoid}`,
+        `${BE_URL}/api/notes/${playListid}/${videoid}`,
         playListDispatch,
         `LOAD_PLAYLIST`,
         dataToBeDispatched,
@@ -95,7 +96,7 @@ function IndividualPlayListComponent() {
       };
       makeAnAPICall(
         `POST`,
-        `https://cryptic-hamlet-94693.herokuapp.com/api/notes/${notesid}`,
+        `${BE_URL}/api/notes/${notesid}`,
         playListDispatch,
         `LOAD_PLAYLIST`,
         dataToBeDispatched,
@@ -139,7 +140,7 @@ function IndividualPlayListComponent() {
                   onClick={() => updateUsersNote(ele.notesID._id)}
                 ></i>
                 <TrashButtonLoader
-                  url={`https://cryptic-hamlet-94693.herokuapp.com/api/notes/${playListid}/${videoid}/${ele.notesID._id}`}
+                  url={`${BE_URL}/api/notes/${playListid}/${videoid}/${ele.notesID._id}`}
                   dispatch={playListDispatch}
                   dispatchtype={`LOAD_PLAYLIST`}
                   dataToBeDispatched={null}
