@@ -24,6 +24,7 @@ import { UsePlayListContext } from "./Context/PlaylistContext/PlayListContext";
 import { useLoginContext } from "./Context/loginRegistrationContext/loginRegistrationContext";
 import { loadInitailUsersProduct } from "./UtilityFunctions/LoadInitialCOmponents";
 import PrivateRoute from "./PrivateRoute";
+import {BE_URL} from "./const"
 
 function App() {
   const [navModal, setNavModal] = useState(false);
@@ -47,7 +48,7 @@ function App() {
 
   useEffect(() => {
     (async () => {
-      const initialPing = await axios.get(`https://cryptic-hamlet-94693.herokuapp.com/`);
+      const initialPing = await axios.get(`${BE_URL}/`);
     })();
   }, []);
 

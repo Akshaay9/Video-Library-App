@@ -5,6 +5,8 @@ import { useVideosContext } from "../../Context/VideoLists/VideoContext";
 import VideoListCOmponent from "../../UtilityFunctions/VideoListCOmponent";
 import YoutubeMagic from "../../SkeletonLoader/VideoListSkeletonLoader/DesktopSkeletonLoader";
 import MobileYoutubeMagic from "../../SkeletonLoader/VideoListSkeletonLoader/MobileSkeletonLoader";
+import {BE_URL} from "../../const"
+
 function CalistheticProductLists() {
   const [videoURl, setVideoURL] = useState("");
   const {
@@ -16,7 +18,7 @@ function CalistheticProductLists() {
     (async () => {
       await makeAnAPICall(
         "GET",
-        `https://cryptic-hamlet-94693.herokuapp.com/api/videos/calisthenics`,
+        `${BE_URL}/api/videos/calisthenics`,
         videoDIspatch,
         "LOAD_CALISTHENICS_VIDEO"
       );

@@ -1,4 +1,6 @@
 import { makeAnAPICall } from "../APICalls";
+import {BE_URL} from "../const"
+
 
 export const loadInitailUsersProduct = async (
   userInfo,
@@ -6,9 +8,9 @@ export const loadInitailUsersProduct = async (
   watchLaterDispatch,
   playListDispatch
 ) => {
- await  makeAnAPICall(
+  await makeAnAPICall(
     `GET`,
-    `https://cryptic-hamlet-94693.herokuapp.com/api/likedvideos`,
+    `${BE_URL}/api/likedvideos`,
     likedVideoDispatch,
     "LOAD_LIKED_VIDEOS",
     null,
@@ -16,7 +18,7 @@ export const loadInitailUsersProduct = async (
   );
   makeAnAPICall(
     await `GET`,
-    `https://cryptic-hamlet-94693.herokuapp.com/api/watchlater`,
+    `${BE_URL}/api/watchlater`,
     watchLaterDispatch,
     "LOAD_WATCH_LATER",
     null,
@@ -24,11 +26,10 @@ export const loadInitailUsersProduct = async (
   );
   await makeAnAPICall(
     `GET`,
-    `https://cryptic-hamlet-94693.herokuapp.com/api/playlist`,
+    `${BE_URL}/api/playlist`,
     playListDispatch,
     "LOAD_PLAYLIST",
     null,
     userInfo.token
   );
-
 };

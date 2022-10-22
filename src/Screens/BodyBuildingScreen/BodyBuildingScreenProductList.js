@@ -5,6 +5,7 @@ import YouTube from "react-youtube";
 import { makeAnAPICall } from "../../APICalls";
 import YoutubeMagic from "../../SkeletonLoader/VideoListSkeletonLoader/DesktopSkeletonLoader";
 import MobileYoutubeMagic from "../../SkeletonLoader/VideoListSkeletonLoader/MobileSkeletonLoader";
+import {BE_URL} from "../../const"
 
 function BodyBuildingScreenProductList() {
   const [videoURl, setVideoURL] = useState("");
@@ -17,7 +18,7 @@ function BodyBuildingScreenProductList() {
     (async () => {
       await makeAnAPICall(
         "GET",
-        `https://cryptic-hamlet-94693.herokuapp.com/api/videos/bodybuilding`,
+        `${BE_URL}/api/videos/bodybuilding`,
         videoDIspatch,
         "LOAD_BODYBUILDING_VIDEO"
       );

@@ -5,6 +5,8 @@ import { makeAnAPICall } from "../../APICalls";
 import YouTube from "react-youtube";
 import YoutubeMagic from "../../SkeletonLoader/VideoListSkeletonLoader/DesktopSkeletonLoader";
 import MobileYoutubeMagic from "../../SkeletonLoader/VideoListSkeletonLoader/MobileSkeletonLoader";
+import {BE_URL} from "../../const"
+
 function FatLossProductList() {
   const [videoURl, setVideoURL] = useState("");
   const {
@@ -16,7 +18,7 @@ function FatLossProductList() {
     (async () => {
       await makeAnAPICall(
         "GET",
-        `https://cryptic-hamlet-94693.herokuapp.com/api/videos/fatloss`,
+        `${BE_URL}/api/videos/fatloss`,
         videoDIspatch,
         "LOAD_FATLOSS_VIDEO"
       );

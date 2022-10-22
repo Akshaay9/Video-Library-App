@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { useLoginContext } from "../../Context/loginRegistrationContext/loginRegistrationContext";
-
+import {BE_URL} from "../../const"
 import TrashButtonLoader from "../TrashButtonLoader/TrashButtonLoader";
 
 function WatchLaterLists({ index, ele, watchLaterDispatch }) {
@@ -48,7 +48,7 @@ function WatchLaterLists({ index, ele, watchLaterDispatch }) {
 
       <div className="liked-video-right">
         <TrashButtonLoader
-          url={`https://cryptic-hamlet-94693.herokuapp.com/api/watchlater/${ele.videoID._id}`}
+          url={`${BE_URL}/api/watchlater/${ele.videoID._id}`}
           dispatch={watchLaterDispatch}
           dispatchtype={`LOAD_WATCH_LATER`}
           dataToBeDispatched={null}

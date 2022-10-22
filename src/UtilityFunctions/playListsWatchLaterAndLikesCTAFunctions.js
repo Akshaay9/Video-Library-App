@@ -1,5 +1,6 @@
 import { makeAnAPICall } from "../APICalls";
 import PulseLoader from "react-spinners/PulseLoader";
+import {BE_URL} from "../const"
 // new playlist
 export const apiCallToCreatePlaylist = (
   videoID,
@@ -14,7 +15,7 @@ export const apiCallToCreatePlaylist = (
   }
   makeAnAPICall(
     "POST",
-    `https://cryptic-hamlet-94693.herokuapp.com/api/playlist/new/${videoID}`,
+    `${BE_URL}/api/playlist/new/${videoID}`,
     playListDispatch,
     "LOAD_PLAYLIST",
     dataToBeDispatched,
@@ -51,7 +52,7 @@ export const addorRemoveVideoToPlayList = (
   if (isVideoAlredyPlayListed.length > 0) {
     makeAnAPICall(
       "DELETE",
-      `https://cryptic-hamlet-94693.herokuapp.com/api/playlist/${playlistID}/${video._id}`,
+      `${BE_URL}/api/playlist/${playlistID}/${video._id}`,
       playListDispatch,
       "LOAD_PLAYLIST",
       null,
@@ -63,7 +64,7 @@ export const addorRemoveVideoToPlayList = (
   } else {
     makeAnAPICall(
       "POST",
-      `https://cryptic-hamlet-94693.herokuapp.com/api/playlist/${playlistID}/${video._id}`,
+      `${BE_URL}/api/playlist/${playlistID}/${video._id}`,
       playListDispatch,
       "LOAD_PLAYLIST",
       null,
@@ -100,7 +101,7 @@ export const addOrRemoveVideoFromWatchLater = (
           setCircleLoader(true);
           makeAnAPICall(
             `DELETE`,
-            `https://cryptic-hamlet-94693.herokuapp.com/api/watchlater/${video._id}`,
+            `${BE_URL}/api/watchlater/${video._id}`,
             watchLaterDispatch,
             "LOAD_WATCH_LATER",
             null,
@@ -141,7 +142,7 @@ export const addOrRemoveVideoFromWatchLater = (
           } else setCircleLoader(true);
           makeAnAPICall(
             `POST`,
-            `https://cryptic-hamlet-94693.herokuapp.com/api/watchlater/${video._id}`,
+            `${BE_URL}/api/watchlater/${video._id}`,
             watchLaterDispatch,
             "LOAD_WATCH_LATER",
             null,
@@ -192,7 +193,7 @@ export const addOrRemoveVideoFromLikedVideo = (
           setCircleLoader(true);
           makeAnAPICall(
             `DELETE`,
-            `https://cryptic-hamlet-94693.herokuapp.com/api/likedvideos/${video._id}`,
+            `${BE_URL}/api/likedvideos/${video._id}`,
             likedVideoDispatch,
             "LOAD_LIKED_VIDEOS",
             null,
@@ -233,7 +234,7 @@ export const addOrRemoveVideoFromLikedVideo = (
           } else setCircleLoader(true);
           makeAnAPICall(
             `POST`,
-            `https://cryptic-hamlet-94693.herokuapp.com/api/likedvideos/${video._id}`,
+            `${BE_URL}/api/likedvideos/${video._id}`,
             likedVideoDispatch,
             "LOAD_LIKED_VIDEOS",
             null,
