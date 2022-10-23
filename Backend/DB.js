@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import dotenv from 'dotenv'
+import dotenv from "dotenv";
 dotenv.config();
 
 const connnectToDB = async () => {
@@ -7,13 +7,12 @@ const connnectToDB = async () => {
     await mongoose.connect(process.env.mongo_URI, {
       useUnifiedTopology: true,
       useNewUrlParser: true,
-      useCreateIndex: true,
     });
-      console.log("<=====DB conneted=====>".blue.underline.bold);
+    console.log("<=====DB conneted=====>".blue.underline.bold);
   } catch (error) {
-    console.log(error.message.red.underline.bold); 
-    process.exit(1)
+    console.log(error.message.red.underline.bold);
+    process.exit(1);
   }
 };
 
-export default connnectToDB
+export default connnectToDB;
