@@ -1,1 +1,1 @@
-export const BE_URL="https://cryptic-hamlet-94693.herokuapp.com"
+export const BE_URL="https://videolib.akshaynair5.repl.co"
