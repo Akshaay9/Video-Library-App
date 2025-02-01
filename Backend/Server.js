@@ -8,7 +8,7 @@ import PlaylistRoute from "./Routes/PlayListRoute.js";
 import NotesRoute from "./Routes/Notes.js";
 import LikedVideos from "./Routes/LikedVideoRoute.js";
 import WatchLaterVideRoute from "./Routes/WatchLaterRoute.js";
-import VideoRoute from "./Routes/VIdeoLists.js"
+import VideoRoute from "./Routes/VIdeoLists.js";
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -16,7 +16,7 @@ dotenv.config();
 
 dbConnection();
 
-const PORT = process.env.PORT || 5000;
+const PORT = 5000;
 app.listen(PORT, () =>
   console.log(`server started on port ${PORT}`.yellow.underline.bold)
 );
@@ -36,7 +36,7 @@ app.use((err, req, res, next) => {
   console.log(err);
   res.json({
     message: err.message,
-    stack: process.env.NODE_ENV === "production" ? null : err.stack,
+    stack: err.stack,
   });
 });
 // 404 handling

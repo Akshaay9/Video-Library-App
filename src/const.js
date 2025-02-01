@@ -1,1 +1,1 @@
-export const BE_URL="https://videolib.akshaynair5.repl.co"
+export const BE_URL = "http://localhost:5000";

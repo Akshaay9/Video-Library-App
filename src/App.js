@@ -1,3 +1,4 @@
+// App.js
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import axios from "axios";
@@ -24,7 +25,7 @@ import { UsePlayListContext } from "./Context/PlaylistContext/PlayListContext";
 import { useLoginContext } from "./Context/loginRegistrationContext/loginRegistrationContext";
 import { loadInitailUsersProduct } from "./UtilityFunctions/LoadInitialCOmponents";
 import PrivateRoute from "./PrivateRoute";
-import {BE_URL} from "./const"
+import { BE_URL } from "./const";
 
 function App() {
   const [navModal, setNavModal] = useState(false);
@@ -48,7 +49,7 @@ function App() {
 
   useEffect(() => {
     (async () => {
-      const initialPing = await axios.get(`${BE_URL}/`);
+      await axios.get(`${BE_URL}/`);
     })();
   }, []);
 
@@ -64,16 +65,18 @@ function App() {
           <Route path="/likedvideo" element={<LikedVideos />} />
           <Route path="/WatchLaterVideos" element={<WatchLaterVideos />} />
           <Route path="/playlists" element={<PlayListComponent />} />
-          <PrivateRoute
+
+          {/* Protected routes */}
+          <Route
             path="/playlists/:playListid"
-            element={<IndividualPlayListComponent />}
+            element={<PrivateRoute element={<IndividualPlayListComponent />} />}
           />
-          <PrivateRoute
+          <Route
             path="/playlists/:playListid/:videoid"
-            element={<IndividualVideosOfPlayList />}
+            element={<PrivateRoute element={<IndividualVideosOfPlayList />} />}
           />
 
-          {/* videos pages */}
+          {/* video pages */}
           <Route path="/videos/bodybuilding" element={<BodyBuildingScreen />} />
           <Route path="/videos/fatloss" element={<FatLoss />} />
           <Route path="/videos/calisthetic" element={<Calisthetic />} />

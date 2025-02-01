@@ -1,18 +1,20 @@
+// PrivateRoute.js
 import React from "react";
 import { Route, Navigate } from "react-router-dom";
 import { useLoginContext } from "./Context/loginRegistrationContext/loginRegistrationContext";
 
-function PrivateRoute({ path, ...props }) {
+const PrivateRoute = ({ element, ...rest }) => {
   const {
     state: { userInfo },
   } = useLoginContext();
 
- 
-
-  return userInfo.token ? (
-    <Route {...props} path={path} />
-  ) : (
-    <Navigate state={{ from: path }} replace to="/login" />
+  // Wrap the Route in PrivateRoute and pass the element to the render logic
+  return (
+    <Route
+      {...rest}
+      element={userInfo?.token ? element : <Navigate to="/login" />}
+    />
   );
-}
+};
+
 export default PrivateRoute;

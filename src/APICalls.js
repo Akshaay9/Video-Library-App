@@ -72,7 +72,7 @@ export const makeAnAPICall = async (
     //   post
     case "POST":
       try {
-        const data = await axios.post(url, dataToBeDispatched, config);
+        const data = await axios.post(url, dataToBeDispatched || {}, config);
         if (setCircleLoader) {
           setCircleLoader(false);
         }
