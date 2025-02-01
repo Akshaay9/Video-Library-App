@@ -104,7 +104,11 @@
   }
 }
 .bodyBuildingCard-img:hover .bodyBuildingCard-CTA {
-  display: block !important;
+  display: flex !important;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 .bodyBuilding-cta-btn {
   padding: 0rem 3rem;
@@ -394,13 +398,13 @@ input:focus {
   top: -10px !important;
 }
 .mobile-skeleton-loader {
-  display: none ;
+  display: none;
 }
 @media screen and (max-width: 800px) {
   .desktop-skeleton-loader {
     display: none !important;
   }
-  .mobile-skeleton-loader{
+  .mobile-skeleton-loader {
     display: block !important;
   }
 
